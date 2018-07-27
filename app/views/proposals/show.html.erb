@@ -1,8 +1,11 @@
 <% if !@proposal.image_url.empty? %>
   <img src="<%=@proposal.image_url%>">
 <% end %>
+
 <h1><%= @proposal.name %></h1>
 <h3>Description</h3>
 <p><%= @proposal.description %></p>
 <h3>Why This Proposal Should Be Accepted</h3>
 <p><%= @proposal.pitch %></p>
+
+<%= link_to "Edit this proposal", edit_proposal_path(@proposal) %>
