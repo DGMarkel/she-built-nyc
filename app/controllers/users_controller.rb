@@ -8,4 +8,22 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
   end
 
+  def new
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to user_path(@user)
+    else
+      render new_user_path
+    end
+  end
+
+  private
+
+    def user_params
+      params.require(:user).permit(:name, :affiliation, :borough, :zip_code, :admin) 
+    end
+
 end
