@@ -5,7 +5,9 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :affiliation
       t.string :borough
       t.integer :zip_code
-      t.boolean :admin
+      t.string :image_url
+      t.string :password_digest
+      t.boolean :admin, default: false
 
       t.timestamps
     end
