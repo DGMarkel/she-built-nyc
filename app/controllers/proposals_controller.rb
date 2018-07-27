@@ -28,6 +28,7 @@ class ProposalsController < ApplicationController
   def update
     @proposal = Proposal.find_by(id: params[:id])
     @proposal.update(proposal_params)
+    redirect_to proposal_path(@proposal)
   end
 
   private
