@@ -4,6 +4,8 @@ Proposal
   has many users(votes), through user_proposal?
   attributes: :name, :description, :pitch, :image_url
 
+  if a second proposal is made for the same figure, it will count as a vote for the initial proposal instead of creating a new proposal instance 
+
 User
   has_one proposal
   can make one proposal and can only vote once.
@@ -19,7 +21,7 @@ User::Admin
   can remove users
   can edit any proposal
 
-Comments 
+Comments
 will build out comment feature later
 
 Root
