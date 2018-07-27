@@ -8,6 +8,14 @@
 <h3>Why This Proposal Should Be Accepted</h3>
 <p><%= @proposal.pitch %></p>
 
+<h3>Rank this proposal</p>
+<%= form_for(:ranking, url: rankings_path) do |f| %>
+<%= f.number_field :ranking %>
+<%= f.hidden_field :proposal, :value => @proposal.id %>
+<%= f.submit "Submit" %>
+<% end %>
+
+
 <% if current_user.proposal_id == @proposal.id %>
 <%= link_to "Edit this proposal", edit_proposal_path(@proposal) %>
 <% end %>
