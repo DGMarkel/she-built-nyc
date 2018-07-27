@@ -21,6 +21,15 @@ class ProposalsController < ApplicationController
     end
   end
 
+  def edit
+    @proposal = Proposal.find_by(id: params[:id])
+  end
+
+  def update
+    @proposal = Proposal.find_by(id: params[:id])
+    @proposal.update(proposal_params)
+  end
+
   private
 
     def proposal_params
