@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SheBuiltNyc</title>
+    <title>New Monuments to Women's History</title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+
+        <a class="navbar-brand" href="<%= root_url %>"/>Home</a>
+        <% if session[:user_id] %>
+        <%= link_to "#{current_user.name}'s Profile", user_path(current_user) %>
+        <%= link_to "Log Out", logout_path, method: "delete" %>
+        <% else %>
+        <a href="<%= new_session_path %>"/>Login</a>
+        <a href="<%= new_user_path %>"/>Sign Up</a>
+        <% end %>
+
+
+    <!-- content -->
+    <div class="container"  role="main">
+      <%= yield %>
+    </div>
   </body>
 </html>
