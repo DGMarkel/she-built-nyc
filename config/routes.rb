@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :rankings
   root 'sessions#welcome'
   resources :proposals
   resources :users
