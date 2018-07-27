@@ -1,2 +1,7 @@
 <h1><%= @user.name %>'s Profile Page</h1>
-<p><%= link_to "Submit a Proposal", new_proposal_path %></p> 
+
+<% if current_user == @user && current_user.proposal_id %>
+<%= link_to "My Proposal", proposal_path(current_user.proposal_id) %>
+<% else %>
+<p><%= link_to "Submit a Proposal", new_proposal_path %></p>
+<% end %>
