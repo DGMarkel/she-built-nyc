@@ -33,9 +33,13 @@ class ProposalsController < ApplicationController
   end
 
   def destroy
-    @proposal = Proposal.find_by(id: params[:id])
-    @proposal.destroy
-    redirect_to proposals_path
+    if current_user.admin
+      @proposal = Proposal.find_by(id: params[:id])
+      @proposal.destroy
+      redirect_to proposals_path
+    else
+      render proposal_path(@proposal)
+    end
   end
 
   private

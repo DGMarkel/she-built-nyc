@@ -1,7 +1,24 @@
 <h1><%= @user.name %>'s Profile Page</h1>
 
-<% if current_user == @user && current_user.proposal_id %>
-<%= link_to "My Proposal", proposal_path(current_user.proposal_id) %>
+<% if current_user.admin %>
+  <h2>Stats</h2>
+  <p style="color:red">Display 3 most recent proposals</p>
+  <p style="color:red">X number of users have joined the site this week</p>
+  <p style="color:red">Total number of Users</p>
+  <p style="color:red">X number of votes today </p>
+  <p style="color:red">Total number of votes</p>
+  <p style="color:red">X number of proposals have been added today.</p>
+  <p style="color:red">X number of proposals have been added this week.</p>
+  <p style="color:red">Total number of proposals</p>
+
+  <%= link_to "All Users", users_path %>
+  <%= link_to "All Proposals", proposals_path %>
+
+
 <% else %>
-<p><%= link_to "Submit a Proposal", new_proposal_path %></p>
+  <% if current_user == @user && current_user.proposal_id %>
+  <%= link_to "My Proposal", proposal_path(current_user.proposal_id) %>
+  <% else %>
+  <p><%= link_to "Submit a Proposal", new_proposal_path %></p>
+  <% end %>
 <% end %>
