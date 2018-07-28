@@ -5,9 +5,8 @@ class RankingsController < ApplicationController
   end
 
   def create
-    binding.pry
     @ranking = Ranking.create(user_id: current_user.id, proposal_id: params[:ranking][:proposal], ranking: params[:ranking][:ranking])
-    render 'success'
+    redirect_to proposal_path(params[:ranking][:proposal])
   end
 
 

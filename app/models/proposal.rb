@@ -2,6 +2,7 @@ class Proposal < ApplicationRecord
   has_many :rankings
   has_many :users, through: :rankings
   validates :name, uniqueness: true
+  #how to ensure that each proposal can only be ranked once by each user?
 
   def count
     self.rankings.count
@@ -14,7 +15,9 @@ class Proposal < ApplicationRecord
   end
 
   def rankings_average
-    rankings_sum/count
+    if rankings_sum != 0
+      rankings_sum/count
+    end
   end
 
   def self.top_three_proposals

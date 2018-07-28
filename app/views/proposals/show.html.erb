@@ -3,7 +3,9 @@
 <% end %>
 
 <h1><%= @proposal.name %></h1>
-<p>Average Rating: <%= @proposal.rankings_average if @proposal.rankings %></p>
+<% if !@proposal.rankings.empty? %>
+<p>Average Rating: <%= @proposal.rankings_average %></p>
+<% end %>
 <h3>Description</h3>
 <p><%= @proposal.description %></p>
 <h3>Why This Proposal Should Be Accepted</h3>
