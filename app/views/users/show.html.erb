@@ -2,14 +2,16 @@
 
 <% if current_user.admin %>
   <h2>Stats</h2>
-  <p style="color:red">Display 3 most recent proposals</p>
-  <p style="color:red">X number of users have joined the site this week</p>
-  <p style="color:red">Total number of Users</p>
-  <p style="color:red">X number of votes today </p>
-  <p style="color:red">Total number of votes</p>
-  <p style="color:red">X number of proposals have been added today.</p>
-  <p style="color:red">X number of proposals have been added this week.</p>
-  <p style="color:red">Total number of proposals</p>
+    <ul>
+      <li style="color:red">Display 3 most recent proposals</li>
+      <li style="color:red">X number of users have joined the site this week</li>
+      <li style="color:red">Total number of Users</li>
+      <li style="color:red">X number of votes today </li>
+      <li style="color:red">Total number of votes</li>
+      <li style="color:red">X number of proposals have been added today.</li>
+      <li style="color:red">X number of proposals have been added this week.</li>
+      <li style="color:red">Total number of proposals</li>
+    </ul>
 
   <%= link_to "All Users", users_path %>
   <%= link_to "All Proposals", proposals_path %>

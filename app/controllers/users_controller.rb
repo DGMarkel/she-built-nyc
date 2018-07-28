@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    if current_user.admin
+      @users = User.all
+    else
+      redirect_to user_path(current_user)
+    end
   end
 
   def show
@@ -30,6 +34,16 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @user.update(user_params)
   end
+
+  def destroy
+    if current_user.admin
+      @user = User.find_by(id: params[:id])
+      @user.destroy
+      redirect_to users_path
+    else
+      redirect_to root_path
+    end
+  end 
 
   private
 

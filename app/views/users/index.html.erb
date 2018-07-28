@@ -1,0 +1,6 @@
+<h1>Users Index - For Admin Only</h1>
+<ul>
+  <% @users.all.each do |user| %>
+    <li><%= link_to user.name, user_path(user) %> <%= link_to "Destroy", user_path(user), data: {:confirm => 'Are you sure?'}, method: "delete" %></li>
+  <% end %>
+</ul>
