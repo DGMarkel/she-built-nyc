@@ -12,9 +12,13 @@
 <p><%= @proposal.pitch %></p>
 
 
-<% if current_user && current_user.proposal_id == @proposal.id %>
+<% if current_user && current_user.proposal_id == @proposal.id || current_user.admin %>
   <%= link_to "Edit this proposal", edit_proposal_path(@proposal) %>
-<% elsif current_user %>
+<% end %>
+<% if current_user.admin %>
+  <%= link_to "Destroy", proposal_path(@proposal), data: {:confirm => 'Are you sure?'}, method: "delete" %>
+<% end %>
+<% if current_user && !current_user.admin %>
   <h3>Rank this proposal</p>
   <%= form_for(:ranking, url: rankings_path) do |f| %>
   <%= f.number_field :ranking %>
