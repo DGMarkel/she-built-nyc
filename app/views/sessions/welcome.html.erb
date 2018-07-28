@@ -11,6 +11,7 @@ that individuals limit their nominations to one.
 <h2>Most popular proposals:</h2>
 
 <% Proposal.top_three_proposals.each do |proposal| %>
+  <% binding.pry %>
   <p><%= link_to proposal[0].name, proposal_path(proposal[0]) %><br>
     Rank: <%= proposal[0].rankings_average %>
   </p>

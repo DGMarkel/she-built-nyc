@@ -30,7 +30,7 @@ class Proposal < ApplicationRecord
 
   def self.top_three_proposals
     hash = {}
-    all.each {|proposal| hash[proposal] = proposal.rankings_average}
+    all.each {|proposal| hash[proposal] = proposal.rankings_average if proposal.rankings_average }
     hash = hash.sort_by {|k,v| v}.reverse[0..2]
   end
 
