@@ -11,9 +11,10 @@
 <h3>Why This Proposal Should Be Accepted</h3>
 <p><%= @proposal.pitch %></p>
 
-<% if current_user.proposal_id == @proposal.id %>
+
+<% if current_user && current_user.proposal_id == @proposal.id %>
   <%= link_to "Edit this proposal", edit_proposal_path(@proposal) %>
-<% else %>
+<% elsif current_user %>
   <h3>Rank this proposal</p>
   <%= form_for(:ranking, url: rankings_path) do |f| %>
   <%= f.number_field :ranking %>
