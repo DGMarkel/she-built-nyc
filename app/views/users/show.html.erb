@@ -3,16 +3,20 @@
 <% if current_user.admin %>
   <h2>Stats</h2>
     <ul>
-      <li style="color:red">Display 3 most recent proposals</li>
-      <li style="color:red"><%= User.created_today.count %> users have joined the site today</li>
-      <li style="color:red">Total number of users: <%= User.all.count %></li>
-      <li style="color:red">X number of votes today </li>
-      <li style="color:red">Total number of votes: <%= Ranking.all.count %> </li>
-      <li style="color:red">X number of proposals have been added today.</li>
-      <li style="color:red">X number of proposals have been added this week.</li>
-      <li style="color:red">Total number of proposals</li>
+      <p>
+        <li>Newest Proposal: <%= link_to Proposal.last.name, proposal_path(Proposal.last) %></li>
+        <li>Number of proposals submitted today: <%= Proposal.created_today.count %> </li>
+        <li style="color:red">X number of proposals have been added this week.</li>
+        <li>Total number of proposals: <%= Proposal.all.count %></li>
+      </p><p>
+        <li>Newest User: <%= link_to User.last.name, proposal_path(User.last) %></li>
+        <li>Number of users that joined the site today: <%= User.created_today.count %> </li>
+        <li>Total number of users: <%= User.all.count %></li>
+      </p><p>
+        <li>Number of votes today: <%= Ranking.created_today.count %>  </li>
+        <li>Total number of votes: <%= Ranking.all.count %> </li>
+      </p>
     </ul>
-    <% binding.pry %>
 
   <%= link_to "All Users", users_path %>
   <%= link_to "All Proposals", proposals_path %>

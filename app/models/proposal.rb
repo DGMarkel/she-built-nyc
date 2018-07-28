@@ -3,6 +3,15 @@ class Proposal < ApplicationRecord
   has_many :users, through: :rankings
   validates :name, uniqueness: true
 
+
+  def created_today?
+    Date.today.day == self.created_at.day
+  end
+
+  def self.created_today
+    all.select{|proposal| proposal if proposal.created_today?}
+  end
+
   def count
     self.rankings.count
   end
