@@ -1,3 +1,7 @@
+<% if @user.image_url %>
+  <img src="<%=@user.image_url%>" style="max-width: 20%; height: auto; float: left; margin-right: 10px;">
+<% end %>
+
 <h1><%= @user.name %>'s Profile Page</h1>
 
 <% if current_user.admin %>
