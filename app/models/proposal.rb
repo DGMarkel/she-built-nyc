@@ -1,4 +1,5 @@
 class Proposal < ApplicationRecord
+  has_many :comments
   has_many :rankings
   has_many :users, through: :rankings
   validates :name, uniqueness: true
