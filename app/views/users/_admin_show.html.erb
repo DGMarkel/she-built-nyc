@@ -12,7 +12,7 @@
         <li>Number of users that joined the site today: <%= User.created_today.count %> </li>
         <li>Total number of users: <%= User.all.count %></li>
       </p><p>
-        <li>Number of votes today: <%= Ranking.created_today.count %>  </li>
+        <li>Number of votes today: <%= Ranking.created_today.count %> <% binding.pry %> </li>
         <li>Total number of votes: <%= Ranking.all.count %> </li>
       </p>
     </ul>

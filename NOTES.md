@@ -1,6 +1,7 @@
 add oauth
 add nested proposal/1/comments index accessible only to admin
-add filters to proposals index: alphabetical, most popular, least popular, newest, oldest 
+add filters to proposals index: alphabetical, most popular, least popular, newest, oldest
+fix comments#create path, add #comment_params
 
 
 New Monuments to Women's History is based on NYC's initiative to build more monuments to women around the city.  My site will list proposed monuments, accept new proposals from the public, allow the public to vote on existing proposals and display other public input.
