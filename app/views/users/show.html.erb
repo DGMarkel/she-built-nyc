@@ -10,12 +10,21 @@
 
 <% else %>
 
-   <ul>
-     <li>Affiliation: <%= @user.affiliation %></li>
-     <li>Borough: <%= @user.borough %></li>
-     <li>Zip Code: <%= @user.zip_code %></li>
-   </ul>
+  <ul>
+    <li>Affiliation: <%= @user.affiliation %></li>
+    <li>Borough: <%= @user.borough %></li>
+    <li>Zip Code: <%= @user.zip_code %></li>
+  </ul>
 
+  <hr>
+    <p>Recent comments:</p>
+  <hr>
+    <p>Favorite Proposals:</p>
+  <hr>
+    <p>Proposals I've recently voted on:</p>
+
+
+  <%= link_to "All Comments", user_comments_path(@user) %>
   <% if @user.proposal_id %>
   <%= link_to "My Proposal", proposal_path(current_user.proposal_id) %>
   <% else %>
