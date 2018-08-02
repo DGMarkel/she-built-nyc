@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
 
   def index
     @comments = Comment.all
+    @user = User.find_by(id: params[:user_id])
   end
 
   def show
@@ -28,13 +29,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    if current_user.admin
-      @comment = Comment.find_by(id: params[:id])
-      @comment.destroy
-      redirect_to comments_path
-    else
-      render comment_path(@comment)
-    end
+    @comment = Comment.find_by(id: params[:id])
+    @user = @comment.user
+    @comment.destroy
+    redirect_to user_comments_path(@user)
   end
 
   private

@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
+  root 'sessions#welcome'
   resources :comments
   resources :rankings
-  root 'sessions#welcome'
   resources :proposals
   resources :users
+  resources :users do
+    resources :comments, only: [:index]
+  end
   resources :sessions
   delete '/logout' => 'sessions#destroy'
 
