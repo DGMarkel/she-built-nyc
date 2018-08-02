@@ -1,10 +1,15 @@
+add oauth
+add nested proposal/1/comments index accessible only to admin
+add filters to proposals index: alphabetical, most popular, least popular, newest, oldest 
+
+
 New Monuments to Women's History is based on NYC's initiative to build more monuments to women around the city.  My site will list proposed monuments, accept new proposals from the public, allow the public to vote on existing proposals and display other public input.
 
 Proposal
   has many users(votes), through user_proposal?
   attributes: :name, :description, :pitch, :image_url
 
-  if a second proposal is made for the same figure, it will count as a vote for the initial proposal instead of creating a new proposal instance 
+  if a second proposal is made for the same figure, it will count as a vote for the initial proposal instead of creating a new proposal instance
 
 User
   has_one proposal
