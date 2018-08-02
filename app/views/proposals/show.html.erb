@@ -1,4 +1,5 @@
-<% if !@proposal.image_url.empty? %>
+
+<% if @proposal.image_url %>
   <img src="<%=@proposal.image_url%>" style="border: 1px solid black; max-width: 20%; height: auto; float: left; margin-right: 10px;">
 <% end %>
 

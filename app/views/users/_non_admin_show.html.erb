@@ -2,7 +2,8 @@
 <%= link_to "My Comments", user_comments_path(@user), {:style => 'float:left; margin-right:10px;'} %>
 <a href="#" style="float:left;margin-right:10px">Favorites</a>
 <% if @user.proposal_id %>
-<%= link_to "My Proposal", proposal_path(current_user.proposal_id) %>
+<% binding.pry %>
+<%= link_to "My Proposal", proposal_path(@user.proposal_id) %>
 <% else %>
 <p><%= link_to "Submit a Proposal", new_proposal_path %></p>
 <% end %>
