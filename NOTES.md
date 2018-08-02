@@ -12,6 +12,7 @@ add to user profile page:
   proposals I've voted on.
   my favorite proposals (top 5 highest rankings)
 fix comments#create path, add #comment_params
+should i be able to reply to comments?
 
 
 New Monuments to Women's History is based on NYC's initiative to build more monuments to women around the city.  My site will list proposed monuments, accept new proposals from the public, allow the public to vote on existing proposals and display other public input.
