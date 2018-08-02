@@ -1,6 +1,4 @@
-<% if current_user.id == params[:id].to_i %>
-
-  <h2>Stats</h2>
+<h2>Stats</h2>
     <ul>
       <p>
         <li>Newest Proposal: <%= link_to Proposal.last.name, proposal_path(Proposal.last) %></li>
@@ -12,12 +10,10 @@
         <li>Number of users that joined the site today: <%= User.created_today.count %> </li>
         <li>Total number of users: <%= User.all.count %></li>
       </p><p>
-        <li>Number of votes today: <%= Ranking.created_today.count %> <% binding.pry %> </li>
+        <li>Number of votes today: <%= Ranking.created_today.count %></li>
         <li>Total number of votes: <%= Ranking.all.count %> </li>
       </p>
     </ul>
 
   <%= link_to "All Users", users_path %>
   <%= link_to "All Proposals", proposals_path %>
-
-<% end %>

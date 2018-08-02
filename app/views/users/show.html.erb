@@ -5,27 +5,11 @@
 <h1><%= @user.name %>'s Profile Page</h1>
 
 <% if current_user.admin %>
-
-  <%= render partial: "admin_show" %>
-
-<% else %>
-  <%= link_to "Edit Profile", edit_user_path(@user), {:style => 'float:left; margin-right:10px;'} %>
-  <%= link_to "My Comments", user_comments_path(@user), {:style => 'float:left; margin-right:10px;'} %>
-  <a href="#" style="float:left;margin-right:10px">Favorites</a>
-  <% if @user.proposal_id %>
-  <%= link_to "My Proposal", proposal_path(current_user.proposal_id) %>
+  <% if current_user.id == params[:id].to_i %>
+    <%= render partial: "admin_show" %>
   <% else %>
-  <p><%= link_to "Submit a Proposal", new_proposal_path %></p>
+    <%= render partial: "non_admin_show" %>
   <% end %>
-
-  <ul>
-    <li>Affiliation: <%= @user.affiliation %></li>
-    <li>Borough: <%= @user.borough %></li>
-    <li>Zip Code: <%= @user.zip_code %></li>
-  </ul>
-
-  <hr>
-    <p>Recent Activity:</p>
-  <hr>
-
+<% else %>
+  <%= render partial: "non_admin_show" %>
 <% end %>
