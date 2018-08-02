@@ -1,6 +1,16 @@
 add oauth
 add nested proposal/1/comments index accessible only to admin
-add filters to proposals index: alphabetical, most popular, least popular, newest, oldest
+add filters to proposals index:
+  alphabetical
+  most popular
+  least popular
+  newest
+  oldest
+add to user profile page:
+  recent comments.
+  proposals I've commented on.  
+  proposals I've voted on.
+  my favorite proposals (top 5 highest rankings)
 fix comments#create path, add #comment_params
 
 
