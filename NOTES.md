@@ -1,3 +1,4 @@
+FOUND WEIRD ISSUE - when proposals are deleted, users retain non-existent proposal ids
 add oauth
 add nested proposal/1/comments index accessible only to admin
 add filters to proposals index:
