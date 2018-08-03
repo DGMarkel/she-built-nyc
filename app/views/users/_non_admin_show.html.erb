@@ -22,7 +22,7 @@
     <hr>
     <% @user.comments.newest_first.limit(3).each do |comment| %>
       <% @proposal = Proposal.find_by(id: comment.proposal_id) %>
-      <%= link_to @proposal.name, proposal_path(@proposal) %> - <%= comment.content %>
+      <em><%= comment.content %></em> - comment on <%= link_to @proposal.user.name, user_path(@proposal.user) %>'s proposal, <%= link_to @proposal.name, proposal_path(@proposal) %>
       <hr>
     <% end %>
     <h4>Recent votes:</h4>

@@ -1,3 +1,5 @@
+most important: admin needs to know which proposal has the highest ranking AND the most votes
+
 to do later:
   add filters to proposals index:
     alphabetical
