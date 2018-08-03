@@ -1,6 +1,8 @@
 <p>Login</p>
 <%= form_for(:user, url: sessions_path) do |f| %>
-<%= f.collection_select(:name, User.all, :name, :name) %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.label :password %>
 <%= f.password_field :password, :id => "password" %>
 <%= f.submit "Sign In" %>
 <% end %>

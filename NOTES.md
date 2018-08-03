@@ -1,14 +1,10 @@
-
-
-add nested proposal/1/comments index accessible only to admin
-add filters to proposals index:
-  alphabetical
-  most popular
-  least popular
-  newest
-  oldest
-add to user profile page:
-  my favorite proposals (top 5 highest rankings)
+to do later:
+  add filters to proposals index:
+    alphabetical
+    most popular
+    least popular
+    newest
+    oldest
 should i be able to reply to comments?
 
 
