@@ -5,7 +5,6 @@ class Proposal < ApplicationRecord
   has_many :voters, through: :rankings, source: "user"
   validates :name, uniqueness: true
 
-
   def created_today?
     Date.today.day == self.created_at.day
   end

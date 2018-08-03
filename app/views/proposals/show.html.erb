@@ -5,7 +5,7 @@
 
 <h1><%= @proposal.name %></h1>
 <% if !@proposal.rankings.empty? %>
-<p>Average Rating: <%= @proposal.rankings_average %></p>
+<h3>Submitted by: <%= user_name_linked_or_not %></h3>
 <% end %>
 <h3>Description</h3>
 <p><%= @proposal.description %></p>
