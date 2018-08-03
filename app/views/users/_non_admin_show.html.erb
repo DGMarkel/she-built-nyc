@@ -16,7 +16,7 @@
 
 <hr>
   <h3>Favorite proposals</h3>
-    <% @user.rankings.highest_ranking.each do |ranking| %>
+    <% @user.rankings.highest_ranking.limit(3).each do |ranking| %>
       <% @proposal = Proposal.find_by(id: ranking.proposal_id) %>
       <%= link_to @proposal.name, proposal_path(@proposal) %>
     <% end %>
@@ -24,12 +24,14 @@
 <hr>
   <h3>Recent Activity:</h3>
 <hr>
-  <p>Recently commented on:</p>
+  <h4>Recent Comments:</h4>
+    <hr>
     <% @user.comments.newest_first.limit(3).each do |comment| %>
       <% @proposal = Proposal.find_by(id: comment.proposal_id) %>
-      <%= link_to @proposal.name, proposal_path(@proposal) %>
+      <%= link_to @proposal.name, proposal_path(@proposal) %> - <%= comment.content %>
+      <hr>
     <% end %>
-    <p>Recent votes:</p>
+    <h4>Recent votes:</h4>
       <% @user.rankings.newest_first.limit(3).each do |ranking| %>
         <% @proposal = Proposal.find_by(id: ranking.proposal_id) %>
         <p>You gave <%= link_to @proposal.name, proposal_path(@proposal) %> a score of <%= ranking.ranking %></p>
