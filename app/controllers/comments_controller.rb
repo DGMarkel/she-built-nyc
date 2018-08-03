@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action site_security, only: [:new, :create, :destroy]
+  before_action :site_security, only: [:new, :create, :destroy]
 
   def index
     @comments = Comment.all

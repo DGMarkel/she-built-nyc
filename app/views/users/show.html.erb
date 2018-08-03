@@ -4,12 +4,9 @@
 
 <h1><%= @user.name %>'s Profile Page</h1>
 
-<% if current_user.admin %>
-  <% if current_user.id == params[:id].to_i %>
+
+  <% if current_user.admin  && current_user.id == params[:id].to_i %>
     <%= render partial: "admin_show" %>
   <% else %>
     <%= render partial: "non_admin_show" %>
-  <% end %>
-<% else %>
-  <%= render partial: "non_admin_show" %>
 <% end %>

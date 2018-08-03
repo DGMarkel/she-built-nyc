@@ -2,6 +2,7 @@ class Proposal < ApplicationRecord
   has_many :comments
   has_many :rankings
   belongs_to :user, optional: true
+  has_many :voters, through: :rankings, source: "user"
   validates :name, uniqueness: true
 
 
@@ -31,7 +32,7 @@ class Proposal < ApplicationRecord
 
   def self.top_three_proposals
     hash = {}
-    all.each {|proposal| hash[proposal] = proposal.rankings_average if proposal.rankings_average }
+    all.each {|proposal| hash[proposal] = proposal.rankings_average if proposal.rankings_average && proposal.rankings.count > 1 }
     hash = hash.sort_by {|k,v| v}.reverse[0..2]
   end
 

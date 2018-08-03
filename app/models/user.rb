@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  belongs_to :proposal, optional: true
+  has_one :proposal
   has_many :comments
   has_many :rankings
   has_many :ranked_proposals, through: :rankings, source: "proposal"

@@ -1,0 +1,7 @@
+
+  <% @found_user = User.find_by(id: comment.user_id) %>
+  Author: <%= link_to @found_user.name, user_path(@found_user) %> - <%= comment.content %> - <%= comment.created_at %>
+  <% if current_user.admin || current_user == @user %>
+  <%= link_to "Delete", comment_path(comment), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'float:right'%>
+  <% end %>
+  <hr>

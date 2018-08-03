@@ -5,9 +5,8 @@
 
 <% if current_user.admin %>
   <%= link_to "Destroy", proposal_path(@proposal), data: {:confirm => 'Are you sure?'}, method: "delete" %>
-<% end %>
 
-<% if !current_user.admin && current_user.id != @proposal.user_id  %>
+<% elsif current_user.id != @proposal.user_id  %>
 
   <h3>Rank this proposal</h3>
   <% if flash[:warning] %>

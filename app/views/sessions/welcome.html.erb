@@ -12,14 +12,10 @@ that individuals limit their nominations to one.
 <hr>
 
 <% Proposal.top_three_proposals.each do |proposal| %>
-  <% if proposal[0].rankings.count > 1 %>
     <div style="display:inline-block;width:33%;">
       <img src= '<%= proposal[0].image_url %>' style="height:150px;width:auto;float:left;margin-right:10px;">
       <p><%= link_to proposal[0].name, proposal_path(proposal[0]) %><br>
       <%= proposal[0].description %></p>
     </div>
   <% end %>
-
-
-<% end %>
 </p>

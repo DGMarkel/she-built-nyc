@@ -1,12 +1,7 @@
 <%= link_to "Edit Profile", edit_user_path(@user), {:style => 'float:left; margin-right:10px;'} %>
 <%= link_to "My Comments", user_comments_path(@user), {:style => 'float:left; margin-right:10px;'} %>
 <a href="#" style="float:left;margin-right:10px">Favorites</a>
-<% if @user.proposal_id %>
-<%= link_to "My Proposal", proposal_path(@user.proposal_id) %>
-<% else %>
-<p><%= link_to "Submit a Proposal", new_proposal_path %></p>
-<% end %>
-
+<p><%= proposal_link %></p>
 <ul>
   <li>Affiliation: <%= @user.affiliation %></li>
   <li>Borough: <%= @user.borough %></li>
