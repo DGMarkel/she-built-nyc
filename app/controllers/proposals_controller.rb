@@ -16,6 +16,7 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.new(proposal_params)
     if @proposal.save
       current_user.update(proposal_id: @proposal.id)
+      @proposal.update(user_id: current_user.id)
       redirect_to proposal_path(@proposal)
     else
       render new_proposal_path

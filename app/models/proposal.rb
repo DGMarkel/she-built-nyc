@@ -1,7 +1,7 @@
 class Proposal < ApplicationRecord
   has_many :comments
   has_many :rankings
-  belongs_to :user
+  belongs_to :user, optional: true
   validates :name, uniqueness: true
 
 
