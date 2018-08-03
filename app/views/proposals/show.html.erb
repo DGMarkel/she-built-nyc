@@ -15,3 +15,16 @@
 <% if current_user %>
   <%= render partial: 'logged_in_show' %>
 <% end %>
+
+<h3>Recent Comments:</h3>
+<%= link_to "View All Comments", proposal_comments_path(@proposal) %>
+  <hr>
+  <% if !@proposal.comments.empty? %>
+    <% @proposal.comments.newest_first.limit(3).each do |comment| %>
+    <%= comment.content %> - <%= link_to comment.user.name, user_path(comment.user) %> - <%= comment.created_at %>
+    <hr>
+    <% end %>
+  <% else %>
+    <p>This comments index is empty.</p>
+    <hr>
+  <% end %>
