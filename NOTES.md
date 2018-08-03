@@ -12,7 +12,6 @@ add to user profile page:
   proposals I've commented on.  
   proposals I've voted on.
   my favorite proposals (top 5 highest rankings)
-fix comments#create path, add #comment_params
 should i be able to reply to comments?
 
 
