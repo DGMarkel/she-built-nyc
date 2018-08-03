@@ -2,12 +2,7 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :proposal
   validates :content, presence: true
-  default_scope { order ('created_at DESC')}
+  scope :oldest_first, -> { order(created_at: :asc)}
+  scope :newest_first, -> { order(created_at: :desc)}
 
-
-  #def oldest_first
-  #end
-
-  #def newest_first
-  #end
 end
