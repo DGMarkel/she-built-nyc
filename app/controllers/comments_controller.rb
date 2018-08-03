@@ -14,7 +14,14 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.create(content: params[:comment][:content], user_id: current_user.id, proposal_id: params[:comment][:proposal].to_i)
+    #@comment = Comment.create(content: params[:comment][:content], user_id: current_user.id, proposal_id: params[:comment][:proposal].to_i)
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      @comment.update(user_id: current_user, proposal_id: params[:comment][:proposal].to_i)
+    else
+      flash[:warning] = "Your comment must have content."
+      binding.pry
+    end
     redirect_to proposal_path(params[:comment][:proposal].to_i)
   end
 
@@ -36,5 +43,9 @@ class CommentsController < ApplicationController
   end
 
   private
+
+    def comment_params
+      params.require(:comment).permit(:content)
+    end
 
 end

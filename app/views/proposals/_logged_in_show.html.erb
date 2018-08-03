@@ -9,14 +9,17 @@
 
 <% if !current_user.admin %>
 
-  <h3>Rank this proposal</p>
+  <h3>Rank this proposal</h3>
   <%= form_for(:ranking, url: rankings_path) do |f| %>
     <%= f.number_field :ranking %>
     <%= f.hidden_field :proposal, :value => @proposal.id %>
     <%= f.submit "Submit" %>
   <% end %>
 
-<h3>Submit a Comment</p>
+<h3>Submit a Comment</h3>
+<% if flash[:warning] %>
+  <p style="color:red;"><%= flash[:warning] %>
+<% end %>
 <%= form_for(:comment, url: comments_path) do |f| %>
     <%= f.text_field :content %>
     <%= f.hidden_field :proposal, :value => @proposal.id %>
