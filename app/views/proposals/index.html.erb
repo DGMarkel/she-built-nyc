@@ -2,6 +2,12 @@
 
 <ul>
   <% @proposals.each do |proposal| %>
-    <li><%= link_to proposal.name, proposal_path(proposal) %></li>
+    <li><%= link_to proposal.name, proposal_path(proposal) %> - <%= proposal.description %>
+    <% if current_user && current_user.admin %>
+    <%= link_to "Delete", proposals_path, data: {:confirm => 'Are you sure?'}, method: "delete", :style => "float:right;margin-right:10px;" %>
+
+      <%= link_to "Edit", edit_proposal_path(proposal), :style => "float:right;margin-right:10px;" %>
+    <% end %>
+    </li>
   <% end %>
 </ul>
