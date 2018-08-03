@@ -10,6 +10,9 @@
 <% if !current_user.admin %>
 
   <h3>Rank this proposal</h3>
+  <% if flash[:warning] %>
+    <p style="color:red;"><%= flash[:warning] %>
+  <% end %>
   <%= form_for(:ranking, url: rankings_path) do |f| %>
     <%= f.number_field :ranking %>
     <%= f.hidden_field :proposal, :value => @proposal.id %>

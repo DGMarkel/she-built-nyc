@@ -5,7 +5,10 @@ class RankingsController < ApplicationController
   end
 
   def create
-    @ranking = Ranking.create(user_id: current_user.id, proposal_id: params[:ranking][:proposal], ranking: params[:ranking][:ranking])
+    @ranking = Ranking.new(user_id: current_user.id, proposal_id: params[:ranking][:proposal], ranking: params[:ranking][:ranking])
+    if !@ranking.save
+      flash[:warning] = "Ranking must fall into a range of 1 - 5"
+    end
     redirect_to proposal_path(params[:ranking][:proposal])
   end
 
