@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :comments
   resources :rankings
   resources :proposals
+  resources :proposals do
+    resources :comments, only: [:index]
+  end
   resources :users
   resources :users do
     resources :comments, only: [:index]

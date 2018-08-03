@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   def index
     @comments = Comment.all
     @user = User.find_by(id: params[:user_id])
+    @proposal = Proposal.find_by(id: params[:proposal_id])
   end
 
   def show

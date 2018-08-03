@@ -1,12 +1,17 @@
 <h3>Comments</h3>
 
 <hr>
-  <% if @user.comments %>
-    <% @user.comments.each do |comment| %>
-    <%= comment.content %> <%= comment.created_at %><br>
-    <%= link_to "Destroy", comment_path(comment), data: {:confirm => 'Are you sure?'}, method: "delete" %>
-<hr>
-  <% end %>
+  <% if @user && !@user.comments.empty? %>
+      <% @user.comments.each do |comment| %>
+        <%= comment.content %> <%= comment.created_at %><br>
+        <%= link_to "Destroy", comment_path(comment), data: {:confirm => 'Are you sure?'}, method: "delete" %>
+        <hr>
+      <% end %>
+  <% elsif @proposal && !@proposal.comments.empty? %>
+      <% @proposal.comments.each do |comment| %>
+        <%= comment.content %> <%= comment.created_at %><br>
+        <%= link_to "Destroy", comment_path(comment), data: {:confirm => 'Are you sure?'}, method: "delete" %>
+      <% end %>
   <% else %>
     <p>This comments index is empty.</p>
   <% end %>
