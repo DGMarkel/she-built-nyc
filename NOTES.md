@@ -1,5 +1,5 @@
-FOUND WEIRD ISSUE - when proposals are deleted, users retain non-existent proposal ids
-add oauth
+
+
 add nested proposal/1/comments index accessible only to admin
 add filters to proposals index:
   alphabetical
@@ -8,9 +8,6 @@ add filters to proposals index:
   newest
   oldest
 add to user profile page:
-  recent comments.
-  proposals I've commented on.  
-  proposals I've voted on.
   my favorite proposals (top 5 highest rankings)
 should i be able to reply to comments?
 

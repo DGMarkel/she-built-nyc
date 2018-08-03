@@ -15,7 +15,15 @@
 </ul>
 
 <hr>
-  <p>Recent Activity:</p>
+  <h3>Recent Activity:</h3>
 <hr>
-  <p>Figure out how to display the most recent activity by user, if it's a proposal, a comment, or a vote</p>
-<hr>
+  <p>Recently commented on:</p>
+    <% @user.comments.newest_first.limit(3).each do |comment| %>
+      <% @proposal = Proposal.find_by(id: comment.proposal_id) %>
+      <%= link_to @proposal.name, proposal_path(@proposal) %>
+    <% end %>
+    <p>Recent votes:</p>
+      <% @user.rankings.newest_first.limit(3).each do |ranking| %>
+        <% @proposal = Proposal.find_by(id: ranking.proposal_id) %>
+        <p>You gave <%= link_to @proposal.name, proposal_path(@proposal) %> a score of <%= ranking.ranking %></p>
+      <% end %>
