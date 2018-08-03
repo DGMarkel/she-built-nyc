@@ -41,25 +41,8 @@ class Proposal < ApplicationRecord
     hash = hash.sort_by {|k,v| v}.reverse[0..2]
   end
 
-  def self.highest_ranking_average
-    a = all.to_a
-    a.max  {|a,b| a.rankings_average <=> b.rankings_average }
-  end
-
-  def self.highest_number_of_votes
-    a = all.to_a
-    a.max {|a,b| a.number_of_votes <=> b.number_of_votes }
-  end
-
-  def self.highest_possible_ranking
-    highest_ranking_average.voters.count
-  end
-
-  def winning_proposal
-    if highest_ranking == highest_number_of_votes
-
-    # if two proposals have the same number of votes
-
+  def self.winning_proposal
+    top_three_proposals.max {|a,b| a[0].number_of_votes <=> b[0].number_of_votes }
   end
 
 end
