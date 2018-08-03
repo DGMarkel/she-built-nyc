@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
 
   def index
     @comments = Comment.all
-    binding.pry
     @user = User.find_by(id: params[:user_id])
   end
 

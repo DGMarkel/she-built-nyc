@@ -1,4 +1,5 @@
 <h3>Comments</h3>
+
 <hr>
   <% if @user.comments %>
     <% @user.comments.each do |comment| %>
@@ -6,4 +7,6 @@
     <%= link_to "Destroy", comment_path(comment), data: {:confirm => 'Are you sure?'}, method: "delete" %>
 <hr>
   <% end %>
-<% end %>
+  <% else %>
+    <p>This comments index is empty.</p>
+  <% end %>
