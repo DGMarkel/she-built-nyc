@@ -15,6 +15,13 @@
 </ul>
 
 <hr>
+  <h3>Favorite proposals</h3>
+    <% @user.rankings.highest_ranking.each do |ranking| %>
+      <% @proposal = Proposal.find_by(id: ranking.proposal_id) %>
+      <%= link_to @proposal.name, proposal_path(@proposal) %>
+    <% end %>
+
+<hr>
   <h3>Recent Activity:</h3>
 <hr>
   <p>Recently commented on:</p>

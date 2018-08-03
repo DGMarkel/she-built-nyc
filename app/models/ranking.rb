@@ -5,6 +5,7 @@ class Ranking < ApplicationRecord
   validates :ranking, :inclusion => { :in => 1..5 }
   scope :oldest_first, -> { order(created_at: :asc)}
   scope :newest_first, -> { order(created_at: :desc)}
+  scope :highest_ranking, -> { order(ranking: :desc).limit(3)}
 
   def created_today?
     Date.today.day == self.created_at.day
