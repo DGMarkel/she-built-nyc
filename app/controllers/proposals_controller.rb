@@ -1,4 +1,5 @@
 class ProposalsController < ApplicationController
+  before_action :site_security, only: [:new, :create, :destroy]
 
   def index
     @proposals = Proposal.all

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :site_security, only: [:index, :show, :edit, :update, :destroy]
 
   def index
     if current_user.admin
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
     else
       redirect_to root_path
     end
-  end 
+  end
 
   private
 

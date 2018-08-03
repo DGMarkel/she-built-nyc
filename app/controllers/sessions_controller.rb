@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :site_security, only: [:destroy]
 
   def welcome
   end
@@ -21,6 +22,6 @@ class SessionsController < ApplicationController
   def destroy
     session.delete :user_id
     redirect_to root_path
-  end 
+  end
 
 end

@@ -1,4 +1,5 @@
 class RankingsController < ApplicationController
+  before_action :site_security
 
   def new
     @ranking = Ranking.new
