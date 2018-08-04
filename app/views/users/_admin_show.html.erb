@@ -1,15 +1,25 @@
 <h2>Stats</h2>
-<p style="width:auto;height:auto;margin-bottom:10px;margin-left:10px;float:left;background:lightgray;border-radius:5px;padding:10px;"><%= link_to Proposal.winning_proposal[0].user.name, user_path(Proposal.winning_proposal[0].user) %>'s proposal,
-<%= link_to Proposal.winning_proposal[0].name, proposal_path(Proposal.winning_proposal[0]) %>, has the highest
-average user rating and highest number of votes.</p>
-  <p><div style="display:inline-block;height:auto;width:100%">
+
+<% if Proposal.any? %>
+
+  <p style="width:auto;height:auto;margin-bottom:10px;margin-left:10px;float:left;background:lightgray;border-radius:5px;padding:10px;"><%= link_to Proposal.winning_proposal[0].user.name, user_path(Proposal.winning_proposal[0].user) %>'s proposal,
+  <%= link_to Proposal.winning_proposal[0].name, proposal_path(Proposal.winning_proposal[0]) %>, has the highest
+  average user rating and highest number of votes.</p>
+
+  <p>
+  <div style="display:inline-block;height:auto;width:100%">
     <div style="width:500px;height:120px;margin:5px 10px 5px 10px;float:left;background:lightgray;border-radius:5px;padding:10px;">
       <h3 style="margin-bottom:0px;">Proposals</h3>
       <%= link_to "View All Proposals", proposals_path, :style => 'margin-top:0px;' %>
       <li>Newest Proposal: <%= link_to Proposal.last.name, proposal_path(Proposal.last) %></li>
       <li>Number of proposals submitted today: <%= Proposal.created_today.count %> </li>
       <li>Total number of proposals: <%= Proposal.all.count %></li>
-    </div>
+  </div>
+  </p>
+
+  <% end %>
+
+  <% if Comment.any? %>
     <div style="width:500px;height:120px;margin:5px 10px 5px 10px;float:left;background:lightgray;border-radius:5px;padding:10px;">
       <h3 style="margin-bottom:0px;">Users</h3>
       <%= link_to "View All Users", users_path, :style => 'margin-top:0px;' %>
@@ -18,12 +28,18 @@ average user rating and highest number of votes.</p>
       <li>Total number of users: <%= User.all.count %></li>
     </div>
   </div></p>
+  <% end %>
+
+  <% if Ranking.any? %>
   <p><div style="display:inline-block;height:auto;width:100%">
     <div style="width:500px;height:120px;margin:5px 10px 5px 10px;float:left;background:lightgray;border-radius:5px;padding:10px;">
       <h3>Votes</h3>
       <li>Number of votes today: <%= Ranking.created_today.count %></li>
       <li>Total number of votes: <%= Ranking.all.count %> </li>
     </div>
+  <% end %>
+
+  <% if Comment.any? %>
     <div style="width:500px;height:120px;margin:5px 10px 5px 10px;float:left;background:lightgray;border-radius:5px;padding:10px;">
       <h3>Comments</h3>
       <li>Most recent comment: <%= Comment.last.content %> - <%= link_to Comment.last.user.name, user_path(Comment.last.user)%>
@@ -31,3 +47,4 @@ average user rating and highest number of votes.</p>
       <li>Total number of comments: <%= Ranking.all.count %> </li>
     </div>
   </div></p>
+  <% end %>

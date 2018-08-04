@@ -48,9 +48,9 @@ class UsersController < ApplicationController
 
   private
 
-    #def user_params
-    #  params.require(:user).permit(:name, :affiliation, :borough, :zip_code, :admin, :password)
-    #end
+    def user_params
+      params.require(:user).permit(:name, :affiliation, :borough, :zip_code, :admin, :password)
+    end
 
   def auth
     request.env['omniauth.auth']
