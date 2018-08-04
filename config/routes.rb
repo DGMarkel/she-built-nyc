@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
+
   root 'sessions#welcome'
   resources :sessions
   resources :comments

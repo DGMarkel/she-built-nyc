@@ -45,6 +45,7 @@ end
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
+gem 'devise'
 gem 'thin'
 
 group :development do

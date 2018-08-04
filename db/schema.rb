@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_04_164802) do
+ActiveRecord::Schema.define(version: 2018_08_04_172535) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2018_08_04_164802) do
     t.integer "proposal_id"
     t.string "provider"
     t.string "uid"
+    t.string "email"
   end
 
 end
