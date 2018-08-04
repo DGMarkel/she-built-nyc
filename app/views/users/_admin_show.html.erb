@@ -1,6 +1,6 @@
 <h2>Stats</h2>
 
-<% if Proposal.any? %>
+<% if Proposal.any? && Proposal.winning_proposal %>
 
   <p style="width:auto;height:auto;margin-bottom:10px;margin-left:10px;float:left;background:lightgray;border-radius:5px;padding:10px;"><%= link_to Proposal.winning_proposal[0].user.name, user_path(Proposal.winning_proposal[0].user) %>'s proposal,
   <%= link_to Proposal.winning_proposal[0].name, proposal_path(Proposal.winning_proposal[0]) %>, has the highest
@@ -19,7 +19,7 @@
 
   <% end %>
 
-  <% if Comment.any? %>
+  <% if User.any? %>
     <div style="width:500px;height:120px;margin:5px 10px 5px 10px;float:left;background:lightgray;border-radius:5px;padding:10px;">
       <h3 style="margin-bottom:0px;">Users</h3>
       <%= link_to "View All Users", users_path, :style => 'margin-top:0px;' %>
