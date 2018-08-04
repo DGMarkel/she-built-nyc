@@ -3,14 +3,14 @@
   <img src="<%=@proposal.image_url%>" style="border: 1px solid black; max-width: 20%; height: auto; float: left; margin-right: 10px;">
 <% end %>
 
-<h1><%= @proposal.name %></h1>
+<h1 style="margin-bottom:0px;"><%= @proposal.name %></h1>
+<h3 style="margin:0px 0px;"><em><%= @proposal.description %></em></h3>
 <% if !@proposal.rankings.empty? %>
-<h3>Submitted by: <%= user_name_linked_or_not %></h3>
+<p style="margin-top:2px;">Submitted by: <%= user_name_linked_or_not %></p>
 <% end %>
-<h3>Description</h3>
-<p><%= @proposal.description %></p>
 <h3>Why This Proposal Should Be Accepted</h3>
 <p><%= @proposal.pitch %></p>
+
 
 <% if current_user %>
   <%= render partial: 'logged_in_show' %>
