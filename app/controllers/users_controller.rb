@@ -18,19 +18,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    #@user = User.new(user_params)
-    #if @user.save
-    #  session[:user_id] = @user.id
-    #  redirect_to user_path(@user)
-    #else
-    #  render new_user_path
-    #end
-    @user = User.find_or_create_by(id: auth['uid']) do |u|
-    u.name = auth['info']['name']
-    u.image_url = auth['info']['image']
-    binding.pry
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
+    else
+      render new_user_path
     end
-    session[:user_id] = @user.try(:id)
   end
 
   def edit
