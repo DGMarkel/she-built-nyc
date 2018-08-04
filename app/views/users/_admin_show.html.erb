@@ -6,7 +6,7 @@
   <%= link_to Proposal.winning_proposal[0].name, proposal_path(Proposal.winning_proposal[0]) %>, has the highest
   average user rating and highest number of votes.</p>
 
-  <p>
+
   <div style="display:inline-block;height:auto;width:100%">
     <div style="width:500px;height:120px;margin:5px 10px 5px 10px;float:left;background:lightgray;border-radius:5px;padding:10px;">
       <h3 style="margin-bottom:0px;">Proposals</h3>
@@ -15,7 +15,7 @@
       <li>Number of proposals submitted today: <%= Proposal.created_today.count %> </li>
       <li>Total number of proposals: <%= Proposal.all.count %></li>
   </div>
-  </p>
+
 
   <% end %>
 
@@ -40,7 +40,7 @@
   <% end %>
 
   <% if Comment.any? %>
-    <div style="width:500px;height:120px;margin:5px 10px 5px 10px;float:left;background:lightgray;border-radius:5px;padding:10px;">
+    <div style="width:500px;height:120px;margin:5px 10px 5px 10px;float:left;background:lightgray;border-radius:5px;padding:10px;overflow:scroll">
       <h3>Comments</h3>
       <li>Most recent comment: <%= Comment.last.content %> - <%= link_to Comment.last.user.name, user_path(Comment.last.user)%>
       <li>Number of comments posted today: <%= Comment.created_today.count %></li>
