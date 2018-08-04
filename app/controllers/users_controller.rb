@@ -18,13 +18,19 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to user_path(@user)
-    else
-      render new_user_path
+    #@user = User.new(user_params)
+    #if @user.save
+    #  session[:user_id] = @user.id
+    #  redirect_to user_path(@user)
+    #else
+    #  render new_user_path
+    #end
+    @user = User.find_or_create_by(id: auth['uid']) do |u|
+    u.name = auth['info']['name']
+    u.image_url = auth['info']['image']
+    binding.pry
     end
+    session[:user_id] = @user.try(:id)
   end
 
   def edit
@@ -48,8 +54,12 @@ class UsersController < ApplicationController
 
   private
 
-    def user_params
-      params.require(:user).permit(:name, :affiliation, :borough, :zip_code, :admin, :password)
-    end
+    #def user_params
+    #  params.require(:user).permit(:name, :affiliation, :borough, :zip_code, :admin, :password)
+    #end
+
+  def auth
+    request.env['omniauth.auth']
+  end
 
 end
