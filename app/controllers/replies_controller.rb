@@ -6,9 +6,8 @@ class RepliesController < ApplicationController
 
   def create
     @reply = Reply.new(content: params[:reply][:content], user_id: current_user.id, comment_id: params[:reply][:comment])
-    binding.pry
     if @reply.save
-      redirect_to propoposal_path(params[:proposal])
+      redirect_to proposal_path(params[:reply][:proposal])
     else
       flash[:warning] = "Reply must have content."
     end

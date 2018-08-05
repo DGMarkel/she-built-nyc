@@ -2,6 +2,17 @@
   <% @found_user = User.find_by(id: comment.user_id) %>
   <%= comment.content %> - <%= link_to @found_user.name, user_path(@found_user) %> - <%= comment.created_at %>
   <% if current_user.admin || current_user == @user %>
-  <%= link_to "Delete", comment_path(comment), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'float:right'%>
+  <%= link_to "Delete Comment", comment_path(comment), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'float:right'%>
   <% end %>
-  <hr>
+  <% if comment.replies %>
+    <div style="margin:10px 0 0 40px;width:auto;">
+      <% comment.replies.each do |reply| %>
+      <hr style="border-top:1px dotted black">
+      <% @found_user = User.find_by(id: reply.user_id) %>
+      <%= reply.content %> - <%= link_to @found_user.name, user_path(@found_user) %> - <%= reply.created_at %>
+      <% end %>
+    </div>
+    <hr>
+  <% else %>
+    <hr>
+  <% end %>

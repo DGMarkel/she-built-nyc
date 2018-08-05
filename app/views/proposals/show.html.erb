@@ -22,6 +22,7 @@
   <% if !@proposal.comments.empty? %>
     <% @proposal.comments.newest_first.limit(3).each do |comment| %>
     <%= comment.content %> - <%= link_to comment.user.name, user_path(comment.user) %> - <%= comment.created_at %>
+    <%= link_to "Reply", new_proposal_comment_reply_path(comment.id, @proposal.id) %>
     <hr>
     <% end %>
   <% else %>
