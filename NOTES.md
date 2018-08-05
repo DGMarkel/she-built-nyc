@@ -1,4 +1,17 @@
-most important: admin needs to know which proposal has the highest ranking AND the most votes
+mostly finished with back end stuff.
+
+most urgent tasks:
+  need to assess site security, especially on new/edit forms and deletions. make sure that users can only delete their own comments/replies, and non-users can't delete anything.
+
+  need to add warnings to ALL forms.
+
+  think about validations some of the forms might need.
+
+  UI is really ugly. needs some work.  maybe try to steal the styling from a site you like.
+
+less urgent:
+  figure out a better way to create comment threads.  how can i reply to replies?
+  this looks like a good resource: https://www.codementor.io/ruby-on-rails/tutorial/threaded-comments-polymorphic-associations
 
 to do later:
   add filters to proposals index:
@@ -7,7 +20,7 @@ to do later:
     least popular
     newest
     oldest
-should i be able to reply to comments?
+
 
 
 New Monuments to Women's History is based on NYC's initiative to build more monuments to women around the city.  My site will list proposed monuments, accept new proposals from the public, allow the public to vote on existing proposals and display other public input.
