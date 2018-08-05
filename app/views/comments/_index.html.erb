@@ -2,7 +2,8 @@
   <% @found_user = User.find_by(id: comment.user_id) %>
   <%= comment.content %> - <%= link_to @found_user.name, user_path(@found_user) %> - <%= comment.created_at %>
   <% if current_user.admin || current_user == comment.user %>
-  <%= link_to "Delete Comment", comment_path(comment), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'float:right'%>
+  <%= link_to "Delete", comment_path(comment), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'float:right;margin-left:10px'%>
+  <%= link_to "Edit", edit_comment_path(comment), :style => 'float:right'%>
   <% end %>
   <% if comment.replies %>
     <div style="margin:10px 0 0 40px;width:auto;">
@@ -11,8 +12,8 @@
         <% @found_user = User.find_by(id: reply.user_id) %>
         <%= reply.content %> - <%= link_to @found_user.name, user_path(@found_user) %> - <%= reply.created_at %>
         <% if current_user.admin || current_user == reply.user %>
-          <%= link_to "Delete Reply", reply_path(reply), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'float:right;margin-left:10px'%>
-          <%= link_to "Edit Reply", edit_reply_path(reply), data: {:confirm => 'Are you sure?'}, :style => 'float:right'%>
+          <%= link_to "Delete", reply_path(reply), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'float:right;margin-left:10px'%>
+          <%= link_to "Edit", edit_reply_path(reply), :style => 'float:right'%>
         <% end %>
       <% end %>
     </div>

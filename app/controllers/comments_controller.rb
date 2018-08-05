@@ -29,8 +29,8 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find_by(id: params[:id])
-    @comment.update(comment_params)
-    redirect_to comment_path(@comment)
+    @comment.update(content: params[:comment][:content])
+    redirect_to user_comments_path(@comment.user)
   end
 
   def destroy
