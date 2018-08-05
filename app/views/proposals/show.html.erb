@@ -21,10 +21,25 @@
   <hr>
   <% if !@proposal.comments.empty? %>
     <% @proposal.comments.newest_first.limit(3).each do |comment| %>
-    <%= comment.content %> - <%= link_to comment.user.name, user_path(comment.user) %> - <%= comment.created_at %><br>
+    <%= comment.content %><br>
+    <%= link_to comment.user.name, user_path(comment.user) %> - <%= comment.created_at %><br>
     <%= link_to "Reply", new_proposal_comment_reply_path(@proposal.id, comment.id) %>
-    <% if current_user == comment.user %>
+    <% if current_user == comment.user || current_user.admin %>
       <%= link_to "Delete", comment_path(comment), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'margin-left:10px;' %>
+    <% end %>
+    <% if comment.replies %>
+      <br>
+      <% comment.replies.each do |reply| %>
+        <div style="margin-left:40px;">
+          <hr style="border-top:1px dotted black;">
+          <%= reply.content %>
+          <% if current_user == reply.user || current_user.admin %>
+            <%= link_to "Delete", reply_path(reply), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'margin-left:10px;' %>
+          <% end %>
+          <br>
+          <%= link_to reply.user.name, user_path(reply.user) %> - <%= reply.created_at %><br>
+        </div>
+      <% end %>
     <% end %>
     <hr>
     <% end %>

@@ -13,4 +13,12 @@ class RepliesController < ApplicationController
     end
   end
 
+  def destroy
+    @reply = Reply.find_by(id: params[:id])
+    @comment = Comment.find_by(id: @reply.comment_id)
+    @user = @reply.user
+    @reply.destroy
+    redirect_to proposal_path(@comment.proposal)
+  end
+
 end
