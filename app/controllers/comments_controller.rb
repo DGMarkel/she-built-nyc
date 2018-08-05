@@ -16,11 +16,27 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(content: params[:comment][:content], user_id: current_user.id, proposal_id: params[:comment][:proposal].to_i)
-    if !@comment.save
-      flash[:warning] = "Comment must have content"
+    if params[:comment][:comment_id]
+      @comment = Comment.new(content: params[:comment][:content], user_id: current_user.id, proposal_id: params[:comment][:proposal_id].to_i)
+      c = Comment.find_by(id: params[:comment][:proposal_id])
+      c.replies << @comment
+      if !@comment.save
+        flash[:warning] = "Comment must have content"
+      else
+        redirect_to proposal_path(params[:comment][:proposal_id].to_i)
+      end
+    else
+      @comment = Comment.new(content: params[:comment][:content], user_id: current_user.id, proposal_id: params[:comment][:proposal].to_i)
+      if !@comment.save
+        flash[:warning] = "Comment must have content"
+      else
+        redirect_to proposal_path(params[:comment][:proposal].to_i)
+      end
     end
-    redirect_to proposal_path(params[:comment][:proposal].to_i)
+  end
+
+  def reply
+    render 'new'
   end
 
   def edit
