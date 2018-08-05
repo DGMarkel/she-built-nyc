@@ -21,8 +21,11 @@
   <hr>
   <% if !@proposal.comments.empty? %>
     <% @proposal.comments.newest_first.limit(3).each do |comment| %>
-    <%= comment.content %> - <%= link_to comment.user.name, user_path(comment.user) %> - <%= comment.created_at %>
-    <%= link_to "Reply", new_proposal_comment_reply_path(comment.id, @proposal.id) %>
+    <%= comment.content %> - <%= link_to comment.user.name, user_path(comment.user) %> - <%= comment.created_at %><br>
+    <%= link_to "Reply", new_proposal_comment_reply_path(@proposal.id, comment.id) %>
+    <% if current_user == comment.user %>
+      <%= link_to "Delete", comment_path(comment), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'margin-left:10px;' %>
+    <% end %>
     <hr>
     <% end %>
   <% else %>
