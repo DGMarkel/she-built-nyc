@@ -4,7 +4,7 @@
 <% end %>
 
 <% if current_user.admin %>
-  <%= link_to "Destroy", proposal_path(@proposal), data: {:confirm => 'Are you sure?'}, method: "delete" %>
+  <%= link_to "Delete", proposal_path(@proposal), data: {:confirm => 'Are you sure?'}, method: "delete" %>
 
 <% elsif current_user.id != @proposal.user_id  %>
 
