@@ -13,6 +13,16 @@ class RepliesController < ApplicationController
     end
   end
 
+  def edit
+    @reply = Reply.find_by(id: params[:id])
+  end
+
+  def update
+    @reply = Reply.find_by(id: params[:id])
+    @reply.update(content: params[:reply][:content])
+    redirect_to user_comments_path(@reply.comment.user)
+  end
+
   def destroy
     @reply = Reply.find_by(id: params[:id])
     @comment = Comment.find_by(id: @reply.comment_id)
