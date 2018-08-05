@@ -33,13 +33,12 @@
       <% comment.replies.each do |reply| %>
         <div style="margin-left:40px;">
           <hr style="border-top:1px dotted black;">
-          <%= reply.content %>
+          <%= reply.content %><br>
+          <%= link_to reply.user.name, user_path(reply.user) %> - <%= reply.created_at %><br>
           <% if current_user == reply.user || current_user.admin %>
-            <%= link_to "Edit", edit_reply_path(reply), :style => 'margin-left:10px;' %>
+            <%= link_to "Edit", edit_reply_path(reply) %>
             <%= link_to "Delete", reply_path(reply), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'margin-left:10px;' %>
           <% end %>
-          <br>
-          <%= link_to reply.user.name, user_path(reply.user) %> - <%= reply.created_at %><br>
         </div>
       <% end %>
     <% end %>
