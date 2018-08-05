@@ -1,0 +1,6 @@
+<%= form_for :reply, url: replies_path do |f| %>
+  <%= f.text_field :content %>
+  <%= f.hidden_field :proposal, :value => params[:proposal_id] %>
+  <%= f.hidden_field :comment, :value => params[:comment_id] %>
+  <%= f.submit %>
+<% end %>
