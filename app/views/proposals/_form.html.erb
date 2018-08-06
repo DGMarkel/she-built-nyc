@@ -1,22 +1,26 @@
 <%= form_for(@proposal) do |f| %>
-<p>Name*<br />
+<p>Name<br />
+  <% if flash[:name_warning] %>
+    <span style="color:red;">
+      <%= flash[:name_warning] %>
+    </span><br/>
+  <% end %>
 <%= f.text_field :name %></p>
-<p>Brief Description*<br />
+<p>Brief Description (75 characters or less)<br />
   <% if flash[:description_warning] %>
-    <div style="color:red;">
+    <span style="color:red;">
       <%= flash[:description_warning] %>
-    </div>
+    </span><br />
   <% end %>
 <%= f.text_area :description %></p>
-<p>Why should she be considered?*<br />
+<p>Why should she be considered?<br />
+  <% if flash[:pitch_warning] %>
+    <span style="color:red;">
+      <%= flash[:pitch_warning] %>
+    </span><br />
+  <% end %>
 <%= f.text_area :pitch %></p>
 <p>Historical Image<br />
 <%= f.text_field :image_url %></p>
-  <% if flash[:warning] %>
-    <div style="color:red;">
-      <%= flash[:warning] %>
-    </div>
-  <% end %>
-
 <%= f.submit "Submit Proposal" %>
 <% end %>
