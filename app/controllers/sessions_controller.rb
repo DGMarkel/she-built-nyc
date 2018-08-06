@@ -5,7 +5,11 @@ class SessionsController < ApplicationController
   end
 
   def new
-    render 'login'
+    if !logged_in?
+      render 'login'
+    else
+      redirect_to root_path
+    end
   end
 
   def create
