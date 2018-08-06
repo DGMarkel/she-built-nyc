@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(content: params[:comment][:content], user_id: current_user.id, proposal_id: params[:comment][:proposal].to_i)
     if !@comment.save
-      flash[:comment_warning] = "Comment must have content"
+      flash[:comment_warning] = "Your comment must have content."
     end
     redirect_to proposal_path(params[:comment][:proposal].to_i)
   end
@@ -29,8 +29,12 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find_by(id: params[:id])
-    @comment.update(content: params[:comment][:content])
-    redirect_to user_comments_path(@comment.user)
+    if @comment.update(content: params[:comment][:content])
+      redirect_to user_comments_path(@comment.user)
+    else
+      flash[:comment_warning] = "Your comment must have content."
+      redirect_to edit_comment_path(@comment)
+    end
   end
 
   def destroy
