@@ -28,6 +28,9 @@
 
     <!-- content -->
     <div class="container"  role="main">
+      <% if flash[:non_admin_warning] %>
+        <h1 style="color:red"><%= flash[:non_admin_warning] %></h1>
+      <% end %>
       <%= yield %>
     </div>
   </body>
