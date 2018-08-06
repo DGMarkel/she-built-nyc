@@ -1,4 +1,5 @@
 class RepliesController < ApplicationController
+  before_action :site_security
 
   def new
     @reply = Reply.new
