@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find_by(id: params[:id])
-    if @user != current_user || !current_user.admin
+    if @user != current_user && !current_user.admin
       redirect_to user_path(current_user)
     end
   end
