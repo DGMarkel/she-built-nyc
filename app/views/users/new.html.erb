@@ -1,7 +1,9 @@
 <%= form_for(@user) do |f| %>
 <p>E-mail<br />
+<span style="color:red"><%= new_user_warning %></span><br>
 <%= f.text_field :affiliation %></p>
 <p>Password <br />
+<span style="color:red"><%= new_user_warning %></span><br>
 <%= f.password_field :password %></p>
 <%= f.submit %>
 <% end %>

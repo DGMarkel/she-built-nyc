@@ -31,7 +31,10 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to edit_user_path(@user)
     else
-      render new_user_path
+      if @user.errors[:email].any? || @user.errors[:password].any?
+        flash[:warning] = "This field must be filled out to proceed"
+        redirect_to new_user_path
+      end
     end
   end
 
