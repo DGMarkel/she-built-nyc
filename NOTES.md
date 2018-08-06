@@ -1,12 +1,5 @@
 mostly finished with back end stuff.
 
-most urgent tasks:
-  need to assess site security, especially on new/edit forms and deletions. make sure that users can only delete their own comments/replies, and non-users can't delete anything.
-
-  need to add warnings to ALL forms.
-
-  think about validations some of the forms might need.
-
   UI is really ugly. needs some work.  maybe try to steal the styling from a site you like.
 
 less urgent:
