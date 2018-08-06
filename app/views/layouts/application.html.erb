@@ -10,15 +10,20 @@
   <body>
 
         <%= link_to "Home", root_path %>
-        <% if session[:user_id] %>
-        <%= link_to "#{current_user.name}'s Profile", user_path(current_user) %>
-        <%= link_to "Log Out", logout_path, method: "delete" %>
+        <%= link_to "View Proposals", proposals_path %>
+        <% if logged_in? %>
+          <% if current_user.name.empty? %>
+            <%= link_to "#{current_user.email}'s Profile", user_path(current_user) %>
+          <% else %>
+            <%= link_to "#{current_user.name}'s Profile", user_path(current_user) %>
+          <% end %>
+          <%= link_to "Log Out", logout_path, method: "delete" %>
         <% else %>
         <%= link_to "Log In", new_session_path %>
         <%= link_to "Sign Up", new_user_path %>
         <% end %>
-        <%= link_to "View Proposals", proposals_path %>
-    
+
+
 
 
     <!-- content -->
