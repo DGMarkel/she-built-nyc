@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to user_path(user)
     else
-      flash[:notice] = "Please make sure you've filled all fields correctly"
+      flash[:login_warning] = "Please make sure you've filled all fields correctly"
       redirect_to new_session_path
     end
   end

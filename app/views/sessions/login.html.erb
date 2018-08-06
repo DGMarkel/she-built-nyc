@@ -1,9 +1,18 @@
 <p>Login</p>
 <%= form_for(:user, url: sessions_path) do |f| %>
-<%= f.label :name %>
-<%= f.text_field :name %>
-<%= f.label :password %>
-<%= f.password_field :password, :id => "password" %>
+<p><%= f.label :name %><br>
+<%= f.text_field :name %></p>
+<p><%= f.label :password %><br>
+<%= f.password_field :password, :id => "password" %></p>
+
+<% if flash[:login_warning] %>
+  <div style="color:red;">
+    <%= flash[:login_warning] %>
+  </div>
+<% end %>
+
 <%= f.submit "Sign In" %>
 <% end %>
-<%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+
+
+<p><%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %></p>
