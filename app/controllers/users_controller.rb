@@ -31,8 +31,11 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to edit_user_path(@user)
     else
-      if @user.errors[:email].any? || @user.errors[:password].any?
-        flash[:warning] = "This field must be filled out to proceed"
+      if @user.errors[:email].any?
+        flash[:email_warning] = "A user with that e-mail already exists"
+      end
+      if @user.errors[:email].any? && @user.errors[:password].any?
+        flash[:warning] = "Both fields must be filled in correctly to proceed"
         redirect_to new_user_path
       end
     end
