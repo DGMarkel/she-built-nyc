@@ -1,3 +1,4 @@
-<h1>Edit Reply</h1>
+<h3>Editing your response to <%= link_to @comment.user.name, user_path(@comment.user) %>'s comment
+  on <%= link_to @proposal.name, proposal_path(@proposal) %> </h3>
 
 <%= render partial: 'form' %>
