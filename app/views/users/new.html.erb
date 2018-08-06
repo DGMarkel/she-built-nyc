@@ -1,14 +1,6 @@
 <%= form_for(@user) do |f| %>
-<p>Name<br />
-<%= f.text_field :name %></p>
-<p>Affiliation<br />
+<p>E-mail<br />
 <%= f.text_field :affiliation %></p>
-<p>Borough<br />
-<%= f.text_field :borough %></p>
-<p>Zip Code<br />
-<%= f.number_field :zip_code %></p>
-<p>Profile Picture (optional)<br />
-<%= f.text_field :image_url %></p>
 <p>Password <br />
 <%= f.password_field :password %></p>
 <%= f.submit %>

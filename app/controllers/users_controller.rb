@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      redirect_to edit_user_path(@user)
     else
       render new_user_path
     end
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :affiliation, :borough, :zip_code, :admin, :password, :image_url)
+      params.require(:user).permit(:name, :email, :affiliation, :borough, :zip_code, :admin, :password, :image_url)
     end
 
   def auth
