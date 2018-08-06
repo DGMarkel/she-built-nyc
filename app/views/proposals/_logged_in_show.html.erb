@@ -9,8 +9,8 @@
 <% elsif current_user.id != @proposal.user_id  %>
 
   <h3>Rank this proposal</h3>
-  <% if flash[:warning] %>
-    <p style="color:red;"><%= flash[:warning] %>
+  <% if flash[:ranking_warning] %>
+    <p style="color:red;"><%= flash[:ranking_warning] %>
   <% end %>
   <%= form_for(:ranking, url: rankings_path) do |f| %>
     <%= f.number_field :ranking %>
@@ -19,8 +19,8 @@
   <% end %>
 
 <h3>Submit a Comment</h3>
-<% if flash[:warning] %>
-  <p style="color:red;"><%= flash[:warning] %>
+<% if flash[:comment_warning] %>
+  <p style="color:red;"><%= flash[:comment_warning] %>
 <% end %>
 <%= form_for(:comment, url: comments_path) do |f| %>
     <%= f.text_field :content %>

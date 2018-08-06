@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(content: params[:comment][:content], user_id: current_user.id, proposal_id: params[:comment][:proposal].to_i)
     if !@comment.save
-      flash[:warning] = "Comment must have content"
+      flash[:comment_warning] = "Comment must have content"
     end
     redirect_to proposal_path(params[:comment][:proposal].to_i)
   end
