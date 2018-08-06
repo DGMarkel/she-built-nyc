@@ -21,6 +21,7 @@ class ProposalsController < ApplicationController
       @proposal.rankings.create(user_id: current_user.id, ranking: 5)
       redirect_to proposal_path(@proposal)
     else
+      flash[:proposal_warning] = "All fields marked with an asterisk must be filled in."
       render new_proposal_path
     end
   end

@@ -13,6 +13,8 @@ less urgent:
   figure out a better way to create comment threads.  how can i reply to replies?
   this looks like a good resource: https://www.codementor.io/ruby-on-rails/tutorial/threaded-comments-polymorphic-associations
 
+  if users haven't filled out their full profiles, prompt them to do so when they log in.
+
 to do later:
   add filters to proposals index:
     alphabetical

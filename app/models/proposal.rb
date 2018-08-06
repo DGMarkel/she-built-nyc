@@ -3,6 +3,7 @@ class Proposal < ApplicationRecord
   has_many :rankings
   belongs_to :user, optional: true
   has_many :voters, through: :rankings, source: "user"
+  validates :name, :description, :pitch, presence: true
   validates :name, uniqueness: true
 
   def created_today?
