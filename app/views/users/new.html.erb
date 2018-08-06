@@ -3,7 +3,7 @@
 <% if flash[:email_warning] %>
   <span style="color:red"><%= flash[:email_warning] %></span><br>
 <% end %>
-<%= f.text_field :affiliation %></p>
+<%= f.text_field :email %></p>
 <p>Password <br />
 <%= f.password_field :password %></p>
 <% if new_user_warning %>

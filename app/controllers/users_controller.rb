@@ -36,8 +36,8 @@ class UsersController < ApplicationController
       end
       if @user.errors[:email].any? && @user.errors[:password].any?
         flash[:warning] = "Both fields must be filled in correctly to proceed"
-        redirect_to new_user_path
       end
+      redirect_to new_user_path
     end
   end
 
