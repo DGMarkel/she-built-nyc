@@ -5,9 +5,9 @@ class User < ApplicationRecord
   has_many :replies
   has_many :rankings
   has_many :ranked_proposals, through: :rankings, source: "proposal"
-  validates :email, uniqueness: true
-  validates :email, presence: true
-  validates :password, presence: true
+  validates :email, uniqueness: true, on: :create
+  validates :email, presence: true, on: :create
+  validates :password, presence: true, on: :create
   has_secure_password
 
   def created_today?

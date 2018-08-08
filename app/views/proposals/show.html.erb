@@ -5,9 +5,7 @@
 
 <h1 style="margin-bottom:0px;"><%= @proposal.name %></h1>
 <h3 style="margin:0px 0px;"><em><%= @proposal.description %></em></h3>
-<% if !@proposal.rankings.empty? %>
 <p style="margin-top:2px;">Submitted by: <%= linked_or_not(@proposal.user) %></p>
-<% end %>
 <h3>Why This Proposal Should Be Accepted</h3>
 <p><%= @proposal.pitch %></p>
 </div>
