@@ -1,5 +1,12 @@
 <%= link_to "Edit Profile", edit_user_path(@user), {:style => 'float:left; margin-right:10px;'} %>
+<% if logged_in? && current_user.admin %>
+  <%= link_to "Delete Profile", user_path(@user), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'float:left; margin-right:10px;'%>
+<% end %>
+<% if logged_in? && current_user.admin %>
+  <%= link_to "#{@user.name}'s Comments", user_comments_path(@user), {:style => 'float:left; margin-right:10px;'} %>
+<% else %>
 <%= link_to "My Comments", user_comments_path(@user), {:style => 'float:left; margin-right:10px;'} %>
+<% end %>
 <p><%= proposal_link %></p>
 <% if proposal_link == "" %>
   <br>
