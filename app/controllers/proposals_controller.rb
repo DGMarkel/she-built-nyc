@@ -31,7 +31,7 @@ class ProposalsController < ApplicationController
 
   def edit
     @proposal = Proposal.find_by(id: params[:id])
-    if @proposal.user != current_user || !current_user.admin
+    if @proposal.user != current_user && !current_user.admin
       redirect_to proposal_path(@proposal)
     end
   end
