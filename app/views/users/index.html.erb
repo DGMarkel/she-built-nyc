@@ -1,6 +1,6 @@
 <h1>Users Index - For Admin Only</h1>
 <ul>
   <% @users.all.each do |user| %>
-    <li><%= link_to user.name, user_path(user) %> <%= link_to "Delete #{user.name}'s Profile", user_path(user), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'float:right;'%></li>
+    <li><%= link_to user.name, user_path(user) %> <%= link_to "Delete", user_path(user), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'float:right;margin-left:10px;'%><%= link_to "Edit", edit_user_path(user), :style => 'float:right;'%></li>
   <% end %>
 </ul>
