@@ -59,13 +59,22 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    #this is a really weird feature...should I keep it or not?
+    #if an admin deletes a user, that user is blocked from their account
+    #BUT a new account is created with all the same attributes and associations
+
     if current_user.admin
       @user = User.find_by(id: params[:id])
       if @user.proposal
         @proposal = @user.proposal
       end
-      #this is a really weird feature...should I keep it or not?
-      @new_user = User.create(name: "#{@user.name} - removed for abusive behavior", proposal_id: @proposal.id, email: (0...8).map { (65 + rand(26)).chr }.join, password:Devise.friendly_token[0,20])
+      @new_user = User.create(name: "#{@user.name} - removed for abusive behavior", affiliation: @user.affiliation, borough: @user.borough, zip_code: @user.zip_code, proposal_id: @proposal.id, email: (0...8).map { (65 + rand(26)).chr }.join, password:Devise.friendly_token[0,20])
+      if !@user.image_url.empty?
+        @new_user.update(image_url: @user.image_url)
+      end
+      @user.rankings.each {|ranking| ranking.update(user_id: @new_user.id)}
+      @user.comments.each {|comment| comment.update(user_id: @new_user.id)}
+      @user.replies.each {|reply| reply.update(user_id: @new_user.id)}
       @proposal.update(user_id: @new_user.id )
       @user.destroy
       redirect_to users_path
