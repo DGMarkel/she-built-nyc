@@ -1,5 +1,5 @@
 <div style="display:block;height:350px;overflow:scroll">
-<% if @proposal.image_url %>
+<% if @proposal.image_url && !@proposal.image_url.empty? %>
   <img src="<%=@proposal.image_url%>" style="border: 1px solid black; max-width: 20%; height: auto; float: left; margin-right: 10px;margin-top:20px;">
 <% end %>
 

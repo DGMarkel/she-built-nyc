@@ -61,7 +61,11 @@ class UsersController < ApplicationController
   def destroy
     if current_user.admin
       @user = User.find_by(id: params[:id])
+      if @user.proposal
+        @proposal = @user.proposal
+      end
       @user.destroy
+      @proposal.user.create(name: "Removed for abusive behavior", email: (0...8).map { (65 + rand(26)).chr }.join, password:Devise.friendly_token[0,20])
       redirect_to users_path
     else
       redirect_to root_path
