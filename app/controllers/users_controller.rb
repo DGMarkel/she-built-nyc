@@ -64,7 +64,9 @@ class UsersController < ApplicationController
       if @user.proposal
         @proposal = @user.proposal
       end
-      @proposal.update(user: User.create(name: "#{@user.name} - removed for abusive behavior", email: (0...8).map { (65 + rand(26)).chr }.join, password:Devise.friendly_token[0,20]))
+      #this is a really weird feature...should I keep it or not?
+      @new_user = User.create(name: "#{@user.name} - removed for abusive behavior", proposal_id: @proposal.id, email: (0...8).map { (65 + rand(26)).chr }.join, password:Devise.friendly_token[0,20])
+      @proposal.update(user_id: @new_user.id )
       @user.destroy
       redirect_to users_path
     else
