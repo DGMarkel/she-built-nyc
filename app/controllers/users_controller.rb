@@ -68,14 +68,28 @@ class UsersController < ApplicationController
       if @user.proposal
         @proposal = @user.proposal
       end
-      @new_user = User.create(name: "#{@user.name} - removed for abusive behavior", affiliation: @user.affiliation, borough: @user.borough, zip_code: @user.zip_code, proposal_id: @proposal.id, email: (0...8).map { (65 + rand(26)).chr }.join, password:Devise.friendly_token[0,20])
+      @new_user = User.create(name: "#{@user.name} - removed for abusive behavior", email: (0...8).map { (65 + rand(26)).chr }.join, password:Devise.friendly_token[0,20])
+      if @user.affiliation
+        @new_user.update(affiliation: @user.affiliation)
+      end
+      if @user.borough
+        @new_user.update(borough: @user.borough)
+      end
+      if @user.zip_code
+        @new_user.update(zip_code: @user.zip_code)
+      end
+      if @user.proposal
+        @new_user.update(proposal_id: @proposal.id)
+      end
       if !@user.image_url.empty?
         @new_user.update(image_url: @user.image_url)
       end
       @user.rankings.each {|ranking| ranking.update(user_id: @new_user.id)}
       @user.comments.each {|comment| comment.update(user_id: @new_user.id)}
       @user.replies.each {|reply| reply.update(user_id: @new_user.id)}
-      @proposal.update(user_id: @new_user.id )
+      if @user.proposal
+        @proposal.update(user_id: @new_user.id )
+      end
       @user.destroy
       redirect_to users_path
     else
