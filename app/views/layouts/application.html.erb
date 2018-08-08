@@ -34,7 +34,6 @@
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "View Proposals", proposals_path %></li>
         <% if logged_in? %>
-          <% binding.pry %>
           <% if !current_user.name %>
             <li><%= link_to "#{current_user.email}'s Profile", user_path(current_user) %></li>
           <% else %>

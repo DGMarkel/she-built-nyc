@@ -40,6 +40,9 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find_by(id: params[:id])
     @user = @comment.user
+    if @comment.replies
+      @comment.replies.each {|reply| reply.destroy}
+    end
     @comment.destroy
     redirect_to user_comments_path(@user)
   end
