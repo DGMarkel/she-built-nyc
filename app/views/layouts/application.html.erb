@@ -13,6 +13,10 @@
         margin: 0;
       }
 
+      .main {
+        margin: 10px;
+      }
+
       navbar ul {
         background: lightgray;
       }
@@ -30,7 +34,8 @@
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "View Proposals", proposals_path %></li>
         <% if logged_in? %>
-          <% if current_user.name.empty? %>
+          <% binding.pry %>
+          <% if !current_user.name %>
             <li><%= link_to "#{current_user.email}'s Profile", user_path(current_user) %></li>
           <% else %>
             <li><%= link_to "#{current_user.name}'s Profile", user_path(current_user) %></li>
@@ -44,7 +49,7 @@
     </navbar>
 
     <!-- content -->
-    <div>
+    <div class="main">
       <% if flash[:non_admin_warning] %>
         <h1 style="color:red"><%= flash[:non_admin_warning] %></h1>
       <% end %>
