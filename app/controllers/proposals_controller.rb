@@ -10,7 +10,11 @@ class ProposalsController < ApplicationController
   end
 
   def new
-    @proposal = Proposal.new
+    if current_user.admin
+      redirect_to user_path(current_user)
+    else
+      @proposal = Proposal.new
+    end
   end
 
   def create
@@ -65,6 +69,7 @@ class ProposalsController < ApplicationController
   def destroy
     if current_user.admin
       @proposal = Proposal.find_by(id: params[:id])
+      @proposal.user.update(proposal_id: nil)
       @rankings = Ranking.where(proposal_id: @proposal.id)
       @rankings.each {|ranking| ranking.destroy}
       @proposal.destroy
