@@ -6,28 +6,45 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <style>
+
+      body {
+        margin: 0;
+      }
+
+      navbar ul {
+        background: lightgray;
+      }
+
+      navbar li {
+        display:inline;
+      }
+
+    </style>
   </head>
   <body>
 
-        <%= link_to "Home", root_path %>
-        <%= link_to "View Proposals", proposals_path %>
+    <navbar>
+      <ul style="list-style-type:none;margin:0;padding:0;">
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "View Proposals", proposals_path %></li>
         <% if logged_in? %>
           <% if current_user.name.empty? %>
-            <%= link_to "#{current_user.email}'s Profile", user_path(current_user) %>
+            <li><%= link_to "#{current_user.email}'s Profile", user_path(current_user) %></li>
           <% else %>
-            <%= link_to "#{current_user.name}'s Profile", user_path(current_user) %>
+            <li><%= link_to "#{current_user.name}'s Profile", user_path(current_user) %></li>
           <% end %>
-          <%= link_to "Log Out", logout_path, method: "delete" %>
+          <li><%= link_to "Log Out", logout_path, method: "delete" %></li>
         <% else %>
-        <%= link_to "Log In", new_session_path %>
-        <%= link_to "Sign Up", new_user_path %>
+        <li><%= link_to "Log In", new_session_path %></li>
+        <li><%= link_to "Sign Up", new_user_path %></li>
         <% end %>
-
-
-
+      </ul>
+    </navbar>
 
     <!-- content -->
-    <div class="container"  role="main">
+    <div>
       <% if flash[:non_admin_warning] %>
         <h1 style="color:red"><%= flash[:non_admin_warning] %></h1>
       <% end %>

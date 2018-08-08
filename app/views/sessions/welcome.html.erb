@@ -1,19 +1,24 @@
-<h1>SHE BUILT NYC!</h1>
-<p>
-Is the significant first step in creating a public art collection that more fully represents
-the diverse history of New York City, beginning with commemorations of visionary and inspiring
-women.
-</p><p>
-She Built NYC! invites New York City residents to submit nominations for women
-or events in women’s history that should be considered for future public commemorations. We ask
-that individuals limit their nominations to one.
+<div style="width:50%;margin:40px auto;text-align:justify;">
+
+<h4>
+    She Built NYC is a city-led effort to commission a public monument that honors women’s history in New York City.
+    This is an open call for nominations from the public.
+  <p>
+    New Yorkers can submit and vote on ideas for how to honor the inspiring, diverse people and events that comprise
+    the history of New York women.</p>
+  <p>
+     Using submissions from this open call, an advisory panel will create a list of nominees for commemoration.
+     The subject and site of the monument will be announced in January 2019.</p>
+ </h4>
+
+</div>
 
 <h2>Highest Rated Nominations:</h2>
 <hr>
 
 <% Proposal.top_three_proposals.each do |proposal| %>
     <div style="display:inline-block;width:33%;">
-      <img src= '<%= proposal[0].image_url %>' style="height:150px;width:auto;float:left;margin-right:10px;">
+      <img src= '<%= proposal[0].image_url %>' style="height:150px;width:auto;margin-right:10px;">
       <p><%= link_to proposal[0].name, proposal_path(proposal[0]) %><br>
       <%= proposal[0].description %></p>
     </div>
