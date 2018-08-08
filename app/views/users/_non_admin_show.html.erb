@@ -1,6 +1,10 @@
 <%= link_to "Edit Profile", edit_user_path(@user), {:style => 'float:left; margin-right:10px;'} %>
 <%= link_to "My Comments", user_comments_path(@user), {:style => 'float:left; margin-right:10px;'} %>
 <p><%= proposal_link %></p>
+<% if proposal_link == "" %>
+  <br>
+<% end %>
+
 <ul>
   <li>Affiliation: <%= @user.affiliation %></li>
   <li>Borough: <%= @user.borough %></li>
