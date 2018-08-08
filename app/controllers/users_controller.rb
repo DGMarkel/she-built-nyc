@@ -28,12 +28,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      binding.pry
       session[:user_id] = @user.id
       redirect_to edit_user_path(@user)
     else
       if @user.errors[:email].any?
-        flash[:email_warning] = "A user with that e-mail already exists"
+        if params[:user][:email].empty?
+          flash[:email_warning] = "You must enter a valid email address to proceed"
+        else
+          flash[:email_warning] = "A user with that e-mail already exists"
+        end
       end
       if @user.errors[:email].any? && @user.errors[:password].any?
         flash[:warning] = "Both fields must be filled in correctly to proceed"
