@@ -65,6 +65,8 @@ class ProposalsController < ApplicationController
   def destroy
     if current_user.admin
       @proposal = Proposal.find_by(id: params[:id])
+      @rankings = Ranking.where(proposal_id: @proposal.id)
+      @rankings.each {|ranking| ranking.destroy}
       @proposal.destroy
       redirect_to proposals_path
     else
