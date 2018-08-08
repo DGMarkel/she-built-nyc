@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    if !current_user.admin && @user.admin
+    if !current_user.admin && @user.admin 
       flash[:non_admin_warning] = "Permission denied: restricted to admins only"
       redirect_back(fallback_location: root_path)
     end
