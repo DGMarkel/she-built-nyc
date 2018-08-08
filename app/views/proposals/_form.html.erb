@@ -12,15 +12,15 @@
       <%= flash[:description_warning] %>
     </span><br />
   <% end %>
-<%= f.text_area :description %></p>
+<%= f.text_area :description, cols:50 %></p>
 <p>Why should she be considered?<br />
   <% if flash[:pitch_warning] %>
     <span style="color:red;">
       <%= flash[:pitch_warning] %>
     </span><br />
   <% end %>
-<%= f.text_area :pitch %></p>
+<%= f.text_area :pitch, cols:50, rows:10 %></p>
 <p>Historical Image<br />
-<%= f.text_field :image_url %></p>
+<%= f.text_area :image_url, cols:50 %></p>
 <%= f.submit "Submit Proposal" %>
 <% end %>
