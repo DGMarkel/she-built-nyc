@@ -1,6 +1,6 @@
 mostly finished with back end stuff.
 
-  UI is really ugly. needs some work.  maybe try to steal the styling from a site you like.
+mostly finished with front end stuff
 
 less urgent:
   figure out a better way to create comment threads.  how can i reply to replies?

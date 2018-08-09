@@ -1,10 +1,27 @@
+<style>
+  body {
+    background-image: url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>);
+    background-size: cover;
+  }
+
+  span {
+    display: inline-block;
+    background-color:rgba(255, 255, 255, 0.6);
+    padding: 10px;
+    height: 180px;
+    margin: 200px 42% ;
+  }
+
+</style>
+
+<span>
 <%= form_for(@user) do |f| %>
-<p>E-mail<br />
+<p>E-mail</p>
 <% if flash[:email_warning] %>
   <span style="color:red"><%= flash[:email_warning] %></span><br>
 <% end %>
 <%= f.text_field :email %></p>
-<p>Password <br />
+<p>Password </p>
 <%= f.password_field :password %></p>
 <% if new_user_warning %>
 <span style="color:red"><%= new_user_warning %></span><br>
@@ -13,3 +30,4 @@
 <% end %>
 
 <p>Or <%= link_to "Sign up with Facebook", user_facebook_omniauth_authorize_path %></p>
+</span>

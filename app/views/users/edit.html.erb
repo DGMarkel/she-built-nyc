@@ -1,13 +1,31 @@
-<%= form_for(@user) do |f| %>
-<p>Name<br />
-<%= f.text_field :name %></p>
-<p>Affiliation<br />
-<%= f.text_field :affiliation %></p>
-<p>Borough<br />
-<%= f.text_field :borough %></p>
-<p>Zip Code<br />
-<%= f.number_field :zip_code %></p>
-<p>Profile Picture (optional)<br />
-<%= f.text_field :image_url %></p>
-<%= f.submit %>
-<% end %>
+<style>
+  body {
+    background-image: url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>);
+    background-size: cover;
+  }
+
+  span {
+    display: inline-block;
+    background-color:rgba(255, 255, 255, 0.6);
+    padding: 10px;
+    height: 320px;
+    margin: 200px 42%;
+  }
+
+</style>
+
+<span>
+  <%= form_for(@user) do |f| %>
+  <p>Name</p>
+  <%= f.text_field :name %></p>
+  <p>Affiliation</p>
+  <%= f.text_field :affiliation %></p>
+  <p>Borough</p>
+  <%= f.text_field :borough %></p>
+  <p>Zip Code</p>
+  <%= f.number_field :zip_code %></p>
+  <p>Profile Picture (optional)</p>
+  <%= f.text_field :image_url %></p>
+  <%= f.submit %>
+  <% end %>
+</span>
