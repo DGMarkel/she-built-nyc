@@ -3,11 +3,10 @@
   <head>
     <title>New Monuments to Women's History</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    <style>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans|Raleway:100" rel="stylesheet">
+<style>
 
       body {
         margin: 0;
@@ -17,16 +16,38 @@
         margin: 10px;
       }
 
+      h1, h2, h4, span {
+        font-family: 'Raleway', sans-serif;
+      }
+
+      span {
+        line-height: 3px;
+      }
+
+      p, li, h3{
+        font-family: 'PT Sans', sans-serif;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+      }
+
+      a:hover {
+        color: red;
+      }
+
       navbar ul {
-        background: lightgray;
-        height: 30px;
+        background-color: rgb(249,249,249);
+        height: 40px;
       }
 
       navbar li {
+        position: relative;
+        top: 10px;
+        left: 50px;
         display:inline;
         padding-left: 5px;
-        position: relative;
-        top: 5px;
       }
 
     </style>

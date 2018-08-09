@@ -25,10 +25,19 @@ class ProposalsController < ApplicationController
       @proposal.rankings.create(user_id: current_user.id, ranking: 5)
       redirect_to proposal_path(@proposal)
     else
-      if @proposal.errors[:description].any?
-        flash[:description_warning] = "Description cannot exceed 75 characters"
+      if @proposal.name.empty?
+        flash[:name_warning] = "Your proposal must have a name"
       end
-      flash[:warning] = "All fields marked with an asterisk must be filled in"
+      if @proposal.errors[:description].any?
+        if @proposal.description.empty?
+          flash[:description_warning] = "It's important to give your proposal a description!"
+        else
+          flash[:description_warning] = "Description cannot exceed 75 characters"
+        end
+      end
+      if @proposal.errors[:pitch].any?
+        flash[:pitch_warning] = "You must provide a case for your nomination"
+      end
       render new_proposal_path
     end
   end

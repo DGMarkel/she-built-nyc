@@ -1,26 +1,29 @@
-<div style="width:50%;margin:40px auto;text-align:justify;">
+<div style="width:50%;margin:75px auto;text-align:justify;">
 
-<h4>
-    She Built NYC is a city-led effort to commission a public monument that honors women’s history in New York City.
-    This is an open call for nominations from the public.
-  <p>
-    New Yorkers can submit and vote on ideas for how to honor the inspiring, diverse people and events that comprise
-    the history of New York women.</p>
-  <p>
-     Using submissions from this open call, an advisory panel will create a list of nominees for commemoration.
-     The subject and site of the monument will be announced in January 2019.</p>
- </h4>
+
+    <h3><span style="font-size:75px;margin-right:2px;color:rgb(175,200,229);">sheBuiltNYC</span>
+    invites New Yorkers to join us in our effort to build new public monuments that honors women’s history
+    in New York City.</h3>
+    <h3>
+    This is an open call for nominations. We invite you to submit one nominee, and vote on all of our nominees,
+    from the vast array of inspiring women who have contributed to our city.
+  </h3><h3>
+     Our advisory panel will announce the subject and site of the monument for the winning nominee in January 2019.</p>
+
 
 </div>
 
-<h4 style="text-align:center;">Highest Rated Nominations:</h4>
+<h2 style="text-align:center;">Highest Rated Nominations:</h2>
 <hr>
 
 <% Proposal.top_three_proposals.each do |proposal| %>
-    <div style="display:inline-block;width:29%;padding:15px;">
-      <img src= '<%= proposal[0].image_url %>' style="height:150px;width:auto;margin-right:10px;">
-      <p><%= link_to proposal[0].name, proposal_path(proposal[0]) %><br>
-      <%= proposal[0].description %></p>
+    <div style="display:inline-block;width:29%;margin:5px;height:250px;padding:15px;background:url(<%=proposal[0].image_url%>) center center;background-size:cover;">
     </div>
   <% end %>
+<% Proposal.top_three_proposals.each do |proposal| %>
+  <div style="display:inline-block;width:29%;margin:5px;height:250px;padding:15px;">
+    <h1 style="margin-top:0;"><%= link_to proposal[0].name, proposal_path(proposal[0]) %></h1>
+    <p style="color:gray;"><%= proposal[0].description %></p>
+</div>
+<% end %>
 </p>
