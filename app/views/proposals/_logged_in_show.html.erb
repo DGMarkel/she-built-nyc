@@ -8,23 +8,28 @@
 
 <% elsif current_user.id != @proposal.user_id  %>
 
-  <h3>Rank this proposal</h3>
-  <% if flash[:ranking_warning] %>
-    <p style="color:red;"><%= flash[:ranking_warning] %>
+<div style="margin-right:50px;margin-bottom:120px;">
+  <div style="display:inline-block;float:right;margin-left:35px;">
+    <h1>Rank this proposal</h1>
+    <% if flash[:ranking_warning] %>
+      <p style="color:red;"><%= flash[:ranking_warning] %>
+    <% end %>
+    <%= form_for(:ranking, url: rankings_path) do |f| %>
+      <%= f.number_field :ranking %>
+      <%= f.hidden_field :proposal, :value => @proposal.id %>
+      <%= f.submit "Submit" %>
+    <% end %>
+  </div>
+  <div style="display:inline-block;float:right;">
+  <h1>Submit a Comment</h1>
+  <% if flash[:comment_warning] %>
+    <p style="color:red;"><%= flash[:comment_warning] %>
   <% end %>
-  <%= form_for(:ranking, url: rankings_path) do |f| %>
-    <%= f.number_field :ranking %>
-    <%= f.hidden_field :proposal, :value => @proposal.id %>
-    <%= f.submit "Submit" %>
+  <%= form_for(:comment, url: comments_path) do |f| %>
+      <%= f.text_field :content %>
+      <%= f.hidden_field :proposal, :value => @proposal.id %>
+      <%= f.submit "Submit" %>
+    <% end %>
   <% end %>
-
-<h3>Submit a Comment</h3>
-<% if flash[:comment_warning] %>
-  <p style="color:red;"><%= flash[:comment_warning] %>
-<% end %>
-<%= form_for(:comment, url: comments_path) do |f| %>
-    <%= f.text_field :content %>
-    <%= f.hidden_field :proposal, :value => @proposal.id %>
-    <%= f.submit "Submit" %>
-  <% end %>
-<% end %>
+  </div>
+</div>

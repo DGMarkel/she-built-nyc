@@ -1,13 +1,19 @@
-<div style="display:block;height:350px;overflow:scroll">
-<% if @proposal.image_url && !@proposal.image_url.empty? %>
-  <img src="<%=@proposal.image_url%>" style="border: 1px solid black; width: 20%; height: auto; float: left; margin-right: 10px;margin-top:20px;">
-<% end %>
+<style>
+  p a {
+    text-decoration: underline;
+  }
+</style>
 
+<div style="display:block;height:450px;overflow:scroll; margin: 0 50px;">
+<% if @proposal.image_url && !@proposal.image_url.empty? %>
+  <img src="<%=@proposal.image_url%>" style="width: 35%; height: auto; float: left; margin: 20px 20px 20px 0;">
+<% end %>
 <h1 style="margin-bottom:0px;"><%= @proposal.name %></h1>
-<h3 style="margin:0px 0px;"><em><%= @proposal.description %></em></h3>
+<h3 style="margin:0px;"><em><%= @proposal.description %></em></h3>
+<hr>
 <p style="margin-top:2px;">Submitted by: <%= linked_or_not(@proposal.user) %></p>
-<h3>Why This Proposal Should Be Accepted</h3>
-<p><%= @proposal.pitch %></p>
+<h1 style="margin-bottom:0px;">Why This Proposal Should Be Accepted</h1>
+<p style="text-align:justify;"><%= @proposal.pitch %></p>
 </div>
 
 
@@ -15,28 +21,29 @@
   <%= render partial: 'logged_in_show' %>
 <% end %>
 
-<h3 style="margin-bottom:0px;">Recent Comments:</h3>
-<%= link_to "View All Comments For This Post", proposal_comments_path(@proposal), :style => 'margin-top:0px'%>
-  <hr>
+  <hr style="border-top:1px solid black">
+  <div style="display:block;margin: 0 50px;">
+  <h1 style="margin-bottom:0px;">Recent Comments:</h1>
+  <p style="margin-top:5px;"><%= link_to "View All Comments For This Post", proposal_comments_path(@proposal), :style => 'margin-top:0px'%></p>
   <% if !@proposal.comments.empty? %>
     <% @proposal.comments.newest_first.limit(3).each do |comment| %>
-    <%= comment.content %><br>
-    <%= linked_or_not(comment.user) %> - <%= comment.created_at %><br>
-    <%= link_to "Reply", new_proposal_comment_reply_path(@proposal.id, comment.id) if logged_in? %>
+    <h4 style="margin:0px;"><%= linked_or_not(comment.user) %> - <%= comment.created_at %></h4>
+    <h4 style="margin:2px 20px;"><%= comment.content %></h4>
+    <p style="margin:2px 20px;"><%= link_to "Reply", new_proposal_comment_reply_path(@proposal.id, comment.id) if logged_in? %></p>
     <% if current_user && (current_user == comment.user || current_user.admin) %>
-      <%= link_to "Edit", edit_comment_path(comment), :style => 'margin-left:10px;' %>
-      <%= link_to "Delete", comment_path(comment), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'margin-left:10px;' %>
+      <p style="margin:2px 20px;"><%= link_to "Edit", edit_comment_path(comment), :style => 'margin-left:10px;' %>
+      <%= link_to "Delete", comment_path(comment), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'margin-left:10px;' %></p>
     <% end %>
     <% if comment.replies %>
       <br>
       <% comment.replies.each do |reply| %>
         <div style="margin-left:40px;">
           <hr style="border-top:1px dotted black;">
-          <%= reply.content %><br>
-          <%= linked_or_not(reply.user) %> - <%= reply.created_at %><br>
+          <h4 style="margin:0px;"><%= linked_or_not(reply.user) %> - <%= reply.created_at %></h4>
+          <h4 style="margin:2px 20px;"><%= reply.content %></h4>
           <% if current_user && (current_user == reply.user || current_user.admin) %>
-            <%= link_to "Edit", edit_reply_path(reply) %>
-            <%= link_to "Delete", reply_path(reply), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'margin-left:10px;' %>
+            <p style="margin:2px 20px;"><%= link_to "Edit", edit_reply_path(reply) %>
+            <%= link_to "Delete", reply_path(reply), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'margin-left:10px;' %></p>
           <% end %>
         </div>
       <% end %>
@@ -47,3 +54,4 @@
     <p>There are no comments to display.</p>
     <hr>
   <% end %>
+</div>
