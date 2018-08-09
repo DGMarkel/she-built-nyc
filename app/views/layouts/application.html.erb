@@ -37,6 +37,12 @@
         color: red;
       }
 
+      .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+
       navbar ul {
         background-color: rgb(249,249,249);
         height: 40px;
@@ -59,11 +65,15 @@
         right: 100px;
       }
 
+      .main {
+        margin-top:60px;"
+      }
+
     </style>
   </head>
   <body>
 
-    <navbar>
+    <navbar class="sticky">
       <ul style="list-style-type:none;margin:0;padding:0;">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "View Nominees", proposals_path %></li>
