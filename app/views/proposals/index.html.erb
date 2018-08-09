@@ -1,13 +1,25 @@
-<h1>Proposals</h1>
 
+<div style="margin:20px 50px">
+<h1 style="font-size:60px;margin-bottom:10px;">Nominees</h1>
+<hr style="border-top:1px solid black;">
 <ul>
   <% @proposals.each do |proposal| %>
-    <li><%= link_to proposal.name, proposal_path(proposal) %> - <%= proposal.description %>
-    <% if current_user && current_user.admin %>
-    <%= link_to "Delete", proposal_path(proposal), data: {:confirm => 'Are you sure?'}, method: "delete", :style => "float:right;margin-right:10px;" %>
+  <div style="height:250px;margin-top:20px">
+  <% if proposal.image_url && !proposal.image_url.empty? %>
+    <img src="<%=proposal.image_url%>" style="float:left;height:90%;margin-right:20px;">
+  <% end %>
+  <h1><%= link_to proposal.name, proposal_path(proposal) %><br>
+  <%= proposal.description %></h1>
 
+  <% if current_user && current_user.admin %>
+    <p style="float:left;">
+      <%= link_to "Delete", proposal_path(proposal), data: {:confirm => 'Are you sure?'}, method: "delete", :style => "float:right;margin-right:10px;" %>
       <%= link_to "Edit", edit_proposal_path(proposal), :style => "float:right;margin-right:10px;" %>
-    <% end %>
-    </li>
+    </p>
+
+  <% end %>
+  </div>
+  <hr>
   <% end %>
 </ul>
+</div>

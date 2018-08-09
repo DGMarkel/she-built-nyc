@@ -54,6 +54,11 @@
         padding-left: 5px;
       }
 
+      navbar div {
+        position: relative;
+        right: 100px;
+      }
+
     </style>
   </head>
   <body>
@@ -61,17 +66,21 @@
     <navbar>
       <ul style="list-style-type:none;margin:0;padding:0;">
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "View Proposals", proposals_path %></li>
+        <li><%= link_to "View Nominees", proposals_path %></li>
         <% if logged_in? %>
-          <% if !current_user.name %>
-            <li><%= link_to "#{current_user.email}'s Profile", user_path(current_user) %></li>
-          <% else %>
-            <li><%= link_to "#{current_user.name}'s Profile", user_path(current_user) %></li>
-          <% end %>
-          <li><%= link_to "Log Out", logout_path, method: "delete" %></li>
+          <div style="float:right;">
+            <% if !current_user.name %>
+              <li><%= link_to "#{current_user.email}'s Profile", user_path(current_user) %></li>
+            <% else %>
+              <li><%= link_to "#{current_user.name}'s Profile", user_path(current_user) %></li>
+            <% end %>
+            <li><%= link_to "Log Out", logout_path, method: "delete" %></li>
+          </div>
         <% else %>
+        <div style="float:right;">
         <li><%= link_to "Log In", new_session_path %></li>
         <li><%= link_to "Sign Up", new_user_path %></li>
+        </div>
         <% end %>
       </ul>
     </navbar>
