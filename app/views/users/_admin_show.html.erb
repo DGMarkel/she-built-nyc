@@ -7,11 +7,11 @@
 </style>
 
 <h1 style="font-size:60px;display:inline-block;width:auto;height:auto;margin:0px 0px 10px 10px;background:white;border-radius:5px;padding:10px;">
-Stats</h1><br>
+Admin Stats</h1><br>
 
 <% if Proposal.any? && Proposal.winning_proposal %>
 
-  <h2 style="width:auto;height:auto;margin:10px 0px 10px 10px;float:left;background:white;border-radius:5px;padding:10px;"><%= link_to Proposal.winning_proposal[0].user.name, user_path(Proposal.winning_proposal[0].user) %>'s proposal,
+  <h2 style="width:1040px;height:auto;margin:10px 0px 10px 10px;float:left;background:white;border-radius:5px;padding:10px;"><%= link_to Proposal.winning_proposal[0].user.name, user_path(Proposal.winning_proposal[0].user) %>'s proposal,
   <%= link_to Proposal.winning_proposal[0].name, proposal_path(Proposal.winning_proposal[0]) %>, has the highest
   average user rating and highest number of votes.</h2>
 
