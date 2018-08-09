@@ -1,10 +1,15 @@
-<% if current_user.proposal_id == @proposal.id || current_user.admin %>
+<style>
+  h3 a {
+    text-decoration: underline;
+  }
+</style>
 
-  <%= link_to "Edit this proposal", edit_proposal_path(@proposal) %>
+<% if current_user.proposal_id == @proposal.id || current_user.admin %>
+  <h3 style="margin-left:50px;display:inline-block;"><%= link_to "Edit this proposal", edit_proposal_path(@proposal) %></h3>
 <% end %>
 
 <% if current_user.admin %>
-  <%= link_to "Delete", proposal_path(@proposal), data: {:confirm => 'Are you sure?'}, method: "delete" %>
+  <h3 style="display:inline-block;"><%= link_to "Delete", proposal_path(@proposal), data: {:confirm => 'Are you sure?'}, method: "delete" %></h3>
 
 <% elsif current_user.id != @proposal.user_id  %>
 
