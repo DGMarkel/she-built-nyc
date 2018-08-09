@@ -8,13 +8,16 @@
     display: inline-block;
     background-color:rgba(255, 255, 255, 0.6);
     padding: 10px;
-    height: 320px;
-    margin: 200px 42%;
+    height: 365px;
+    margin: 150px 42%;
+    border: 1px solid black;
   }
 
 </style>
 
 <span>
+  <h1 style="font-size:60;">Edit Profile</h1>
+  <hr>
   <%= form_for(@user) do |f| %>
   <p>Name</p>
   <%= f.text_field :name %></p>
