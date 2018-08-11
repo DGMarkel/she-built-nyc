@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, on: :create
   validates :email, presence: true, on: :create
   validates :password, presence: true, on: :create
+  validates :name, presence: true, on: :update
   has_secure_password
 
   def created_today?
