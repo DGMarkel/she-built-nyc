@@ -1,10 +1,10 @@
 Application Description:
 
 sheBuiltNYC invites New Yorkers to join us in our effort to build new public monuments that honor women’s history
-in New York City.   Our advisory panel will announce the subject and site of the monument for the winning nominee in January 2019.
+in New York City.   
 
 This is an open call for nominations. We invite you to submit one nominee, and vote on all of our nominees,
-from the vast array of inspiring women who have contributed to our city.
+from the vast array of inspiring women who have contributed to our city.  Our advisory panel will announce the subject and site of a new monument for our winning nominee in January 2019.
 
 This is an educational site.  The public is free to explore all of our nominee profiles, to learn about important figures in New York history.  However, only registered users can make nominations, vote on nominations, and comment on them.
 
