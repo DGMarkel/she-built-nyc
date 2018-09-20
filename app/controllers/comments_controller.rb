@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @proposal = Proposal.find_by(id: params[:proposal_id])
     respond_to do |format|
       format.html { render :index }
-      format.json {  render json: @comments.user }
+      format.json {  render json: @comments }
     end
   end
 
