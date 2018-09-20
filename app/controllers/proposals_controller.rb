@@ -7,6 +7,7 @@ class ProposalsController < ApplicationController
 
   def show
     @proposal = Proposal.find_by(id: params[:id])
+    render json: @proposal
   end
 
   def new
