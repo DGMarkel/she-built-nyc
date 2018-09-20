@@ -1,3 +1,4 @@
 class ProposalSerializer < ActiveModel::Serializer
-  attributes :id, :name, :image_url, :description, :pitch, :user_id, :created_at, :updated_at
+  attributes :id, :name, :image_url, :description, :pitch, :created_at, :updated_at
+  belongs_to :user
 end
