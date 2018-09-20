@@ -5,6 +5,10 @@ class CommentsController < ApplicationController
     @comments = Comment.all
     @user = User.find_by(id: params[:user_id])
     @proposal = Proposal.find_by(id: params[:proposal_id])
+    respond_to do |format|
+      format.html { render :index }
+      format.json {  render json: @comments.user }
+    end
   end
 
   def show

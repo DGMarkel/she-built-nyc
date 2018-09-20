@@ -5,7 +5,7 @@ class ProposalsController < ApplicationController
     @proposals = Proposal.all
     respond_to do |format|
       format.html { render :index }
-      format.json {  render json: @proposals }
+      format.json {  render json: @proposals}
     end
   end
 
