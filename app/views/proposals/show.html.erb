@@ -1,17 +1,17 @@
 <% if @proposal.image_url && !@proposal.image_url.empty? %>
-  <img src="<%=@proposal.image_url%>" style="width: 35%; height: auto; float: left; margin: 20px 20px 20px 0;">
+  <img class="proposalImage" src="<%= @proposal.image_url%>" style="width: 35%; height: auto; float: left; margin: 20px 20px 20px 0;">
 <% end %>
-<h1><%= @proposal.name %></h1>
-<h3><%= @proposal.description %></h3>
+<h1 class="proposalName"><%= @proposal.name %></h1>
+<h3 class="proposalDescription"><%= @proposal.description %></h3>
 <hr>
-<p>Submitted by: <%= linked_or_not(@proposal.user) %></p>
+<p class="proposalUser">Submitted by: <%= linked_or_not(@proposal.user) %></p>
 <h1>Why This Proposal Should Be Accepted</h1>
-<p><%= @proposal.pitch %></p>
+<p class="proposalPitch"><%= @proposal.pitch %></p>
 
 <% if current_user %>
   <%= render partial: 'logged_in_show' %>
 <% end %>
-<button class="js-next">Next Proposal</button>
+<button class="js-next" data-id="<%= @proposal.id %>">Next Proposal</button>
 
   <hr>
   <div>
@@ -48,10 +48,19 @@
   <% end %>
 </div>
 
-<script>
-
-    $("button").on("click", function() {
-      console.log("hi");
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function(event) {
+    event.preventDefault();
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/proposals/" + nextId + ".json", function(data) {
+      $(".proposalName").text(data["name"]);
+      $(".proposalDescription").text(data["description"]);
+      $(".proposalUser").text(data["user"]["name"]);
+      $(".proposalPitch").text(data["pitch"])
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", data["id"]);
     });
-
+  });
+});
 </script>
