@@ -15,7 +15,7 @@
 <h1 class="proposalName"><%= @proposal.name %></h1>
 <h3 class="proposalDescription"><%= @proposal.description %></h3>
 <hr>
-<p class="proposalUser">Submitted by: <%= linked_or_not(@proposal.user) %></p>
+<p>Submitted by: <span class="proposalUser"><%= linked_or_not(@proposal.user) %></span></p>
 <h1>Why This Proposal Should Be Accepted</h1>
 <p class="proposalPitch"><%= @proposal.pitch %></p>
 
@@ -68,7 +68,8 @@ $(function () {
       $(".proposalName").text(data["name"]);
       $(".proposalImage").html(`<img src="${data["image_url"]}">`)
       $(".proposalDescription").text(data["description"]);
-      $(".proposalUser").text(data["user"]["name"]);
+      let user = data["user"]["id"]
+      $(".proposalUser").html(`<a href="/users/${data['user']['id']}">${data["user"]["name"]}</a>`);
       $(".proposalPitch").text(data["pitch"])
       // re-set the id to current on the link
       $(".js-next").attr("data-id", data["id"]);
