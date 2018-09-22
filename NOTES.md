@@ -1,10 +1,9 @@
-mostly finished with back end stuff.
-
-mostly finished with front end stuff
-
-less urgent:
-  figure out a better way to create comment threads.  how can i reply to replies?
-  this looks like a good resource: https://www.codementor.io/ruby-on-rails/tutorial/threaded-comments-polymorphic-associations
+issues with next function on proposal show:
+  link to user page isn't hidden when viewers aren't logged in
+  need to update comments
+  need to update replies
+  need to update comment forms
+  need to update ranking form
 
 
 to do later:
