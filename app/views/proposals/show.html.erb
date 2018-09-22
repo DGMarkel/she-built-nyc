@@ -11,6 +11,7 @@
 <% if current_user %>
   <%= render partial: 'logged_in_show' %>
 <% end %>
+<button class="js-next">Next Proposal</button>
 
   <hr>
   <div>
@@ -46,3 +47,11 @@
     <hr>
   <% end %>
 </div>
+
+<script>
+
+    $("button").on("click", function() {
+      console.log("hi");
+    });
+
+</script>
