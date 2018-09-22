@@ -1,6 +1,5 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :id, :content, :created_at, :updated_at, :user, :proposal 
-  belongs_to :user
-  belongs_to :proposal
+  attributes :id, :content, :replies, :created_at, :updated_at
+  belongs_to :user, serializer: CommentUserSerializer
   has_many :replies
 end
