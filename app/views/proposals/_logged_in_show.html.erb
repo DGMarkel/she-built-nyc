@@ -1,23 +1,17 @@
-<style>
-  h3 a {
-    text-decoration: underline;
-  }
-</style>
-
 <% if current_user.proposal_id == @proposal.id || current_user.admin %>
-  <h3 style="margin-left:50px;display:inline-block;"><%= link_to "Edit this proposal", edit_proposal_path(@proposal) %></h3>
+  <h3><%= link_to "Edit this proposal", edit_proposal_path(@proposal) %></h3>
 <% end %>
 
 <% if current_user.admin %>
-  <h3 style="display:inline-block;"><%= link_to "Delete", proposal_path(@proposal), data: {:confirm => 'Are you sure?'}, method: "delete" %></h3>
+  <h3><%= link_to "Delete", proposal_path(@proposal), data: {:confirm => 'Are you sure?'}, method: "delete" %></h3>
 
 <% elsif current_user.id != @proposal.user_id  %>
 
-<div style="margin-right:50px;margin-bottom:120px;">
-  <div style="display:inline-block;float:right;margin-left:35px;">
+<div>
+  <div>
     <h1>Rank this proposal</h1>
     <% if flash[:ranking_warning] %>
-      <p style="color:red;"><%= flash[:ranking_warning] %>
+      <p><%= flash[:ranking_warning] %>
     <% end %>
     <%= form_for(:ranking, url: rankings_path) do |f| %>
       <%= f.number_field :ranking %>
@@ -25,10 +19,10 @@
       <%= f.submit "Submit" %>
     <% end %>
   </div>
-  <div style="display:inline-block;float:right;">
+  <div>
   <h1>Submit a Comment</h1>
   <% if flash[:comment_warning] %>
-    <p style="color:red;"><%= flash[:comment_warning] %>
+    <p><%= flash[:comment_warning] %>
   <% end %>
   <%= form_for(:comment, url: comments_path) do |f| %>
       <%= f.text_field :content %>
