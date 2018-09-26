@@ -77,7 +77,7 @@ $(function () {
     getProposals(nextId);
     // add proposal comments to the DOM for current proposal
     getComments(nextId);
-    addComment();
+    addComment(nextId);
   });
 
 
@@ -91,11 +91,16 @@ $(function () {
 
 });
 
-function addComment() {
+function addComment(nextId) {
   $('#new_comment').on("submit", function(e) {
-    e.preventDefault();
     var values = $(this).serialize();
     var posting = $.post('/comments', values);
+    $.get(`/proposals/${nextId}/comments.json`, function(data) {
+      newComment = data[data.length-1]
+      $("#recentComments").prepend(`<p><a href="/proposals/${nextId}/comments/${newComment.id}/replies/new">Reply</a></p>`)
+      $("#recentComments").prepend(`<h4>${newComment.content}</h4>`)
+      $("#recentComments").prepend(`<h4><a href="/users/${newComment.user.id}">${newComment.user.name}</a> - ${newComment.created_at} </h4>`)
+    });
   });
 }
 
@@ -124,9 +129,10 @@ function getComments(nextId) {
   $.get(`/proposals/${nextId}/comments.json`, function(data) {
     $("#recentComments").empty()
     data.forEach(function(comment) {
-      $("#recentComments").append(`<h4><a href="/users/" + ${comment["user_id"]}>${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`)
-      $("#recentComments").append(`<h4>${comment["content"]}</h4>`)
-      $("#recentComments").append(`<p><a href="/proposals/${nextId}/comments/${comment['id']}/replies/new">Reply</a></p>`)
+      $("#recentComments").prepend(`<p><a href="/proposals/${nextId}/comments/${comment['id']}/replies/new">Reply</a></p>`)
+      $("#recentComments").prepend(`<h4>${comment["content"]}</h4>`)
+      $("#recentComments").prepend(`<h4><a href="/users/" + ${comment["user_id"]}>${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`)
+
     });
   });
 }

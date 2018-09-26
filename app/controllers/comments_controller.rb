@@ -24,7 +24,6 @@ class CommentsController < ApplicationController
     if !@comment.save
       flash[:comment_warning] = "Your comment must have content."
     end
-    redirect_to proposal_path(params[:comment][:proposal].to_i)
   end
 
   def edit
