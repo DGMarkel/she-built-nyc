@@ -8,12 +8,12 @@
 <% elsif current_user.id != @proposal.user_id  %>
 
 <div>
-  <div id="rankingForm">
+  <div>
     <h1>Rank this proposal</h1>
     <% if flash[:ranking_warning] %>
       <p><%= flash[:ranking_warning] %>
     <% end %>
-    <%= form_for(:ranking, url: rankings_path, html => {id: "new_proposal"}) do |f| %>
+    <%= form_for(:ranking, url: rankings_path, :html => {id: "new_ranking"}) do |f| %>
       <%= f.number_field :ranking %>
       <%= f.hidden_field :proposal, :value => @proposal.id %>
       <%= f.submit "Submit" %>
