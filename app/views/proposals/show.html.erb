@@ -40,7 +40,7 @@
     <% if comment.replies %>
       <br>
       <% comment.replies.each do |reply| %>
-        <div>
+        <div id="comments">
           <hr>
           <h4><%= linked_or_not(reply.user) %> - <%= reply.created_at %></h4>
           <h4><%= reply.content %></h4>
@@ -75,6 +75,8 @@ $(function () {
       // re-set the id to current on the link
       $(".js-next").attr("data-id", data["id"]);
     });
+      $("#comment_proposal")[0]["value"] = nextId.toString()
+      $("#ranking_proposal")[0]["value"] = nextId.toString()
   });
 
 
@@ -89,14 +91,10 @@ $(function () {
 });
 
 $( function() {
-$('#commentForm form').submit(function(event) {
-  event.preventDefault();
-  var values = $(this).serialize();
-  debugger
-  ///var posting = $.post('/comments', values)
-  return false
-
-
-});
+  $('#commentForm form').on("submit", function(event) {
+    event.preventDefault();
+    var values = $(this).serialize();
+    var posting = $.post('/comments', values);
+  });
 });
 </script>
