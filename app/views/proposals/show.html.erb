@@ -70,10 +70,9 @@
 $(function () {
   $(".js-next").on("click", function() {
     // set id for next proposal
-    let nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    let nextId = (parseInt($(".js-next").attr("data-id")) + 1).toString();
     // re-set the proposal id for comment and ranking forms
-    $("#comment_proposal")[0]["value"] = nextId.toString()
-    $("#ranking_proposal")[0]["value"] = nextId.toString()
+    setFormIds(nextId);
     // add next proposal details to DOM
     getProposals(nextId);
     // add proposal comments to the DOM for current proposal
@@ -98,6 +97,13 @@ function addComment() {
     var values = $(this).serialize();
     var posting = $.post('/comments', values);
   });
+}
+
+function setFormIds(nextId) {
+  if($("#comment_proposal")[0] && $("#ranking_proposal")[0]) {
+    $("#comment_proposal")[0]["value"] = nextId;
+    $("#ranking_proposal")[0]["value"] = nextId;
+  };
 }
 
 
