@@ -68,39 +68,17 @@
 let nextId
 
 $(function () {
-
   $(".js-next").on("click", function(event) {
     event.preventDefault();
-
     // set id for next proposal
     nextId = parseInt($(".js-next").attr("data-id")) + 1;
-
-    // add next proposal details to DOM
-    $.get("/proposals/" + nextId + ".json", function(data) {
-      $(".proposalName").text(data["name"]);
-      $(".proposalImage").html(`<img src="${data["image_url"]}">`)
-      $(".proposalDescription").text(data["description"]);
-      let user = data["user"]["id"]
-      $(".proposalUser").html(`<a href="/users/${data['user']['id']}">${data["user"]["name"]}</a>`);
-      $(".proposalPitch").text(data["pitch"])
-      // re-set the id to current on the link
-      $(".js-next").attr("data-id", data["id"]);
-    });
-
     // re-set the proposal id for comment and ranking forms
     $("#comment_proposal")[0]["value"] = nextId.toString()
     $("#ranking_proposal")[0]["value"] = nextId.toString()
-
+    // add next proposal details to DOM
+    getProposals();
     // add proposal comments to the DOM for current proposal
-    $.get(`/proposals/${nextId}/comments.json`, function(data) {
-      $("#recentComments").empty()
-      data.forEach(function(comment) {
-        $("#recentComments").append(`<h4><a href="/users/" + ${comment["user_id"]}>${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`)
-        $("#recentComments").append(`<h4>${comment["content"]}</h4>`)
-        $("#recentComments").append(`<p><a href="/proposals/${nextId}/comments/${comment['id']}/replies/new">Reply</a></p>`)
-
-      })
-    });
+    getComments();
   });
 
 
@@ -114,11 +92,36 @@ $(function () {
 
 });
 
-$( function() {
-  $('#commentForm form').on("submit", function(event) {
-    event.preventDefault();
+function addComment() {
+  $('#new_comment form').on("submit", function(e) {
+    e.preventDefault();
     var values = $(this).serialize();
     var posting = $.post('/comments', values);
   });
-});
+}
+
+
+function getProposals() {
+  $.get("/proposals/" + nextId + ".json", function(data) {
+    $(".proposalName").text(data["name"]);
+    $(".proposalImage").html(`<img src="${data["image_url"]}">`)
+    $(".proposalDescription").text(data["description"]);
+    let user = data["user"]["id"]
+    $(".proposalUser").html(`<a href="/users/${data['user']['id']}">${data["user"]["name"]}</a>`);
+    $(".proposalPitch").text(data["pitch"])
+    // re-set the id to current on the link
+    $(".js-next").attr("data-id", data["id"]);
+  });
+}
+
+function getComments() {
+  $.get(`/proposals/${nextId}/comments.json`, function(data) {
+    $("#recentComments").empty()
+    data.forEach(function(comment) {
+      $("#recentComments").append(`<h4><a href="/users/" + ${comment["user_id"]}>${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`)
+      $("#recentComments").append(`<h4>${comment["content"]}</h4>`)
+      $("#recentComments").append(`<p><a href="/proposals/${nextId}/comments/${comment['id']}/replies/new">Reply</a></p>`)
+    });
+  });
+}
 </script>
