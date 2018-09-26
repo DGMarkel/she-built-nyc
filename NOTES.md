@@ -1,13 +1,12 @@
 issues with next function on proposal show:
   link to user page isn't hidden when viewers aren't logged in
-  need to update comments
   need to update replies
-  need to update comment forms
   need to update ranking form
   if user hits next button and there are no more proposals, add "no more proposals to view" to the DOM
 
 
 to do later:
+  change routes so that I can browse proposals from /proposals instead of proposals/:id
   add filters to proposals index:
     alphabetical
     most popular
