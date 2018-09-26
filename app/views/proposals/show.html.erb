@@ -93,8 +93,12 @@ $(function () {
 
     // add proposal comments to the DOM for current proposal
     $.get(`/proposals/${nextId}/comments.json`, function(data) {
-      $("#recentComments").empty();
+      $("#recentComments").empty()
       data.forEach(function(comment) {
+        $("#recentComments").append(`<h4><a href="/users/" + ${comment["user_id"]}>${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`)
+        $("#recentComments").append(`<h4>${comment["content"]}</h4>`)
+        $("#recentComments").append(`<p><a href="/proposals/${nextId}/comments/${comment['id']}/replies/new">Reply</a></p>`)
+
       })
     });
   });
