@@ -64,7 +64,11 @@ $(function () {
 
   $(".js-next").on("click", function(event) {
     event.preventDefault();
+
+    // set id for next proposal
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+
+    // add next proposal details to DOM
     $.get("/proposals/" + nextId + ".json", function(data) {
       $(".proposalName").text(data["name"]);
       $(".proposalImage").html(`<img src="${data["image_url"]}">`)
@@ -75,8 +79,15 @@ $(function () {
       // re-set the id to current on the link
       $(".js-next").attr("data-id", data["id"]);
     });
-      $("#comment_proposal")[0]["value"] = nextId.toString()
-      $("#ranking_proposal")[0]["value"] = nextId.toString()
+
+    // re-set the proposal id for comment and ranking forms
+    $("#comment_proposal")[0]["value"] = nextId.toString()
+    $("#ranking_proposal")[0]["value"] = nextId.toString()
+
+    // add proposal comments to the DOM for current proposal
+    $.get("/proposals/" + nextId + "comments.json", function(data) {
+      console.log(data)
+    });
   });
 
 
