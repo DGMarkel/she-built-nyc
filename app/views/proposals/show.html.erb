@@ -65,20 +65,20 @@
 
 
 <script type="text/javascript" charset="utf-8">
-let nextId
+
 
 $(function () {
-  $(".js-next").on("click", function(event) {
-    event.preventDefault();
+  $(".js-next").on("click", function() {
     // set id for next proposal
-    nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    let nextId = parseInt($(".js-next").attr("data-id")) + 1;
     // re-set the proposal id for comment and ranking forms
     $("#comment_proposal")[0]["value"] = nextId.toString()
     $("#ranking_proposal")[0]["value"] = nextId.toString()
     // add next proposal details to DOM
-    getProposals();
+    getProposals(nextId);
     // add proposal comments to the DOM for current proposal
-    getComments();
+    getComments(nextId);
+    addComment();
   });
 
 
@@ -93,7 +93,7 @@ $(function () {
 });
 
 function addComment() {
-  $('#new_comment form').on("submit", function(e) {
+  $('#new_comment').on("submit", function(e) {
     e.preventDefault();
     var values = $(this).serialize();
     var posting = $.post('/comments', values);
@@ -101,7 +101,7 @@ function addComment() {
 }
 
 
-function getProposals() {
+function getProposals(nextId) {
   $.get("/proposals/" + nextId + ".json", function(data) {
     $(".proposalName").text(data["name"]);
     $(".proposalImage").html(`<img src="${data["image_url"]}">`)
@@ -114,7 +114,7 @@ function getProposals() {
   });
 }
 
-function getComments() {
+function getComments(nextId) {
   $.get(`/proposals/${nextId}/comments.json`, function(data) {
     $("#recentComments").empty()
     data.forEach(function(comment) {
