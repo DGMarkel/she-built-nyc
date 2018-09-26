@@ -4,6 +4,7 @@ issues with next function on proposal show:
   need to update replies
   need to update comment forms
   need to update ranking form
+  if user hits next button and there are no more proposals, add "no more proposals to view" to the DOM
 
 
 to do later:

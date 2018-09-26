@@ -61,6 +61,7 @@
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
+
   $(".js-next").on("click", function(event) {
     event.preventDefault();
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
@@ -75,5 +76,27 @@ $(function () {
       $(".js-next").attr("data-id", data["id"]);
     });
   });
+
+
+
+    $('#rankingForm form').submit(function(event) {
+      event.preventDefault();
+      var values = $(this).serialize();
+      $.post('/rankings/new', values)
+    });
+
+
+});
+
+$( function() {
+$('#commentForm form').submit(function(event) {
+  event.preventDefault();
+  var values = $(this).serialize();
+  debugger
+  ///var posting = $.post('/comments', values)
+  return false
+
+
+});
 });
 </script>
