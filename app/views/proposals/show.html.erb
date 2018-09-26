@@ -95,6 +95,7 @@ function addComment(nextId) {
   $('#new_comment').on("submit", function(e) {
     var values = $(this).serialize();
     var posting = $.post('/comments', values);
+    e.preventDefault();
     $.get(`/proposals/${nextId}/comments.json`, function(data) {
       newComment = data[data.length-1]
       $("#recentComments").prepend(`<p><a href="/proposals/${nextId}/comments/${newComment.id}/replies/new">Reply</a></p>`)
