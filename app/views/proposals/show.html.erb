@@ -24,10 +24,13 @@
 <% end %>
 <button class="js-next" data-id="<%= @proposal.id %>">Next Proposal</button>
 
-  <hr>
-  <div>
-  <h1>Recent Comments:</h1>
-  <p><%= link_to "View All Comments For This Post", proposal_comments_path(@proposal) %></p>
+<hr>
+
+<h1>Recent Comments:</h1>
+<p><%= link_to "View All Comments For This Post", proposal_comments_path(@proposal) %></p>
+
+<div id="recentComments">
+
   <% if !@proposal.comments.empty? %>
     <% @proposal.comments.newest_first.limit(3).each do |comment| %>
     <h4><%= linked_or_not(comment.user) %> - <%= comment.created_at %></h4>
@@ -37,10 +40,11 @@
       <p><%= link_to "Edit", edit_comment_path(comment) %>
       <%= link_to "Delete", comment_path(comment), data: {:confirm => 'Are you sure?'}, method: "delete" %></p>
     <% end %>
+
     <% if comment.replies %>
       <br>
       <% comment.replies.each do |reply| %>
-        <div id="comments">
+        <div>
           <hr>
           <h4><%= linked_or_not(reply.user) %> - <%= reply.created_at %></h4>
           <h4><%= reply.content %></h4>
@@ -59,14 +63,17 @@
   <% end %>
 </div>
 
+
 <script type="text/javascript" charset="utf-8">
+let nextId
+
 $(function () {
 
   $(".js-next").on("click", function(event) {
     event.preventDefault();
 
     // set id for next proposal
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    nextId = parseInt($(".js-next").attr("data-id")) + 1;
 
     // add next proposal details to DOM
     $.get("/proposals/" + nextId + ".json", function(data) {
@@ -85,8 +92,10 @@ $(function () {
     $("#ranking_proposal")[0]["value"] = nextId.toString()
 
     // add proposal comments to the DOM for current proposal
-    $.get("/proposals/" + nextId + "comments.json", function(data) {
-      console.log(data)
+    $.get(`/proposals/${nextId}/comments.json`, function(data) {
+      $("#recentComments").empty();
+      data.forEach(function(comment) {
+      })
     });
   });
 
