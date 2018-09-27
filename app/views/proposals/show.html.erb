@@ -78,17 +78,8 @@ $(function () {
     // add proposal comments to the DOM for current proposal
     getComments(nextId);
     addComment(nextId);
+    addRanking();
   });
-
-
-
-    $('#rankingForm form').submit(function(event) {
-      event.preventDefault();
-      var values = $(this).serialize();
-      $.post('/rankings/new', values)
-    });
-
-
 });
 
 function addComment(nextId) {
@@ -103,6 +94,21 @@ function addComment(nextId) {
       $("#recentComments").prepend(`<h4><a href="/users/${newComment.user.id}">${newComment.user.name}</a> - ${newComment.created_at} </h4>`)
     });
   });
+}
+
+function addRanking() {
+  $('#new_ranking').on("submit", function(e) {
+    var values = $(this).serialize();
+    debugger
+    var posting = $.post('/rankings', values);
+    posting.done(function() {
+      alert( "$.post succeeded" );
+    });
+    posting.fail(function() {
+      alert( "$.post failed!" );
+    });
+    e.preventDefault();
+  })
 }
 
 function setFormIds(nextId) {

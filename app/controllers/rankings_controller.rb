@@ -10,7 +10,6 @@ class RankingsController < ApplicationController
     if !@ranking.save
       flash[:ranking_warning] = "Ranking must fall into a range of 1 - 5"
     end
-    redirect_to proposal_path(params[:ranking][:proposal])
   end
 
 
