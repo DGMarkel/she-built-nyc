@@ -16,6 +16,7 @@
     <%= form_for(:ranking, url: rankings_path, :html => {id: "new_ranking"}) do |f| %>
       <%= f.number_field :ranking %>
       <%= f.hidden_field :proposal, :value => @proposal.id %>
+      <%= f.hidden_field :proposal, :value => current_user.id, id: "badIdea" %>
       <%= f.submit "Submit" %>
     <% end %>
   </div>

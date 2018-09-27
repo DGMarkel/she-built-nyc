@@ -96,20 +96,37 @@ function addComment(nextId) {
   });
 }
 
-function addRanking() {
-  $('#new_ranking').on("submit", function(e) {
-    var values = $(this).serialize();
-    debugger
-    var posting = $.post('/rankings', values);
-    posting.done(function() {
-      alert( "$.post succeeded" );
-    });
-    posting.fail(function() {
-      alert( "$.post failed!" );
-    });
-    e.preventDefault();
-  })
+async function checkForUserRanking() {
+  let currentUser = $("#badIdea")[0]["value"]
+  let currentProposal = $("#ranking_proposal")[0]["value"]
+  let res = await fetch('/rankings.json')
+  let foundData = await res.json()
+  let ranking = foundData.find(function(ranking) {
+     return ranking["user"]["id"].toString() === currentUser && ranking["proposal"]["id"].toString() === currentProposal
+   })
+
+   if (ranking) {
+     return ranking.user
+   } else {
+     return "not found"
+   }
 }
+
+function addRanking() {
+      $('#new_ranking').on("submit", function() {
+        checkForUserRanking().then(res => {
+          if (res === "not found") {
+            var values = $(this).serialize();
+            var posting = $.post('/rankings', values);
+          }
+          else {
+            alert("You've already voted on this proposal");
+          }
+      });
+  });
+}
+
+
 
 function setFormIds(nextId) {
   if($("#comment_proposal")[0] && $("#ranking_proposal")[0]) {
