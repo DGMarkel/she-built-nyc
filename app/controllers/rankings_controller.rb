@@ -1,6 +1,11 @@
 class RankingsController < ApplicationController
   before_action :site_security
 
+def index
+  @rankings = Ranking.all
+  render json: @rankings
+end
+
   def new
     @ranking = Ranking.new
   end
@@ -11,6 +16,5 @@ class RankingsController < ApplicationController
       flash[:ranking_warning] = "Ranking must fall into a range of 1 - 5"
     end
   end
-
 
 end
