@@ -79,6 +79,7 @@ $(function () {
     getComments(nextId);
     addComment(nextId);
     addRanking();
+
   });
 });
 
@@ -113,16 +114,16 @@ async function checkForUserRanking() {
 }
 
 function addRanking() {
-      $('#new_ranking').on("submit", function() {
-        checkForUserRanking().then(res => {
-          if (res === "not found") {
-            var values = $(this).serialize();
-            var posting = $.post('/rankings', values);
-          }
-          else {
-            alert("You've already voted on this proposal");
-          }
-      });
+  $('#new_ranking').on("submit", function() {
+    checkForUserRanking().then(res => {
+      if (res === "not found") {
+        var values = $(this).serialize();
+        var posting = $.post('/rankings', values);
+      }
+      else {
+        alert("You've already voted on this proposal");
+      }
+    });
   });
 }
 
