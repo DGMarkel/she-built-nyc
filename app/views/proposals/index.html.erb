@@ -31,8 +31,8 @@ $(function () {
   $(".proposalLink").on("click", function(e) {
     e.preventDefault();
     navId = this.id
-    proposalShowTemplate(navId);
     documentReadyCalls(navId);
+    proposalShowTemplate(navId);
     proposalNavigation(navId);
   })
 });
@@ -75,6 +75,11 @@ function proposalShowTemplate(navId) {
   $(".main").append(`<p class="proposalPitch"></p>`);
   $(".main").append(`<button class="js-next" data-id="${navId}">Next Proposal</button>`);
   $(".main").append(`<button class="js-previous" data-id="${navId}">Previous Proposal</button>`);
+  // add ranking and comment forms
+  $(".main").append('<%= j render 'logged_in_show' %>');
+  // add current proposal id to comment form
+  $('#comment_proposal')[0].value = navId
+  $('#ranking_proposal')[0].value = navId
 }
 
 function addComment(navId) {
