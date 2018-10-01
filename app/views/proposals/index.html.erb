@@ -1,4 +1,3 @@
-
 <div style="margin:20px 50px">
 <h1 style="font-size:60px;margin-bottom:10px;">Nominees</h1>
 <hr style="border-top:1px solid black;">
@@ -153,7 +152,7 @@ function showForm(navId) {
 function getProposals(navId) {
   $.get("/proposals/" + navId + ".json", function(data) {
     $(".proposalName").text(data["name"]);
-    $(".proposalImage").html(`<img src="${data["image_url"]}">`)
+    $(".proposalImage").html(`<img src="${data["image_url"]}" style="width:35%;height:auto;float:left;margin: 20px 20px 20px 0;">`)
     $(".proposalDescription").text(data["description"]);
     let user = data["user"]["id"]
     $(".proposalUser").html(`<a href="/users/${data['user']['id']}">${data["user"]["name"]}</a>`);
