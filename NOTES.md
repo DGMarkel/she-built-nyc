@@ -4,6 +4,10 @@ issues with next function on proposal show:
   work on repliesTemplate()
   maybe get rid of view all comments link?
 
+questions:
+  why can I only hit the submit button once?
+  why don't comments update correctly?
+
 to do later:
   change routes so that I can browse proposals from /proposals instead of proposals/:id
   add filters to proposals index:

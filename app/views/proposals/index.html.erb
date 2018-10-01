@@ -24,19 +24,20 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
+navId = "";
 
 $(function () {
-  let navId;
   $(".proposalLink").on("click", function(e) {
     e.preventDefault();
     navId = this.id
-    documentReadyCalls(navId);
     proposalTemplate(navId);
+    documentReadyCalls(navId);
     proposalNavigation(navId);
   })
 });
 
 function documentReadyCalls(navId) {
+  console.log(navId)
   setFormIds(navId);
   // add next proposal details to DOM
   getProposal(navId);
@@ -48,8 +49,6 @@ function documentReadyCalls(navId) {
   addRanking();
   // displays ranking and comments forms for current proposal UNLESS it is the current user's proposal
   showProposalForms(navId);
-  // creates a new comment and inserts it into the DOM
-  postandInsertComment(navId)
 }
 
 function proposalNavigation(navId){
@@ -63,6 +62,7 @@ function proposalNavigation(navId){
     navId = (parseInt($(".js-next").attr("data-id")) - 1).toString();
     documentReadyCalls(navId);
   });
+    postComment(navId)
 }
 
 function proposalTemplate(navId) {
@@ -86,7 +86,8 @@ function proposalTemplate(navId) {
   $(".main").append(`<div id="recentComments"></div>`);
 }
 
-function postandInsertComment(navId) {
+// I can't get this to work properly
+function postComment(navId) {
   $('#new_comment').on("submit", async function(e) {
     e.preventDefault();
     var values = $(this).serialize();
