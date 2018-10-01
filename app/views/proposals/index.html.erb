@@ -32,17 +32,8 @@ $(function () {
     e.preventDefault();
     navId = this.id
     proposalShowTemplate(navId);
-    documentReadyCalls(navId)
-    $(".js-next").on("click", function() {
-      // set id for next proposal
-      navId = (parseInt($(".js-next").attr("data-id")) + 1).toString();
-      documentReadyCalls(navId);
-    });
-    $(".js-previous").on("click", function() {
-      navId = (parseInt($(".js-next").attr("data-id")) - 1).toString();
-      documentReadyCalls(navId);
-    });
-
+    documentReadyCalls(navId);
+    proposalNavigation(navId);
   })
 });
 
@@ -58,6 +49,19 @@ function documentReadyCalls(navId) {
   addRanking();
   // displays ranking and comments forms for current proposal UNLESS it is the current user's proposal
   showForm(navId);
+}
+
+function proposalNavigation(navId){
+  $(".js-next").on("click", function() {
+    // set id for next proposal
+    navId = (parseInt($(".js-next").attr("data-id")) + 1).toString();
+    documentReadyCalls(navId);
+  });
+  $(".js-previous").on("click", function() {
+    // set id for previous proposal
+    navId = (parseInt($(".js-next").attr("data-id")) - 1).toString();
+    documentReadyCalls(navId);
+  });
 }
 
 function proposalShowTemplate(navId) {
