@@ -79,7 +79,7 @@ $(function () {
     getComments(nextId);
     addComment(nextId);
     addRanking();
-
+    showForm();
   });
 });
 
@@ -127,12 +127,18 @@ function addRanking() {
   });
 }
 
-
-
 function setFormIds(nextId) {
   if($("#comment_proposal")[0] && $("#ranking_proposal")[0]) {
     $("#comment_proposal")[0]["value"] = nextId;
     $("#ranking_proposal")[0]["value"] = nextId;
+  };
+}
+
+function showForm() {
+  let proposalUser = $(".proposalUser a").attr("href").match(/\d+/)[0]
+  let currentUser = $("#badIdea")[0]["value"]
+  if (proposalUser === currentUser) {
+    $("#proposalForms").empty();
   };
 }
 

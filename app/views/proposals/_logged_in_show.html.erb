@@ -7,7 +7,7 @@
 
 <% elsif current_user.id != @proposal.user_id  %>
 
-<div>
+<div id = "proposalForms">
   <div>
     <h1>Rank this proposal</h1>
     <% if flash[:ranking_warning] %>
