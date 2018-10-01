@@ -66,7 +66,6 @@
 
 <script type="text/javascript" charset="utf-8">
 
-
 $(function () {
   $(".js-next").on("click", function() {
     // set id for next proposal
@@ -79,7 +78,7 @@ $(function () {
     getComments(nextId);
     addComment(nextId);
     addRanking();
-    showForm();
+    showForm(nextId);
   });
 });
 
@@ -134,12 +133,15 @@ function setFormIds(nextId) {
   };
 }
 
-function showForm() {
-  let proposalUser = $(".proposalUser a").attr("href").match(/\d+/)[0]
-  let currentUser = $("#badIdea")[0]["value"]
-  if (proposalUser === currentUser) {
-    $("#proposalForms").empty();
-  };
+function showForm(nextId) {
+
+  $.get("/proposals/" + nextId + ".json", function(data) {
+      let currentUser = $("#badIdea")[0]["value"]
+      if (data["user"]["id"].toString() === currentUser) {
+        $("#proposalForms").empty();
+      }
+  });
+
 }
 
 
