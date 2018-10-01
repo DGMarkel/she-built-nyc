@@ -79,6 +79,7 @@ function proposalShowTemplate(navId) {
   $(".main").append('<%= j render 'logged_in_show' %>');
   // add current proposal id to comment form
   $('#comment_proposal')[0].value = navId
+  // add current proposal id to ranking form
   $('#ranking_proposal')[0].value = navId
 }
 
