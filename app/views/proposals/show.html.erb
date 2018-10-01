@@ -76,8 +76,11 @@ $(function () {
     getProposals(nextId);
     // add proposal comments to the DOM for current proposal
     getComments(nextId);
+    // add current user's comments to the DOM for current proposal
     addComment(nextId);
+    // allows current user to vote on proposal if they haven't already voted
     addRanking();
+    // displays ranking and comments forms for current proposal UNLESS it is the current user's proposal
     showForm(nextId);
   });
 });
@@ -137,9 +140,12 @@ function showForm(nextId) {
 
   $.get("/proposals/" + nextId + ".json", function(data) {
       let currentUser = $("#badIdea")[0]["value"]
-      if (data["user"]["id"].toString() === currentUser) {
-        $("#proposalForms").empty();
+      if (data["user"]["id"].toString() != currentUser) {
+        $("#proposalForms").show();
+      } else {
+        $("#proposalForms").hide();
       }
+
   });
 
 }
