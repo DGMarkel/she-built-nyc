@@ -31,7 +31,7 @@ $(function () {
     e.preventDefault();
     navId = this.id
     documentReadyCalls(navId);
-    proposalShowTemplate(navId);
+    proposalTemplate(navId);
     proposalNavigation(navId);
   })
 });
@@ -39,15 +39,15 @@ $(function () {
 function documentReadyCalls(navId) {
   setFormIds(navId);
   // add next proposal details to DOM
-  getProposals(navId);
+  getProposal(navId);
   // add proposal comments to the DOM for current proposal
   getComments(navId);
   // add current user's comments to the DOM for current proposal
-  addComment(navId);
+
   // allows current user to vote on proposal if they haven't already voted
   addRanking();
   // displays ranking and comments forms for current proposal UNLESS it is the current user's proposal
-  showForm(navId);
+  showProposalForms(navId);
 }
 
 function proposalNavigation(navId){
@@ -63,7 +63,7 @@ function proposalNavigation(navId){
   });
 }
 
-function proposalShowTemplate(navId) {
+function proposalTemplate(navId) {
   $(".main").empty();
   $(".main").append(`<div class="proposalImage"></div>`);
   $(".main").append(`<h1 class="proposalName"></h1>`);
@@ -136,8 +136,7 @@ function setFormIds(navId) {
   };
 }
 
-function showForm(navId) {
-
+function showProposalForms(navId) {
   $.get("/proposals/" + navId + ".json", function(data) {
       let currentUser = $("#badIdea")[0]["value"]
       if (data["user"]["id"].toString() != currentUser) {
@@ -149,7 +148,7 @@ function showForm(navId) {
 }
 
 
-function getProposals(navId) {
+function getProposal(navId) {
   $.get("/proposals/" + navId + ".json", function(data) {
     $(".proposalName").text(data["name"]);
     $(".proposalImage").html(`<img src="${data["image_url"]}" style="width:35%;height:auto;float:left;margin: 20px 20px 20px 0;">`)
