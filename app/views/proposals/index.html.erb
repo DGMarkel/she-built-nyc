@@ -28,19 +28,21 @@
 
 $(function () {
   let navId;
-  $(".js-next").on("click", function() {
-    // set id for next proposal
-    navId = (parseInt($(".js-next").attr("data-id")) + 1).toString();
-    documentReadyCalls(navId);
-  });
-  $(".js-previous").on("click", function() {
-    navId = (parseInt($(".js-next").attr("data-id")) - 1).toString();
-    documentReadyCalls(navId);
-  });
   $(".proposalLink").on("click", function(e) {
     e.preventDefault();
     navId = this.id
+    proposalShowTemplate(navId);
     documentReadyCalls(navId)
+    $(".js-next").on("click", function() {
+      // set id for next proposal
+      navId = (parseInt($(".js-next").attr("data-id")) + 1).toString();
+      documentReadyCalls(navId);
+    });
+    $(".js-previous").on("click", function() {
+      navId = (parseInt($(".js-next").attr("data-id")) - 1).toString();
+      documentReadyCalls(navId);
+    });
+
   })
 });
 
@@ -56,6 +58,19 @@ function documentReadyCalls(navId) {
   addRanking();
   // displays ranking and comments forms for current proposal UNLESS it is the current user's proposal
   showForm(navId);
+}
+
+function proposalShowTemplate(navId) {
+  $(".main").empty();
+  $(".main").append(`<div class="proposalImage"></div>`);
+  $(".main").append(`<h1 class="proposalName"></h1>`);
+  $(".main").append(`<h3 class="proposalDescription"></h3>`);
+  $(".main").append(`<hr>`);
+  $(".main").append(`<p>Submitted by: <span class="proposalUser"></span></p>`);
+  $(".main").append(`<h1>Why This Proposal Should Be Accepted</h1>`)
+  $(".main").append(`<p class="proposalPitch"></p>`);
+  $(".main").append(`<button class="js-next" data-id="${navId}">Next Proposal</button>`);
+  $(".main").append(`<button class="js-previous" data-id="${navId}">Previous Proposal</button>`);
 }
 
 function addComment(navId) {
