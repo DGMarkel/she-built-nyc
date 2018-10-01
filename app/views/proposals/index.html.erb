@@ -81,6 +81,8 @@ function proposalShowTemplate(navId) {
   $('#comment_proposal')[0].value = navId
   // add current proposal id to ranking form
   $('#ranking_proposal')[0].value = navId
+  $(".main").append(`<h1>Recent Comments:</h1>`);
+  $(".main").append(`<div id="recentComments"></div>`);
 }
 
 function addComment(navId) {
