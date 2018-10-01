@@ -68,48 +68,41 @@
 <script type="text/javascript" charset="utf-8">
 
 $(function () {
+  let navId;
   $(".js-next").on("click", function() {
     // set id for next proposal
-    nextId = (parseInt($(".js-next").attr("data-id")) + 1).toString();
-    // re-set the proposal id for comment and ranking forms
-    setFormIds(nextId);
-    // add next proposal details to DOM
-    getProposals(nextId);
-    // add proposal comments to the DOM for current proposal
-    getComments(nextId);
-    // add current user's comments to the DOM for current proposal
-    addComment(nextId);
-    // allows current user to vote on proposal if they haven't already voted
-    addRanking();
-    // displays ranking and comments forms for current proposal UNLESS it is the current user's proposal
-    showForm(nextId);
+    navId = (parseInt($(".js-next").attr("data-id")) + 1).toString();
+    documentReadyCalls(navId);
   });
   $(".js-previous").on("click", function() {
     // set id for next proposal
-    nextId = (parseInt($(".js-next").attr("data-id")) - 1).toString();
-    // re-set the proposal id for comment and ranking forms
-    setFormIds(nextId);
-    // add next proposal details to DOM
-    getProposals(nextId);
-    // add proposal comments to the DOM for current proposal
-    getComments(nextId);
-    // add current user's comments to the DOM for current proposal
-    addComment(nextId);
-    // allows current user to vote on proposal if they haven't already voted
-    addRanking();
-    // displays ranking and comments forms for current proposal UNLESS it is the current user's proposal
-    showForm(nextId);
+    navId = (parseInt($(".js-next").attr("data-id")) - 1).toString();
+    documentReadyCalls(navId);
   });
 });
 
-function addComment(nextId) {
+function documentReadyCalls(navId) {
+  setFormIds(navId);
+  // add next proposal details to DOM
+  getProposals(navId);
+  // add proposal comments to the DOM for current proposal
+  getComments(navId);
+  // add current user's comments to the DOM for current proposal
+  addComment(navId);
+  // allows current user to vote on proposal if they haven't already voted
+  addRanking();
+  // displays ranking and comments forms for current proposal UNLESS it is the current user's proposal
+  showForm(navId);
+}
+
+function addComment(navId) {
   $('#new_comment').on("submit", function(e) {
     var values = $(this).serialize();
     var posting = $.post('/comments', values);
     e.preventDefault();
-    $.get(`/proposals/${nextId}/comments.json`, function(data) {
+    $.get(`/proposals/${navId}/comments.json`, function(data) {
       newComment = data[data.length-1]
-      $("#recentComments").prepend(`<p><a href="/proposals/${nextId}/comments/${newComment.id}/replies/new">Reply</a></p>`)
+      $("#recentComments").prepend(`<p><a href="/proposals/${navId}/comments/${newComment.id}/replies/new">Reply</a></p>`)
       $("#recentComments").prepend(`<h4>${newComment.content}</h4>`)
       $("#recentComments").prepend(`<h4><a href="/users/${newComment.user.id}">${newComment.user.name}</a> - ${newComment.created_at} </h4>`)
     });
@@ -146,16 +139,16 @@ function addRanking() {
   });
 }
 
-function setFormIds(nextId) {
+function setFormIds(navId) {
   if($("#comment_proposal")[0] && $("#ranking_proposal")[0]) {
-    $("#comment_proposal")[0]["value"] = nextId;
-    $("#ranking_proposal")[0]["value"] = nextId;
+    $("#comment_proposal")[0]["value"] = navId;
+    $("#ranking_proposal")[0]["value"] = navId;
   };
 }
 
-function showForm(nextId) {
+function showForm(navId) {
 
-  $.get("/proposals/" + nextId + ".json", function(data) {
+  $.get("/proposals/" + navId + ".json", function(data) {
       let currentUser = $("#badIdea")[0]["value"]
       if (data["user"]["id"].toString() != currentUser) {
         $("#proposalForms").show();
@@ -168,8 +161,8 @@ function showForm(nextId) {
 }
 
 
-function getProposals(nextId) {
-  $.get("/proposals/" + nextId + ".json", function(data) {
+function getProposals(navId) {
+  $.get("/proposals/" + navId + ".json", function(data) {
     $(".proposalName").text(data["name"]);
     $(".proposalImage").html(`<img src="${data["image_url"]}">`)
     $(".proposalDescription").text(data["description"]);
@@ -181,11 +174,11 @@ function getProposals(nextId) {
   });
 }
 
-function getComments(nextId) {
-  $.get(`/proposals/${nextId}/comments.json`, function(data) {
+function getComments(navId) {
+  $.get(`/proposals/${navId}/comments.json`, function(data) {
     $("#recentComments").empty()
     data.forEach(function(comment) {
-      $("#recentComments").prepend(`<p><a href="/proposals/${nextId}/comments/${comment['id']}/replies/new">Reply</a></p>`);
+      $("#recentComments").prepend(`<p><a href="/proposals/${navId}/comments/${comment['id']}/replies/new">Reply</a></p>`);
       $("#recentComments").prepend(`<h4>${comment["content"]}</h4>`);
       $("#recentComments").prepend(`<h4><a href="/users/" + ${comment["user_id"]}>${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`);
       repliesTemplate(comment)
