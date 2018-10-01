@@ -23,6 +23,7 @@
   <%= render partial: 'logged_in_show' %>
 <% end %>
 <button class="js-next" data-id="<%= @proposal.id %>">Next Proposal</button>
+<button class="js-previous" data-id="<%= @proposal.id %>">Previous Proposal</button>
 
 <hr>
 
@@ -69,7 +70,23 @@
 $(function () {
   $(".js-next").on("click", function() {
     // set id for next proposal
-    let nextId = (parseInt($(".js-next").attr("data-id")) + 1).toString();
+    nextId = (parseInt($(".js-next").attr("data-id")) + 1).toString();
+    // re-set the proposal id for comment and ranking forms
+    setFormIds(nextId);
+    // add next proposal details to DOM
+    getProposals(nextId);
+    // add proposal comments to the DOM for current proposal
+    getComments(nextId);
+    // add current user's comments to the DOM for current proposal
+    addComment(nextId);
+    // allows current user to vote on proposal if they haven't already voted
+    addRanking();
+    // displays ranking and comments forms for current proposal UNLESS it is the current user's proposal
+    showForm(nextId);
+  });
+  $(".js-previous").on("click", function() {
+    // set id for next proposal
+    nextId = (parseInt($(".js-next").attr("data-id")) - 1).toString();
     // re-set the proposal id for comment and ranking forms
     setFormIds(nextId);
     // add next proposal details to DOM
