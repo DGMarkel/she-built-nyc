@@ -83,13 +83,14 @@ function proposalShowTemplate(navId) {
   $('#ranking_proposal')[0].value = navId
   $(".main").append(`<h1>Recent Comments:</h1>`);
   $(".main").append(`<div id="recentComments"></div>`);
+  addComment(navId)
 }
 
 function addComment(navId) {
   $('#new_comment').on("submit", function(e) {
+    e.preventDefault();
     var values = $(this).serialize();
     var posting = $.post('/comments', values);
-    e.preventDefault();
     $.get(`/proposals/${navId}/comments.json`, function(data) {
       newComment = data[data.length-1]
       $("#recentComments").prepend(`<p><a href="/proposals/${navId}/comments/${newComment.id}/replies/new">Reply</a></p>`)
