@@ -24,7 +24,7 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-navId = "";
+var navId = null
 
 $(function () {
   $(".proposalLink").on("click", function(e) {
@@ -32,15 +32,16 @@ $(function () {
     navId = this.id
     proposalTemplate(navId);
     documentReadyCalls(navId);
-    proposalNavigation(navId);
+    proposalNavigation();
+    postComment();
   })
 });
 
 function documentReadyCalls(navId) {
   console.log(navId)
-  setFormIds(navId);
   // add next proposal details to DOM
   getProposal(navId);
+  setFormIds(navId);
   // add proposal comments to the DOM for current proposal
   getComments(navId);
   // add current user's comments to the DOM for current proposal
@@ -51,7 +52,7 @@ function documentReadyCalls(navId) {
   showProposalForms(navId);
 }
 
-function proposalNavigation(navId){
+function proposalNavigation(){
   $(".js-next").on("click", function() {
     // set id for next proposal
     navId = (parseInt($(".js-next").attr("data-id")) + 1).toString();
@@ -62,7 +63,6 @@ function proposalNavigation(navId){
     navId = (parseInt($(".js-next").attr("data-id")) - 1).toString();
     documentReadyCalls(navId);
   });
-    postComment(navId)
 }
 
 function proposalTemplate(navId) {
@@ -78,17 +78,14 @@ function proposalTemplate(navId) {
   $(".main").append(`<button class="js-previous" data-id="${navId}">Previous Proposal</button>`);
   // add ranking and comment forms
   $(".main").append('<%= j render 'logged_in_show' %>');
-  // add current proposal id to comment form
-  $('#comment_proposal')[0].value = navId
-  // add current proposal id to ranking form
-  $('#ranking_proposal')[0].value = navId
   $(".main").append(`<h1>Recent Comments:</h1>`);
   $(".main").append(`<div id="recentComments"></div>`);
 }
 
 // I can't get this to work properly
-function postComment(navId) {
+function postComment() {
   $('#new_comment').on("submit", async function(e) {
+    debugger
     e.preventDefault();
     var values = $(this).serialize();
     let posting = await $.post('/comments', values);
