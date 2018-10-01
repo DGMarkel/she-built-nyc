@@ -168,11 +168,21 @@ function getComments(nextId) {
   $.get(`/proposals/${nextId}/comments.json`, function(data) {
     $("#recentComments").empty()
     data.forEach(function(comment) {
-      $("#recentComments").prepend(`<p><a href="/proposals/${nextId}/comments/${comment['id']}/replies/new">Reply</a></p>`)
-      $("#recentComments").prepend(`<h4>${comment["content"]}</h4>`)
-      $("#recentComments").prepend(`<h4><a href="/users/" + ${comment["user_id"]}>${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`)
-
+      $("#recentComments").prepend(`<p><a href="/proposals/${nextId}/comments/${comment['id']}/replies/new">Reply</a></p>`);
+      $("#recentComments").prepend(`<h4>${comment["content"]}</h4>`);
+      $("#recentComments").prepend(`<h4><a href="/users/" + ${comment["user_id"]}>${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`);
+      repliesTemplate(comment)
     });
   });
+}
+
+function repliesTemplate(comment) {
+  $("#recentComments").append(`<div id="comment-${comment.id}-replies">`);
+  comment.replies.forEach(function(reply) {
+    $("#recentComments").append('<hr>')
+    $("#recentComments").append(`<h4 style="position:relative;left:50px;"><a href="/users/" + ${reply["user"]["user_id"]}>${reply["user"]["name"]}</a> - ${reply["created_at"]} </h4>`);
+    $("#recentComments").append(`<h4 style="position:relative;left:50px;">${reply["content"]}</h4>`);
+  });
+  $("#recentComments").append(`<div>`);
 }
 </script>
