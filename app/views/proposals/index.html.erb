@@ -82,10 +82,10 @@ function proposalTemplate(navId) {
   $('#ranking_proposal')[0].value = navId
   $(".main").append(`<h1>Recent Comments:</h1>`);
   $(".main").append(`<div id="recentComments"></div>`);
-  addComment(navId)
+  postAndAddNewComment(navId)
 }
 
-function addComment(navId) {
+function postAndAddNewComment(navId) {
   $('#new_comment').on("submit", function(e) {
     e.preventDefault();
     var values = $(this).serialize();
@@ -97,6 +97,10 @@ function addComment(navId) {
       $("#recentComments").prepend(`<h4><a href="/users/${newComment.user.id}">${newComment.user.name}</a> - ${newComment.created_at} </h4>`)
     });
   });
+}
+
+function addNewCommentToDOM() {
+
 }
 
 async function checkForUserRanking() {
