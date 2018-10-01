@@ -75,10 +75,13 @@ $(function () {
     documentReadyCalls(navId);
   });
   $(".js-previous").on("click", function() {
-    // set id for next proposal
     navId = (parseInt($(".js-next").attr("data-id")) - 1).toString();
     documentReadyCalls(navId);
   });
+  $(".proposalLink").on("click", function() {
+    navId = this.id
+    documentReadyCalls(navId)  
+  })
 });
 
 function documentReadyCalls(navId) {
@@ -155,9 +158,7 @@ function showForm(navId) {
       } else {
         $("#proposalForms").hide();
       }
-
   });
-
 }
 
 
