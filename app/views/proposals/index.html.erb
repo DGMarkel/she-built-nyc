@@ -146,8 +146,6 @@ function getAllComments(navId) {
   });
 }
 
-
-
 function postandInsertComment() {
   $('#new_comment').on("submit", async function(e) {
     e.preventDefault();
@@ -162,7 +160,7 @@ function postandInsertComment() {
 }
 
 function commentTemplate(comment) {
-  $("#comments").append(`<div id="comment-${comment["id"]}">`)
+  $("#comments").prepend(`<div id="comment-${comment["id"]}">`)
   $(`#comment-${comment["id"]}`).append(`<h4><a href="/users/${comment['user']['id']}">${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`);
   $(`#comment-${comment["id"]}`).append(`<h4>${comment["content"]}</h4>`);
   $(`#comment-${comment["id"]}`).append(`<p id="reply_form_${comment['id']}"><a href="#" onclick="replyForm(${comment['id']});return false;"}/replies/new">Reply</a></p>`);
