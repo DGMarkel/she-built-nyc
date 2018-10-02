@@ -194,6 +194,7 @@ function postandInsertReply(comment) {
   let posting = await $.post('/replies', values);
   let replies = await $.get(`/proposals/${navId}/comments/${comment}.json`)
   let newReply = replies["replies"].pop();
+  $('#new_reply').remove();
   newReplyTemplate(newReply, comment);
   });
 }
