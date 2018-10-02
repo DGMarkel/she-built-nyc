@@ -159,12 +159,17 @@ function newCommentTemplate(newComment) {
 //reply functions
 
 function repliesTemplate(comment) {
+  $(`#reply_to_comment_${comment["id"]}`).append(`<a href="#" onclick="clearReplies()">Clear Replies`)
+
+  $(`#reply_to_comment_${comment["id"]}`).append(`<div id="replies_to_comment_${comment["id"]}"`)
   comment.replies.forEach(function(reply) {
-    $(`#reply_to_comment_${comment["id"]}`).append('<hr>')
-    $(`#reply_to_comment_${comment["id"]}`).append(`<h4 style="position:relative;left:50px;"><a href="/users/${reply['user']['id']}">${reply["user"]["name"]}</a> - ${reply["created_at"]} </h4>`);
-    $(`#reply_to_comment_${comment["id"]}`).append(`<h4 style="position:relative;left:50px;">${reply["content"]}</h4>`);
+    $(`#replies_to_comment_${comment["id"]}`).append('<hr>')
+
+    $(`#replies_to_comment_${comment["id"]}`).append(`<h4 style="position:relative;left:50px;"><a href="/users/${reply['user']['id']}">${reply["user"]["name"]}</a> - ${reply["created_at"]} </h4>`);
+    $(`#replies_to_comment_${comment["id"]}`).append(`<h4 style="position:relative;left:50px;">${reply["content"]}</h4>`);
   });
-  $(`#reply_to_comment_${comment["id"]}`).append('<hr>')
+  $(`#replies_to_comment_${comment["id"]}`).append(`</div>`)
+  $(`#replies_to_comment_${comment["id"]}`).append('<hr>')
 }
 
 function newReplyTemplate(newReply, comment) {
