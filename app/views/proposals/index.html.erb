@@ -164,6 +164,10 @@ function repliesTemplate(comment) {
   $("#recentComments").append(`<div>`);
 }
 
+function newReplyTemplate(newReply) {
+
+}
+
 function replyForm(comment) {
   $(`#reply_to_comment_${comment}`).append(`<%= j render partial: "/replies/form" %>`);
   setReplyFormIds(comment)
@@ -181,7 +185,7 @@ function postandInsertReply(comment) {
     var values = $(this).serialize();
     debugger
     let posting = await $.post('/replies', values);
-    let replies = await $.get(`/proposals/${navId}/comments/${comment}/replies.json`, function(data) {
+    let replies = await $.get(`/proposals/${navId}/comments/${comment}.json`, function(data) {
     });
     let newReply = replies[replies.length - 1];
     newReplyTemplate(newReply);
