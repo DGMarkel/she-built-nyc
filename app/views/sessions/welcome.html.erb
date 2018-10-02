@@ -28,10 +28,3 @@
 </div>
 <% end %>
 </p>
-
-<div id="mySidenav" class="sidenav">
-  <a href="#" class="close" onclick="closeNav()"></a>
-  <% @proposals.each do |proposal| %>
-      <h3><%= link_to proposal.name, proposal_path(proposal) %></h3>
-  <% end %>
-</div>
