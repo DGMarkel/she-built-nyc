@@ -4,10 +4,9 @@ issues with next function on proposal show:
   maybe get rid of view all comments link?
 
 tomorrow:
-  continue working on the way replies are viewed in /proposals
   add side navbar
   add next and previous buttons to a navbar
-  start working on filters for proposals index page 
+  start working on filters for proposals index page
 
 
 to do later:

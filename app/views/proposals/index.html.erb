@@ -38,14 +38,12 @@ $(function () {
 });
 
 function documentReadyCalls(navId) {
-  console.log(navId)
   // add next proposal details to DOM
   getProposal(navId);
+  // associate ranking and comment forms with the correct proposal
   ProposalFormIds(navId);
   // add proposal comments to the DOM for current proposal
   getRecentComments(navId);
-  // add current user's comments to the DOM for current proposal
-
   // allows current user to vote on proposal if they haven't already voted
   addRanking();
   // displays ranking and comments forms for current proposal UNLESS it is the current user's proposal
