@@ -171,9 +171,9 @@ function repliesTemplate(comment) {
 }
 
 function newReplyTemplate(newReply, comment) {
-  $(`#reply_to_comment_${comment}`).append('<hr>')
-  $(`#reply_to_comment_${comment}`).append(`<h4 style="position:relative;left:50px;"><a href="/users/${newReply['user']['id']}">${newReply["user"]["name"]}</a> - ${newReply["created_at"]} </h4>`);
-  $(`#reply_to_comment_${comment}`).append(`<h4 style="position:relative;left:50px;">${newReply["content"]}</h4>`);
+  $(`#replies_to_comment_${comment}`).append('<hr>')
+  $(`#replies_to_comment_${comment}`).append(`<h4 style="position:relative;left:50px;"><a href="/users/${newReply['user']['id']}">${newReply["user"]["name"]}</a> - ${newReply["created_at"]} </h4>`);
+  $(`#replies_to_comment_${comment}`).append(`<h4 style="position:relative;left:50px;">${newReply["content"]}</h4>`);
 }
 
 function replyForm(comment) {
