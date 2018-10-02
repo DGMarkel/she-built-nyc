@@ -160,11 +160,12 @@ function postandInsertComment() {
 }
 
 function commentTemplate(comment) {
+  let replyCount = comment["replies"].length
   $("#comments").prepend(`<div id="comment-${comment["id"]}">`)
   $(`#comment-${comment["id"]}`).append(`<h4><a href="/users/${comment['user']['id']}">${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`);
   $(`#comment-${comment["id"]}`).append(`<h4>${comment["content"]}</h4>`);
   $(`#comment-${comment["id"]}`).append(`<p id="reply_form_${comment['id']}"><a href="#" onclick="replyForm(${comment['id']});return false;"}/replies/new">Reply</a></p>`);
-  $(`#comment-${comment["id"]}`).append(`<p><a id="replies_viewer" href="#" onclick="showCommentReplies(${comment["id"]});return false;")>View Replies</a></p>`);
+  $(`#comment-${comment["id"]}`).append(`<p><a id="replies_viewer_${comment['id']}" href="#" onclick="showCommentReplies(${comment["id"]}, ${replyCount});return false;")>${replyCount} Replies</a></p>`);
   $(`#comment-${comment["id"]}`).append(`</div>`)
   $(`#comment-${comment["id"]}`).append(`<div id="replies_to_comment_${comment['id']}"></div>`)
   repliesTemplate(comment);
@@ -220,14 +221,14 @@ function setReplyFormIds(comment) {
   $("#reply_comment")[0]["value"] = `${comment}`;
 }
 
-function showCommentReplies(commentId) {
+function showCommentReplies(commentId, replyCount) {
   $(`#replies_to_comment_${commentId}`).show()
-  $("#replies_viewer").replaceWith(`<p><a id="replies_viewer" href="#" onclick="hideCommentReplies(${commentId});return false;")>Hide Replies</a></p>`);
+  $(`#replies_viewer_${commentId}`).replaceWith(`<p><a id="replies_viewer_${commentId}" href="#" onclick="hideCommentReplies(${commentId}, ${replyCount});return false;")>Hide Replies</a></p>`);
 }
 
-function hideCommentReplies(commentId) {
+function hideCommentReplies(commentId, replyCount) {
   $(`#replies_to_comment_${commentId}`).hide()
-  $("#replies_viewer").replaceWith(`<p><a id="replies_viewer" href="#" onclick="showCommentReplies(${commentId});return false;")>View Replies</a></p>`);
+  $(`#replies_viewer_${commentId}`).replaceWith(`<p><a id="replies_viewer_${commentId}" href="#" onclick="showCommentReplies(${commentId}, ${replyCount});return false;")>${replyCount} Replies</a></p>`);
 }
 
 //ranking functions
