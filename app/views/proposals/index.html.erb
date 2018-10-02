@@ -145,6 +145,7 @@ function commentTemplate(comment) {
   $(`#comment-${comment["id"]}`).append(`<h4>${comment["content"]}</h4>`);
   $(`#comment-${comment["id"]}`).append(`<p id="reply_to_comment_${comment['id']}"><a href="#" onclick="replyForm(${comment['id']});return false;"}/replies/new">Reply</a></p>`);
   $(`#comment-${comment["id"]}`).append(`</div>`)
+  $(`#comment-${comment["id"]}`).append(`<div id="replies_to_comment_${comment['id']}"></div>`)
   repliesTemplate(comment)
 }
 
@@ -160,15 +161,12 @@ function newCommentTemplate(newComment) {
 
 function repliesTemplate(comment) {
   $(`#reply_to_comment_${comment["id"]}`).append(`<a href="#" onclick="clearReplies()">Clear Replies`)
-
-  $(`#reply_to_comment_${comment["id"]}`).append(`<div id="replies_to_comment_${comment["id"]}"`)
   comment.replies.forEach(function(reply) {
     $(`#replies_to_comment_${comment["id"]}`).append('<hr>')
 
     $(`#replies_to_comment_${comment["id"]}`).append(`<h4 style="position:relative;left:50px;"><a href="/users/${reply['user']['id']}">${reply["user"]["name"]}</a> - ${reply["created_at"]} </h4>`);
     $(`#replies_to_comment_${comment["id"]}`).append(`<h4 style="position:relative;left:50px;">${reply["content"]}</h4>`);
   });
-  $(`#replies_to_comment_${comment["id"]}`).append(`</div>`)
   $(`#replies_to_comment_${comment["id"]}`).append('<hr>')
 }
 
