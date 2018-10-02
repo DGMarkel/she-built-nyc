@@ -3,8 +3,12 @@ issues with next function on proposal show:
   if user hits next button and there are no more proposals, add "no more proposals to view" to the DOM
   maybe get rid of view all comments link?
 
-questions:
-  why can I only hit the submit button once?
+tomorrow:
+  continue working on the way replies are viewed in /proposals
+  add side navbar
+  add next and previous buttons to a navbar
+  start working on filters for proposals index page 
+
 
 to do later:
   change routes so that I can browse proposals from /proposals instead of proposals/:id
