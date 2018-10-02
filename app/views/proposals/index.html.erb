@@ -43,7 +43,7 @@ function documentReadyCalls(navId) {
   getProposal(navId);
   ProposalFormIds(navId);
   // add proposal comments to the DOM for current proposal
-  getComments(navId);
+  getRecentComments(navId);
   // add current user's comments to the DOM for current proposal
 
   // allows current user to vote on proposal if they haven't already voted
@@ -81,7 +81,8 @@ function proposalTemplate(navId) {
   // add ranking and comment forms
   $(".main").append('<%= j render 'logged_in_show' %>');
   $(".main").append(`<h1>Recent Comments:</h1>`);
-  $(".main").append(`<div id="recentComments"></div>`);
+  $(".main").append(`<p><a id="comments_viewer" href="#" onclick="getAllComments(${navId}); return false;">View All Comments</a></p>`);
+  $(".main").append(`<div id="comments"></div>`);
 }
 
 function proposalNavigation(){
@@ -117,14 +118,35 @@ function showProposalForms(navId) {
 
 // comment functions
 
-function getComments(navId) {
+function getRecentComments(navId) {
+  $("#comments").empty()
   $.get(`/proposals/${navId}/comments.json`, function(data) {
-    $("#recentComments").empty()
+    if (data.length > 3) {
+      $("#comments_viewer").replaceWith(`<p><a id="comments_viewer" href="#" onclick="getAllComments(${navId}); return false;">View All Comments</a></p>`);
+      let comments = data.length;
+      let recentComments = (data.slice(data.length - 3, data.length));
+      recentComments.forEach(function(comment) {
+        commentTemplate(comment);
+      });
+    }else {
+      getAllComments(navId);
+    }
+  });
+}
+
+function getAllComments(navId) {
+  $.get(`/proposals/${navId}/comments.json`, function(data) {
+    $("#comments").empty()
     data.forEach(function(comment) {
       commentTemplate(comment)
     });
+    if (data.length > 3) {
+      $("#comments_viewer").replaceWith(`<p><a id="comments_viewer" href="#" onclick="getRecentComments(${navId}); return false;">View Most Recent Comments</a></p>`)
+    }
   });
 }
+
+
 
 function postandInsertComment() {
   $('#new_comment').on("submit", async function(e) {
@@ -140,7 +162,7 @@ function postandInsertComment() {
 }
 
 function commentTemplate(comment) {
-  $("#recentComments").append(`<div id="comment-${comment["id"]}">`)
+  $("#comments").append(`<div id="comment-${comment["id"]}">`)
   $(`#comment-${comment["id"]}`).append(`<h4><a href="/users/${comment['user']['id']}">${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`);
   $(`#comment-${comment["id"]}`).append(`<h4>${comment["content"]}</h4>`);
   $(`#comment-${comment["id"]}`).append(`<p id="reply_form_${comment['id']}"><a href="#" onclick="replyForm(${comment['id']});return false;"}/replies/new">Reply</a></p>`);
@@ -151,11 +173,11 @@ function commentTemplate(comment) {
 }
 
 function newCommentTemplate(newComment) {
-  $("#recentComments").prepend(`</div>`)
-  $("#recentComments").prepend(`<p><a href="/proposals/${navId}/comments/${newComment.id}/replies/new">Reply</a></p>`)
-  $("#recentComments").prepend(`<h4>${newComment.content}</h4>`)
-  $("#recentComments").prepend(`<h4><a href="/users/${newComment.user.id}">${newComment.user.name}</a> - ${newComment.created_at} </h4>`);
-  $("#recentComments").prepend(`<div id="comment-${newComment["id"]}">`)
+  $("#comments").prepend(`</div>`)
+  $("#comments").prepend(`<p><a href="/proposals/${navId}/comments/${newComment.id}/replies/new">Reply</a></p>`)
+  $("#comments").prepend(`<h4>${newComment.content}</h4>`)
+  $("#comments").prepend(`<h4><a href="/users/${newComment.user.id}">${newComment.user.name}</a> - ${newComment.created_at} </h4>`);
+  $("#comments").prepend(`<div id="comment-${newComment["id"]}">`)
 }
 
 //reply functions
