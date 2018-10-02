@@ -1,22 +1,8 @@
 class RepliesController < ApplicationController
   before_action :site_security
 
-  def new
-    @reply = Reply.new
-    @comment = Comment.find_by(id: params[:comment_id])
-    @proposal = Proposal.find_by(id: params[:proposal_id])
-  end
-
   def create
-    @reply = Reply.new(content: params[:reply][:content], user_id: current_user.id, comment_id: params[:reply][:comment])
-    @comment = Comment.find_by(id: @reply.comment_id)
-    @proposal = Proposal.find_by(id: params[:reply][:proposal])
-    if @reply.save
-      redirect_to proposal_path(params[:reply][:proposal])
-    else
-      flash[:reply_warning] = "Reply must have content."
-      redirect_to new_proposal_comment_reply_path(@proposal, @comment)
-    end
+    Reply.create(content: params[:reply][:content], user_id: current_user.id, comment_id: params[:reply][:comment])
   end
 
   def edit

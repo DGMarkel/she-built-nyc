@@ -167,10 +167,10 @@ function repliesTemplate(comment) {
   $(`#reply_to_comment_${comment["id"]}`).append('<hr>')
 }
 
-function newReplyTemplate(newReply) {
-  $("#recentComments").append('<hr>')
-  $("#recentComments").append(`<h4 style="position:relative;left:50px;"><a href="/users/${newReply['user']['id']}">${newReply["user"]["name"]}</a> - ${newReply["created_at"]} </h4>`);
-  $("#recentComments").append(`<h4 style="position:relative;left:50px;">${newReply["content"]}</h4>`);
+function newReplyTemplate(newReply, comment) {
+  $(`#reply_to_comment_${comment}`).append('<hr>')
+  $(`#reply_to_comment_${comment}`).append(`<h4 style="position:relative;left:50px;"><a href="/users/${newReply['user']['id']}">${newReply["user"]["name"]}</a> - ${newReply["created_at"]} </h4>`);
+  $(`#reply_to_comment_${comment}`).append(`<h4 style="position:relative;left:50px;">${newReply["content"]}</h4>`);
 }
 
 function replyForm(comment) {
@@ -187,12 +187,11 @@ function setReplyFormIds(comment) {
 function postandInsertReply(comment) {
   $('#new_reply').on("submit", async function(e) {
     e.preventDefault();
-    var values = $(this).serialize();
-    let posting = await $.post('/replies', values);
-    let replies = await $.get(`/proposals/${navId}/comments/${comment}.json`)
-    let newReply = replies["replies"].pop();
-    debugger
-    newReplyTemplate(newReply);
+  var values = $(this).serialize();
+  let posting = await $.post('/replies', values);
+  let replies = await $.get(`/proposals/${navId}/comments/${comment}.json`)
+  let newReply = replies["replies"].pop();
+  newReplyTemplate(newReply, comment);
   });
 }
 
