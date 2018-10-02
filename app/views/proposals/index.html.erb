@@ -150,17 +150,6 @@ function commentTemplate(comment) {
   repliesTemplate(comment);
 }
 
-function showCommentReplies(commentId) {
-  $(`#replies_to_comment_${commentId}`).show()
-  $("#replies_viewer").replaceWith(`<p><a id="replies_viewer" href="#" onclick="hideCommentReplies(${commentId});return false;")>Hide Replies</a></p>`);
-}
-
-function hideCommentReplies(commentId) {
-  $(`#replies_to_comment_${commentId}`).hide()
-  $("#replies_viewer").replaceWith(`<p><a id="replies_viewer" href="#" onclick="showCommentReplies(${commentId});return false;")>View Replies</a></p>`);
-}
-
-
 function newCommentTemplate(newComment) {
   $("#recentComments").prepend(`</div>`)
   $("#recentComments").prepend(`<p><a href="/proposals/${navId}/comments/${newComment.id}/replies/new">Reply</a></p>`)
@@ -182,6 +171,18 @@ function repliesTemplate(comment) {
   $('[id*="replies_to_comment"]').hide()
 }
 
+function postandInsertReply(comment) {
+  $('#new_reply').on("submit", async function(e) {
+    e.preventDefault();
+  var values = $(this).serialize();
+  let posting = await $.post('/replies', values);
+  let replies = await $.get(`/proposals/${navId}/comments/${comment}.json`)
+  let newReply = replies["replies"].pop();
+  $('#new_reply').remove();
+  newReplyTemplate(newReply, comment);
+  });
+}
+
 function newReplyTemplate(newReply, comment) {
   $(`#replies_to_comment_${comment}`).append('<hr>')
   $(`#replies_to_comment_${comment}`).append(`<h4 style="position:relative;left:50px;"><a href="/users/${newReply['user']['id']}">${newReply["user"]["name"]}</a> - ${newReply["created_at"]} </h4>`);
@@ -199,16 +200,14 @@ function setReplyFormIds(comment) {
   $("#reply_comment")[0]["value"] = `${comment}`;
 }
 
-function postandInsertReply(comment) {
-  $('#new_reply').on("submit", async function(e) {
-    e.preventDefault();
-  var values = $(this).serialize();
-  let posting = await $.post('/replies', values);
-  let replies = await $.get(`/proposals/${navId}/comments/${comment}.json`)
-  let newReply = replies["replies"].pop();
-  $('#new_reply').remove();
-  newReplyTemplate(newReply, comment);
-  });
+function showCommentReplies(commentId) {
+  $(`#replies_to_comment_${commentId}`).show()
+  $("#replies_viewer").replaceWith(`<p><a id="replies_viewer" href="#" onclick="hideCommentReplies(${commentId});return false;")>Hide Replies</a></p>`);
+}
+
+function hideCommentReplies(commentId) {
+  $(`#replies_to_comment_${commentId}`).hide()
+  $("#replies_viewer").replaceWith(`<p><a id="replies_viewer" href="#" onclick="showCommentReplies(${commentId});return false;")>View Replies</a></p>`);
 }
 
 //ranking functions
