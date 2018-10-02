@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   before_action :site_security, only: [:destroy]
 
   def welcome
+    @proposals = Proposal.all
   end
 
   def new

@@ -68,8 +68,60 @@
       }
 
       .main {
-        margin-top:60px;"
+        margin-top:60px;
       }
+
+      .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .close {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+.sidenav .close:hover {
+  opacity: 1;
+}
+.sidenav .close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+.sidenav .close:before {
+  transform: rotate(45deg);
+}
+.sidenav .close:after {
+  transform: rotate(-45deg);
+}
 
     </style>
   </head>
@@ -78,7 +130,7 @@
     <navbar class="sticky">
       <ul style="list-style-type:none;margin:0;padding:0;">
         <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "View Nominees", proposals_path %></li>
+        <li><a style="cursor:pointer" onclick="openNav()">View Nominees</span></li>
         <% if logged_in? %>
           <div style="float:right;">
             <% if !current_user.name %>
@@ -104,5 +156,18 @@
       <% end %>
       <%= yield %>
     </div>
+
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "25%";
+      document.getElementById("main").style.width = "auto";
+
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>
+
   </body>
 </html>
