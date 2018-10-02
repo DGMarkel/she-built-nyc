@@ -144,10 +144,22 @@ function commentTemplate(comment) {
   $(`#comment-${comment["id"]}`).append(`<h4><a href="/users/${comment['user']['id']}">${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`);
   $(`#comment-${comment["id"]}`).append(`<h4>${comment["content"]}</h4>`);
   $(`#comment-${comment["id"]}`).append(`<p id="reply_form_${comment['id']}"><a href="#" onclick="replyForm(${comment['id']});return false;"}/replies/new">Reply</a></p>`);
+  $(`#comment-${comment["id"]}`).append(`<p><a id="replies_viewer" href="#" onclick="showCommentReplies(${comment["id"]});return false;")>View Replies</a></p>`);
   $(`#comment-${comment["id"]}`).append(`</div>`)
   $(`#comment-${comment["id"]}`).append(`<div id="replies_to_comment_${comment['id']}"></div>`)
-  repliesTemplate(comment)
+  repliesTemplate(comment);
 }
+
+function showCommentReplies(commentId) {
+  $(`#replies_to_comment_${commentId}`).show()
+  $("#replies_viewer").replaceWith(`<p><a id="replies_viewer" href="#" onclick="hideCommentReplies(${commentId});return false;")>Hide Replies</a></p>`);
+}
+
+function hideCommentReplies(commentId) {
+  $(`#replies_to_comment_${commentId}`).hide()
+  $("#replies_viewer").replaceWith(`<p><a id="replies_viewer" href="#" onclick="showCommentReplies(${commentId});return false;")>View Replies</a></p>`);
+}
+
 
 function newCommentTemplate(newComment) {
   $("#recentComments").prepend(`</div>`)
@@ -160,7 +172,6 @@ function newCommentTemplate(newComment) {
 //reply functions
 
 function repliesTemplate(comment) {
-  $(`#reply_form_${comment["id"]}`).append(`<a href="#" onclick="clearReplies()">Clear Replies`)
   comment.replies.forEach(function(reply) {
     $(`#replies_to_comment_${comment["id"]}`).append('<hr>')
 
@@ -168,6 +179,7 @@ function repliesTemplate(comment) {
     $(`#replies_to_comment_${comment["id"]}`).append(`<h4 style="position:relative;left:50px;">${reply["content"]}</h4>`);
   });
   $(`#replies_to_comment_${comment["id"]}`).append('<hr>')
+  $('[id*="replies_to_comment"]').hide()
 }
 
 function newReplyTemplate(newReply, comment) {
