@@ -1,12 +1,10 @@
 issues with next function on proposal show:
   link to user page isn't hidden when viewers aren't logged in
   if user hits next button and there are no more proposals, add "no more proposals to view" to the DOM
-  work on repliesTemplate()
   maybe get rid of view all comments link?
 
 questions:
   why can I only hit the submit button once?
-  why don't comments update correctly?
 
 to do later:
   change routes so that I can browse proposals from /proposals instead of proposals/:id

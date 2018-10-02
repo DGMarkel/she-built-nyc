@@ -33,7 +33,7 @@ $(function () {
     proposalTemplate(navId);
     documentReadyCalls(navId);
     proposalNavigation();
-    postComment();
+    postandInsertComment();
   })
 });
 
@@ -83,9 +83,8 @@ function proposalTemplate(navId) {
 }
 
 // I can't get this to work properly
-function postComment() {
+function postandInsertComment() {
   $('#new_comment').on("submit", async function(e) {
-    debugger
     e.preventDefault();
     var values = $(this).serialize();
     let posting = await $.post('/comments', values);
@@ -94,8 +93,10 @@ function postComment() {
     let newComment = comments[comments.length - 1];
       $("#recentComments").prepend(`<p><a href="/proposals/${navId}/comments/${newComment.id}/replies/new">Reply</a></p>`)
       $("#recentComments").prepend(`<h4>${newComment.content}</h4>`)
-      $("#recentComments").prepend(`<h4><a href="/users/${newComment.user.id}">${newComment.user.name}</a> - ${newComment.created_at} </h4>`)
+      $("#recentComments").prepend(`<h4><a href="/users/${newComment.user.id}">${newComment.user.name}</a> - ${newComment.created_at} </h4>`);
+      $("input[type='submit']").removeAttr('disabled');
     });
+
 }
 
 async function checkForUserRanking() {

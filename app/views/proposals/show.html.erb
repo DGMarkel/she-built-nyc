@@ -100,9 +100,9 @@ function documentReadyCalls(navId) {
 
 function addComment(navId) {
   $('#new_comment').on("submit", function(e) {
+    e.preventDefault();
     var values = $(this).serialize();
     var posting = $.post('/comments', values);
-    e.preventDefault();
     $.get(`/proposals/${navId}/comments.json`, function(data) {
       newComment = data[data.length-1]
       $("#recentComments").prepend(`<p><a href="/proposals/${navId}/comments/${newComment.id}/replies/new">Reply</a></p>`)
