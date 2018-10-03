@@ -124,7 +124,7 @@
         right: 0;
         border-left: 1px solid lightgray;
         background-color: white;
-        overflow-x: hidden;
+        overflow: overlay;
         transition: 0.5s;
         padding-top: 20px;
       }
@@ -143,9 +143,7 @@
       }
 
       .sidenav .close {
-        position: absolute;
-        left: 0;
-        top: 0;
+        display: inline;
         width: 32px;
         height: 32px;
         opacity: 0.3;
@@ -154,10 +152,14 @@
         opacity: 1;
       }
       .open {
-       position: absolute;
-       top: 40;
-       right: 0;
-       border-left: 1px solid lightgray;
+        margin-left: 20%;
+     }
+     .myClose {
+       display: inline;
+       float: right;
+       margin: 20px 0px;
+       padding: 50px 0px 50px 50px;
+       border: 1px solid black;
      }
       .sidenav .close:before, .close:after {
         position: absolute;
@@ -180,7 +182,7 @@
 
 
     <div id="mySidenav" class="sidenav">
-      <h1 style="font-size:40px;color:rgb(175,200,229);margin-left:30px;">Nominees</h1>
+      <h3 style="font-size:40px;color:rgb(175,200,229);display:inline;margin-left:26px; auto;">Nominees</h1>
       <a href="#" class="close" onclick="hideNav(); return false"></a>
       <% if @proposals %>
         <% @proposals.each do |proposal| %>
@@ -189,7 +191,6 @@
         <% end %>
       <% end %>
     </div>
-    <span class="open" style="font-size:30px;cursor:pointer;visibility:hidden;" onclick="showNav()">&#9776; open</span>
 
 
     <navbar class="sticky">
