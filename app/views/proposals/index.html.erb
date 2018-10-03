@@ -264,7 +264,10 @@ function addRanking() {
 
 function showNav() {
   $("#mySidenav").css("width", "25%");
-  $(".main").css("width", "70%")
+  $(".main").css({
+    width: "70%",
+    transition: "0.5s"
+  })
   $(".open").css("visibility", "hidden");
 }
 function hideNav() {
