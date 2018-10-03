@@ -29,6 +29,7 @@ var navId = null
 $(function () {
   $(".proposalLink").on("click", function(e) {
     e.preventDefault();
+    debugger
     navId = this.id
     proposalTemplate(navId);
     documentReadyCalls(navId);
@@ -82,6 +83,7 @@ function proposalTemplate(navId) {
   $(".main").append(`<h1>Recent Comments:</h1>`);
   $(".main").append(`<p><a id="comments_viewer" href="#" onclick="getAllComments(${navId}); return false;">View All Comments</a></p>`);
   $(".main").append(`<div id="comments"></div>`);
+  $(".main").append(`.mySidenav`)
 }
 
 function proposalNavigation(){
@@ -264,13 +266,12 @@ function addRanking() {
 
 function showNav() {
   $("#mySidenav").css("width", "25%");
-  $(".main").css("width", "70%")
-  $(".open").css("visibility", "hidden");
+  $(".main").css("width", "75%")
 }
 
 function hideNav() {
   $("#mySidenav").css("width", "0");
-  $(".main").css("width", "90%");
-  $(".open").css("visibility", "visible");
+  $(".main").css("width", "100%")
+
 }
 </script>

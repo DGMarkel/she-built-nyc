@@ -1,0 +1,12 @@
+<% if flash[:reply_warning] %>
+  <div style="color:red;">
+    <%= flash[:reply_warning] %>
+  <% end %>
+</div>
+
+<%= form_for(:reply, :url=>proposal_comment_replies_path(:comment_id,:proposal_id), :html => {id: "new_reply"}) do |f| %>
+  <%= f.text_field :content %>
+  <%= f.hidden_field :proposal, :value => "" %>
+  <%= f.hidden_field :comment, :value => "" %>
+  <%= f.submit %>
+<% end %>
