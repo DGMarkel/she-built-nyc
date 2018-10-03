@@ -170,13 +170,17 @@ function getAllComments(navId) {
 function postandInsertComment() {
   $('#new_comment').on("submit", async function(e) {
     e.preventDefault();
-    var values = $(this).serialize();
-    let posting = await $.post('/comments', values);
-    let comments = await $.get(`/proposals/${navId}/comments.json`, function(data) {
-    });
-    let newComment = comments.pop();
-    newCommentTemplate(newComment);
-    $("input[type='submit']").removeAttr('disabled');
+    if (this[2]["value"] != "") {
+      var values = $(this).serialize();
+      let posting = await $.post('/comments', values);
+      let comments = await $.get(`/proposals/${navId}/comments.json`, function(data) {
+      });
+      let newComment = comments.pop();
+      newCommentTemplate(newComment);
+      $("input[type='submit']").removeAttr('disabled');
+    } else {
+      alert("Comments need content")
+    }
   });
 }
 
@@ -185,9 +189,12 @@ function commentTemplate(comment) {
   $("#comments").prepend(`<div id="comment-${comment["id"]}">`)
   $(`#comment-${comment["id"]}`).append(`<h4><a href="/users/${comment['user']['id']}">${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`);
   $(`#comment-${comment["id"]}`).append(`<h4>${comment["content"]}</h4>`);
+
+  // viewable to registered users only
   if (currentUser != null) {
   $(`#comment-${comment["id"]}`).append(`<p id="reply_form_${comment['id']}"><a href="#" onclick="replyForm(${comment['id']});return false;"}/replies/new">Reply</a></p>`);
   }
+
   $(`#comment-${comment["id"]}`).append(`<p><a id="replies_viewer_${comment['id']}" href="#" onclick="showCommentReplies(${comment["id"]}, ${replyCount});return false;")>${replyCount} Replies</a></p>`);
   $(`#comment-${comment["id"]}`).append(`</div>`)
   $(`#comment-${comment["id"]}`).append(`<div id="replies_to_comment_${comment['id']}"></div>`)

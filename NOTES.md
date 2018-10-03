@@ -1,6 +1,3 @@
-issues with next function on proposal show:
-  link to user page isn't hidden when viewers aren't logged in
-
 tomorrow:
   start working on filters for proposals index page
 
