@@ -68,15 +68,22 @@ function getProposal(navId) {
 
 function proposalTemplate(navId) {
   $(".main").empty();
-  $(".main").append(`<div class="proposalImage"></div>`);
-  $(".main").append(`<h1 class="proposalName"></h1>`);
-  $(".main").append(`<h3 class="proposalDescription"></h3>`);
-  $(".main").append(`<hr>`);
-  $(".main").append(`<p>Submitted by: <span class="proposalUser"></span></p>`);
-  $(".main").append(`<h1>Why This Proposal Should Be Accepted</h1>`)
-  $(".main").append(`<p class="proposalPitch"></p>`);
+
+  $(".main").append(`<div id="proposalDetails">`)
+  $("#proposalDetails").append(`<span class="proposalImage"></span>`);
+  $("#proposalDetails").append(`<h1 class="proposalName"></h1>`);
+  $("#proposalDetails").append(`<h3 class="proposalDescription"></h3>`);
+  $("#proposalDetails").append(`<hr>`);
+  $("#proposalDetails").append(`<p>Submitted by: <span class="proposalUser"></span></p>`);
+  $("#proposalDetails").append(`<h1>Why This Proposal Should Be Accepted</h1>`)
+  $("#proposalDetails").append(`<p class="proposalPitch"></p>`);
+  $(".main").append(`</div>`)
+
+  $(".main").append(`<div id="proposalNavigation">`)
   $(".main").append(`<button class="js-next" data-id="${navId}">Next Proposal</button>`);
   $(".main").append(`<button class="js-previous" data-id="${navId}">Previous Proposal</button>`);
+  $(".main").append(`</div>`)
+  $(".main").append(`<hr>`)
   // add ranking and comment forms
   $(".main").append('<%= j render 'logged_in_show' %>');
   $(".main").append(`<h1>Recent Comments:</h1>`);
