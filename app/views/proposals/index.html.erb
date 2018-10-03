@@ -35,8 +35,9 @@ $(function () {
     documentReadyCalls(navId);
     proposalNavigation();
     postandInsertComment();
-    showNav()
-  })
+    showNav();
+    $("#nomineeLink").hide();
+  });
 });
 
 function documentReadyCalls(navId) {
@@ -60,7 +61,7 @@ function getProposal(navId) {
       alert("You're at the end of the line, buddy")
     }else {
       $(".proposalName").text(data["name"]);
-      $(".proposalImage").html(`<img src="${data["image_url"]}" style="width:35%;height:auto;float:left;margin: 20px 20px 20px 0;">`)
+      $(".proposalImage").html(`<img src="${data["image_url"]}" style="width:35%;height:auto;float:left;margin-right:40px;">`)
       $(".proposalDescription").text(data["description"]);
       let user = data["user"]["id"]
       $(".proposalUser").html(`<a href="/users/${data['user']['id']}">${data["user"]["name"]}</a>`);
@@ -301,7 +302,6 @@ function showNav() {
     transition: "0.5s"
   })
   $(".open").replaceWith(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="hideNav()">X</span>`);
-
 }
 function hideNav() {
   $("#mySidenav").css("width", "0");
