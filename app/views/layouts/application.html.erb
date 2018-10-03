@@ -133,9 +133,11 @@
     <div id="mySidenav" class="sidenav">
       <h1 style="font-size:40px;color:rgb(175,200,229);margin-left:30px;">Nominees</h1>
       <a href="#" class="close" onclick="hideNav(); return false"></a>
-      <% @proposals.each do |proposal| %>
-      <h3 class="proposalLink" id="<%= proposal.id %>"><%= link_to proposal.name, proposal_path(proposal) %></h3>
-      <hr>
+      <% if @proposals %>
+        <% @proposals.each do |proposal| %>
+        <h3 class="proposalLink" id="<%= proposal.id %>"><%= link_to proposal.name, proposal_path(proposal) %></h3>
+        <hr>
+        <% end %>
       <% end %>
     </div>
 
