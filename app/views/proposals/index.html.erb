@@ -78,7 +78,7 @@ function proposalTemplate(navId) {
   $(".main").append(`<div id="proposalDetails">`)
   $("#proposalDetails").append(`<span class="proposalImage"></span>`);
   $("#proposalDetails").append(`<h1 class="proposalName" style="display:inline;"></h1>`);
-  $("#proposalDetails").append(`<span class="open" style="font-size:30px;cursor:pointer;visibility:hidden;" onclick="showNav()">&#9776; Browse Nominees</span>`);
+  $("#proposalDetails").append(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="hideNav()">&#9776; X</span>`);
   $("#proposalDetails").append(`<h3 class="proposalDescription"></h3>`);
   $("#proposalDetails").append(`<hr>`);
   $("#proposalDetails").append(`<p>Submitted by: <span class="proposalUser"></span></p>`);
@@ -300,11 +300,16 @@ function showNav() {
     width: "70%",
     transition: "0.5s"
   })
-  $(".open").css("visibility", "hidden")
+  $(".open").replaceWith(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="hideNav()">X</span>`);
+
 }
 function hideNav() {
   $("#mySidenav").css("width", "0");
   $(".main").css("width", "90%");
-  $(".open").css("visibility", "visible")
+  $(".open").replaceWith(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="showNav()">Browse Nominees</span>`);
+  $(".open").css({
+    "position":"fixed",
+    "right":"7%"
+  })
 }
 </script>

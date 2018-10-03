@@ -142,35 +142,15 @@
         color: #f1f1f1;
       }
 
-      .sidenav .close {
-        display: inline;
-        width: 32px;
-        height: 32px;
-        opacity: 0.3;
-      }
-      .sidenav .close:hover {
+      .close:hover {
         opacity: 1;
       }
       .open {
-        margin-left: 21.5%;
         background-color:rgb(175,200,229);
         padding: 5px;
+        position: fixed;
+        right: 25%;
      }
-      .sidenav .close:before, .close:after {
-        position: absolute;
-        left: 15px;
-        content: ' ';
-        height: 33px;
-        width: 2px;
-        background-color: #333;
-      }
-      .sidenav .close:before {
-        transform: rotate(45deg);
-      }
-      .sidenav .close:after {
-        transform: rotate(-45deg);
-      }
-
     </style>
   </head>
   <body>
