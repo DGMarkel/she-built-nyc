@@ -55,14 +55,18 @@ function documentReadyCalls(navId) {
 
 function getProposal(navId) {
   $.get("/proposals/" + navId + ".json", function(data) {
-    $(".proposalName").text(data["name"]);
-    $(".proposalImage").html(`<img src="${data["image_url"]}" style="width:35%;height:auto;float:left;margin: 20px 20px 20px 0;">`)
-    $(".proposalDescription").text(data["description"]);
-    let user = data["user"]["id"]
-    $(".proposalUser").html(`<a href="/users/${data['user']['id']}">${data["user"]["name"]}</a>`);
-    $(".proposalPitch").text(data["pitch"])
-    // re-set the id to current on the link
-    $(".js-next").attr("data-id", data["id"]);
+    if (data === null) {
+      alert("You're at the end of the line, buddy")
+    }else {
+      $(".proposalName").text(data["name"]);
+      $(".proposalImage").html(`<img src="${data["image_url"]}" style="width:35%;height:auto;float:left;margin: 20px 20px 20px 0;">`)
+      $(".proposalDescription").text(data["description"]);
+      let user = data["user"]["id"]
+      $(".proposalUser").html(`<a href="/users/${data['user']['id']}">${data["user"]["name"]}</a>`);
+      $(".proposalPitch").text(data["pitch"])
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", data["id"]);
+    }
   });
 }
 
@@ -77,18 +81,25 @@ function proposalTemplate(navId) {
   $("#proposalDetails").append(`<p>Submitted by: <span class="proposalUser"></span></p>`);
   $("#proposalDetails").append(`<h1>Why This Proposal Should Be Accepted</h1>`)
   $("#proposalDetails").append(`<p class="proposalPitch"></p>`);
-  $(".main").append(`</div>`)
+  $(".proposalDetails").append(`</div>`)
 
   $(".main").append(`<div id="proposalNavigation">`)
-  $(".main").append(`<button class="js-next" data-id="${navId}">Next Proposal</button>`);
-  $(".main").append(`<button class="js-previous" data-id="${navId}">Previous Proposal</button>`);
-  $(".main").append(`</div>`)
-  $(".main").append(`<hr>`)
+  $("#proposalNavigation").append(`<button class="js-next" data-id="${navId}">Next Proposal</button>`);
+  $("#proposalNavigation").append(`<button class="js-previous" data-id="${navId}">Previous Proposal</button>`);
+  $(".proposalNavigation").append(`</div>`);
+  $(".main").append(`<hr>`);
   // add ranking and comment forms
-  $(".main").append('<%= j render 'logged_in_show' %>');
-  $(".main").append(`<h1>Recent Comments:</h1>`);
-  $(".main").append(`<p><a id="comments_viewer" href="#" onclick="getAllComments(${navId}); return false;">View All Comments</a></p>`);
-  $(".main").append(`<div id="comments"></div>`);
+
+  $(".main").append(`<div id="proposalForms">`)
+  $("#proposalForms").append('<%= j render 'logged_in_show' %>');
+  $("#proposalForms").append(`</div>`)
+
+  $(".main").append(`<div id="proposalComments">`);
+  $(".proposalComments").append(`<hr>`);
+  $("#proposalComments").append(`<h1>Recent Comments:</h1>`);
+  $("#proposalComments").append(`<p><a id="comments_viewer" href="#" onclick="getAllComments(${navId}); return false;">View All Comments</a></p>`);
+  $("#proposalComments").append(`<div id="comments"></div>`);
+  $(".main").append(`</div>`);
 }
 
 function proposalNavigation(){
@@ -100,6 +111,9 @@ function proposalNavigation(){
   $(".js-previous").on("click", function() {
     // set id for previous proposal
     navId = (parseInt($(".js-next").attr("data-id")) - 1).toString();
+    if (navId === "0") {
+      alert("Try clicking on 'next proposal' instead.")
+    }
     documentReadyCalls(navId);
   });
 }
@@ -116,8 +130,11 @@ function showProposalForms(navId) {
       let currentUser = $("#badIdea")[0]["value"]
       if (data["user"]["id"].toString() != currentUser) {
         $("#proposalForms").show();
+        $("proposalNavigation").next().show()
       } else {
         $("#proposalForms").hide();
+
+
       }
   });
 }
