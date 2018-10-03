@@ -110,6 +110,12 @@
       .sidenav .close:hover {
         opacity: 1;
       }
+      .open {
+        position: absolute;
+        top: 40;
+        right: 0;
+        border-left: 1px solid lightgray;
+      }
       .sidenav .close:before, .close:after {
         position: absolute;
         left: 15px;
@@ -140,6 +146,7 @@
         <% end %>
       <% end %>
     </div>
+    <span class="open" style="font-size:30px;cursor:pointer;visibility:hidden;" onclick="showNav()">&#9776; open</span>
 
 
     <navbar class="sticky">
