@@ -24,7 +24,8 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-var navId = null
+let navId = null
+let currentUser = null
 
 $(function () {
   $(".proposalLink").on("click", function(e) {
@@ -73,6 +74,7 @@ function getProposal(navId) {
 function proposalTemplate(navId) {
   $(".main").empty();
 
+  //div contains all proposal details
   $(".main").append(`<div id="proposalDetails">`)
   $("#proposalDetails").append(`<span class="proposalImage"></span>`);
   $("#proposalDetails").append(`<h1 class="proposalName"></h1>`);
@@ -83,12 +85,16 @@ function proposalTemplate(navId) {
   $("#proposalDetails").append(`<p class="proposalPitch"></p>`);
   $(".proposalDetails").append(`</div>`)
 
+  // div contans site navigation buttons
   $(".main").append(`<div id="proposalNavigation">`)
   $("#proposalNavigation").append(`<button class="js-next" data-id="${navId}">Next Proposal</button>`);
   $("#proposalNavigation").append(`<button class="js-previous" data-id="${navId}">Previous Proposal</button>`);
   $(".proposalNavigation").append(`</div>`);
-  // add ranking and comment forms
+
+  // div adds ranking and comment forms
   $(".main").append('<%= j render 'logged_in_show' if current_user %>');
+
+  // div for comments
   $(".main").append(`<div id="proposalComments">`);
   $("#proposalComments").append(`<h1>Recent Comments:</h1>`);
   $("#proposalComments").append(`<p><a id="comments_viewer" href="#" onclick="getAllComments(${navId}); return false;">View All Comments</a></p>`);
@@ -121,14 +127,12 @@ function ProposalFormIds(navId) {
 
 function showProposalForms(navId) {
   $.get("/proposals/" + navId + ".json", function(data) {
-      let currentUser = $("#badIdea")[0]["value"]
+      currentUser = $("#badIdea")[0]["value"]
       if (data["user"]["id"].toString() != currentUser) {
         $("#proposalForms").show();
         $("proposalNavigation").next().show()
       } else {
         $("#proposalForms").hide();
-
-
       }
   });
 }
@@ -181,7 +185,9 @@ function commentTemplate(comment) {
   $("#comments").prepend(`<div id="comment-${comment["id"]}">`)
   $(`#comment-${comment["id"]}`).append(`<h4><a href="/users/${comment['user']['id']}">${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`);
   $(`#comment-${comment["id"]}`).append(`<h4>${comment["content"]}</h4>`);
+  if (currentUser != null) {
   $(`#comment-${comment["id"]}`).append(`<p id="reply_form_${comment['id']}"><a href="#" onclick="replyForm(${comment['id']});return false;"}/replies/new">Reply</a></p>`);
+  }
   $(`#comment-${comment["id"]}`).append(`<p><a id="replies_viewer_${comment['id']}" href="#" onclick="showCommentReplies(${comment["id"]}, ${replyCount});return false;")>${replyCount} Replies</a></p>`);
   $(`#comment-${comment["id"]}`).append(`</div>`)
   $(`#comment-${comment["id"]}`).append(`<div id="replies_to_comment_${comment['id']}"></div>`)
