@@ -87,15 +87,9 @@ function proposalTemplate(navId) {
   $("#proposalNavigation").append(`<button class="js-next" data-id="${navId}">Next Proposal</button>`);
   $("#proposalNavigation").append(`<button class="js-previous" data-id="${navId}">Previous Proposal</button>`);
   $(".proposalNavigation").append(`</div>`);
-  $(".main").append(`<hr>`);
   // add ranking and comment forms
-
-  $(".main").append(`<div id="proposalForms">`)
-  $("#proposalForms").append('<%= j render 'logged_in_show' %>');
-  $("#proposalForms").append(`</div>`)
-
+  $(".main").append('<%= j render 'logged_in_show' if current_user %>');
   $(".main").append(`<div id="proposalComments">`);
-  $(".proposalComments").append(`<hr>`);
   $("#proposalComments").append(`<h1>Recent Comments:</h1>`);
   $("#proposalComments").append(`<p><a id="comments_viewer" href="#" onclick="getAllComments(${navId}); return false;">View All Comments</a></p>`);
   $("#proposalComments").append(`<div id="comments"></div>`);
