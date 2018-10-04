@@ -52,6 +52,28 @@ function documentReadyCalls(navId) {
   showProposalForms(navId);
 }
 
+// index functions
+
+function getProposalsForIndex() {
+  $.get("/proposals.json", function (data) {
+    data.forEach(function(proposal) {
+      indexProposalTemplate(proposal)
+    });
+  });
+}
+
+function indexProposalTemplate(proposal) {
+  $("#proposalIndex").append('<hr>')
+  $("#proposalIndex").append(`<div style="height:250px;margin-top:20px">`)
+  $("#proposalIndex").append('<hr>')
+}
+
+function indexTemplate () {
+  $(".main").empty();
+  $(".main").append(`<div id="proposalIndex"></div>`);
+  getProposalsForIndex();
+}
+
 // proposal functions
 
 function getProposal(navId) {
