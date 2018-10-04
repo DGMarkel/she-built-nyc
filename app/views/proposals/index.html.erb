@@ -49,6 +49,24 @@ function documentReadyCalls(proposalId) {
   showNav();
 }
 
+// welcome page functions
+
+function showHome() {
+  $(".main").empty();
+  $(".main").append(`<div id="welcome" style="position:fixed;top:150px;left:30%;width:40%;text-align:justify;">`)
+  $("#welcome").append(`
+    <h3><span style="font-size:75px;margin-right:-2px;color:rgb(175,200,229);">sheBuiltNYC</span>
+    invites New Yorkers to join us in our effort to build new public monuments that honor women’s history
+    in New York City.
+    </h3><h3>
+    This is an open call for nominations. We invite you to submit one nominee, and vote on all of our nominees,
+    from the vast array of inspiring women who have contributed to our city.
+    </h3><h3>
+    Our advisory panel will announce the subject and site of the monument for the winning nominee in January 2019.</h3>
+  `)
+  $("#welcome").append(`</div>`)
+}
+
 // index functions
 
 function getProposalsForIndex() {

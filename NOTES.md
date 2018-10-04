@@ -1,9 +1,7 @@
 tomorrow:
   start working on filters for proposals index page
+  move welcome to index
 
-
-to do later:
-  change routes so that I can browse proposals from /proposals instead of proposals/:id
   add filters to proposals index:
     alphabetical
     most popular
