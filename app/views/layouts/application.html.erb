@@ -192,9 +192,9 @@
     <div class="topNav">
       <ul style="list-style-type:none">
         <li id="logInInfo">
-          <% if logged_in? %>
+          <% if current_user %>
             <%= link_to "My Profile", user_path(current_user), { :style=> 'float:left' } %>
-            <a href = "/logout" style="float:right">Log Out</a>
+            <%= link_to "Log Out", logout_path, { :method => "delete", :style=> 'float:right'  } %>
           <% else %>
             <%= link_to "Log In", new_session_path, { :style=> 'float:left' }  %>
             <%= link_to "Sign Up", new_user_path, { :style=> 'float:right' } %>
@@ -205,9 +205,11 @@
         <hr>
         <li><%= link_to "Submit a Proposal", new_proposal_path %></li>
         <hr>
-        <li><%= link_to "Edit Your Proposal", edit_proposal_path(current_user.proposal) %></li>
-        <hr>
-        <li><%= link_to "Edit Your Profile", edit_user_path(current_user) %></li>
+        <% if current_user %>
+          <li><%= link_to "Edit Your Proposal", edit_proposal_path(current_user.proposal) %></li>
+          <hr>
+          <li><%= link_to "Edit Your Profile", edit_user_path(current_user) %></li>
+        <% end %>
       </ul>
     </div>
 
