@@ -170,6 +170,11 @@
        display: block;
        transition: 0.3s;
      }
+
+     .topNav li[id="logInInfo"] a {
+       font-size: 18px;
+     }
+
     </style>
   </head>
   <body>
@@ -186,13 +191,23 @@
 
     <div class="topNav">
       <ul style="list-style-type:none">
-        <% if logged_in? %>
-          <li><%= link_to "My Profile", user_path(current_user) %></li>
-          <li><%= link_to "Log Out", logout_path, method: "delete" %></li>
-        <% else %>
-          <li><%= link_to "Log In", new_session_path %></li>
-          <li><%= link_to "Sign Up", new_user_path %></li>
-        <% end %>
+        <li id="logInInfo">
+          <% if logged_in? %>
+            <%= link_to "My Profile", user_path(current_user), { :style=> 'float:left' } %>
+            <a href = "/logout" style="float:right">Log Out</a>
+          <% else %>
+            <%= link_to "Log In", new_session_path, { :style=> 'float:left' }  %>
+            <%= link_to "Sign Up", new_user_path, { :style=> 'float:right' } %>
+          <% end %>
+        </li>
+        <hr style="clear:both;">
+        <li><%= link_to "View Nominees", proposals_path %></li>
+        <hr>
+        <li><%= link_to "Submit a Proposal", new_proposal_path %></li>
+        <hr>
+        <li><%= link_to "Edit Your Proposal", edit_proposal_path(current_user.proposal) %></li>
+        <hr>
+        <li><%= link_to "Edit Your Profile", edit_user_path(current_user) %></li>
       </ul>
     </div>
 
