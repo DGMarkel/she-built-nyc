@@ -36,7 +36,6 @@ $(function () {
     proposalNavigation();
     postandInsertComment();
     showNav();
-    $("#nomineeLink").hide();
   });
 });
 
@@ -313,10 +312,20 @@ function hideNav() {
   })
 }
 
-function topNavToggler() {
-  $(".topNav").on("click", function(e) {
-    console.log(this)
+function showTopNav() {
+  $(".topNav").css({
+    "height":"auto",
+    "transition": "0.5s"
   })
+  $("#topNavBurger").replaceWith(`<a id="topNavBurger" href="#" onclick="hideTopNav(); return false;" style="font-size:40px;color:rgb(175,200,229);">&#9776;</a></li>`);
+}
+
+function hideTopNav() {
+  $(".topNav").css({
+    "height":"0",
+    "transition": "0.5s"
+  })
+  $("#topNavBurger").replaceWith(`<a id="topNavBurger" href="#" onclick="showTopNav(); return false;" style="font-size:40px;color:rgb(175,200,229);">&#9776;</a></li>`);
 }
 
 </script>

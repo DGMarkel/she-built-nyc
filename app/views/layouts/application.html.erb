@@ -138,19 +138,30 @@
         transition: 0.3s;
       }
 
-      .sidenav a:hover {
+      .sidenav a:hover, .topNav a:hover {
         color: #f1f1f1;
       }
 
-      .close:hover {
-        opacity: 1;
-      }
       .open {
         background-color:rgb(175,200,229);
         padding: 5px;
         position: fixed;
         right: 25%;
      }
+     .topNav {
+       height: 0;
+       width: 25%;
+       position: fixed;
+       z-index: 1;
+       top: 60;
+       left: 0;
+       border-right: 1px solid lightgray;
+       background-color: white;
+       overflow: overlay;
+       transition: 0.5s;
+       margin-top: -20px;
+     }
+
      .topNav a {
        padding: 8px 8px 8px 16px;
        text-decoration: none;
@@ -173,7 +184,7 @@
       <% end %>
     </div>
 
-    <div class="topNav" style="margin-top:80px;">
+    <div class="topNav">
       <ul style="list-style-type:none">
         <% if logged_in? %>
           <li><%= link_to "My Profile", user_path(current_user) %></li>
@@ -187,8 +198,8 @@
 
     <navbar class="sticky">
       <ul style="list-style-type:none;margin:0;padding:0;">
-        <li><a id="topNav" href="#" onclick="topNavToggler(); return false;" style="font-size:40px;color:rgb(175,200,229);">&#9776;</a></li>
-        <li><h3 style="display:inline">sheBuiltNYC</h3></li>
+        <li><a id="topNavBurger" href="#" onclick="showTopNav(); return false;" style="font-size:40px;color:rgb(175,200,229);">&#9776;</a></li>
+        <li><h1 style="display:inline">sheBuiltNYC</h3></li>
       </ul>
     </navbar>
 
