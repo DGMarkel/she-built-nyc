@@ -29,18 +29,11 @@ currentUser = null
 
 $(function () {
   indexTemplate();
-  $(".proposalLink").on("click", function(e) {
-    e.preventDefault();
-    navId = this.id
-    proposalTemplate(navId);
-    documentReadyCalls(navId);
-    proposalNavigation();
-    postandInsertComment();
-    showNav();
-  });
 });
 
-function documentReadyCalls(navId) {
+function documentReadyCalls(proposalId) {
+  navId = proposalId
+  proposalTemplate(navId);
   // add next proposal details to DOM
   getProposal(navId);
   // associate ranking and comment forms with the correct proposal
@@ -51,6 +44,9 @@ function documentReadyCalls(navId) {
   addRanking();
   // displays ranking and comments forms for current proposal UNLESS it is the current user's proposal
   showProposalForms(navId);
+  proposalNavigation();
+  postandInsertComment();
+  showNav();
 }
 
 // index functions
@@ -66,7 +62,7 @@ function getProposalsForIndex() {
 function indexProposalTemplate(proposal) {
   $("#proposalIndex").append(`<div id="proposal-${proposal.id}" style="height:250px;margin-top:20px;padding:0px;display:block;">`);
   $(`#proposal-${proposal.id}`).append(`<img src="${proposal.image_url}" style="float:left;height:90%;margin-right:20px;">`);
-  $(`#proposal-${proposal.id}`).append(`<h1 class="proposalLink" id="${proposal.id}">${proposal.name}</h1>`);
+  $(`#proposal-${proposal.id}`).append(`<h1><a class="proposalLink" id="${proposal.id}" href="#" onclick="documentReadyCalls(${proposal.id}); return false">${proposal.name}</a></h1>`);
   $(`#proposal-${proposal.id}`).append(`<h1>${proposal.description}</h1>`);
   $(`#proposal-${proposal.id}`).append(`</div>`);
 }
