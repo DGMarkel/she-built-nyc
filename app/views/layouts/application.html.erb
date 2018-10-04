@@ -178,7 +178,7 @@
       <h3 style="font-size:40px;color:rgb(175,200,229);display:inline;margin-left:26px; auto;">Nominees</h1>
       <% if @proposals %>
         <% @proposals.each do |proposal| %>
-        <h3 class="proposalLink" id="<%= proposal.id %>"><%= link_to proposal.name, proposal_path(proposal) %></h3>
+        <h3><a class="proposalLink"><a href="#" onclick="documentReadyCalls(<%= proposal.id %>); return false"><%= proposal.name %></a></h3>
         <hr>
         <% end %>
       <% end %>

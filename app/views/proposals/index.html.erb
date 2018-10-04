@@ -60,18 +60,19 @@ function getProposalsForIndex() {
 }
 
 function indexProposalTemplate(proposal) {
-  $("#proposalIndex").append(`<div id="proposal-${proposal.id}" style="height:250px;margin-top:20px;padding:0px;display:block;">`);
+  $("#proposalIndex").append(`<div id="proposal-${proposal.id}" style="height:250px;display:block;">`);
   $(`#proposal-${proposal.id}`).append(`<img src="${proposal.image_url}" style="float:left;height:90%;margin-right:20px;">`);
-  $(`#proposal-${proposal.id}`).append(`<h1><a class="proposalLink" id="${proposal.id}" href="#" onclick="documentReadyCalls(${proposal.id}); return false">${proposal.name}</a></h1>`);
-  $(`#proposal-${proposal.id}`).append(`<h1>${proposal.description}</h1>`);
+  $(`#proposal-${proposal.id}`).append(`<h1 style="margin-bottom:0px"><a class="proposalLink" href="#" onclick="documentReadyCalls(${proposal.id}); return false">${proposal.name}</a></h1>`);
+  $(`#proposal-${proposal.id}`).append(`<h1 style="margin-top:0px;">${proposal.description}</h1>`);
   $(`#proposal-${proposal.id}`).append(`</div>`);
+  $(`#proposalIndex`).append(`<hr>`);
 }
 
 function indexTemplate () {
   $(".main").empty();
   $(".main").append(`<h1 style="font-size:60px;margin-bottom:10px;">Nominees</h1>`);
   $(".main").append(`<hr style="border-top:1px solid black;">`);
-  $(".main").append(`<div id="proposalIndex" style="margin:20px 50px"></div>`);
+  $(".main").append(`<div id="proposalIndex" style="margin:20px 120px"></div>`);
   getProposalsForIndex();
 
 }
