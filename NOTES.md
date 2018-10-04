@@ -1,7 +1,5 @@
 tomorrow:
-  start working on filters for proposals index page
-  move welcome to index
-
+  finish formatting index
   add filters to proposals index:
     alphabetical
     most popular
