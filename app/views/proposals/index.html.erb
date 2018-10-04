@@ -28,7 +28,7 @@ navId = null
 currentUser = null
 
 $(function () {
-  indexTemplate();
+  homeTemplate();
 });
 
 function documentReadyCalls(proposalId) {
@@ -51,7 +51,7 @@ function documentReadyCalls(proposalId) {
 
 // welcome page functions
 
-function showHome() {
+function homeTemplate() {
   $(".main").empty();
   $(".main").append(`<div id="welcome" style="position:fixed;top:150px;left:30%;width:40%;text-align:justify;">`)
   $("#welcome").append(`
