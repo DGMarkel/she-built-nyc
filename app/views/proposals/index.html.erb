@@ -46,7 +46,14 @@ function documentReadyCalls(proposalId) {
   showProposalForms(navId);
   proposalNavigation();
   postandInsertComment();
-  showNav();
+  showSideNav();
+}
+
+// login page functions
+
+function loginTemplate() {
+  $(".main").empty();
+  $(".main").append('<%= j render '/sessions/login' %>');
 }
 
 // welcome page functions
@@ -121,7 +128,7 @@ function proposalTemplate(navId) {
   $(".main").append(`<div id="proposalDetails">`)
   $("#proposalDetails").append(`<span class="proposalImage"></span>`);
   $("#proposalDetails").append(`<h1 class="proposalName" style="display:inline;"></h1>`);
-  $("#proposalDetails").append(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="hideNav()">&#9776; X</span>`);
+  $("#proposalDetails").append(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="hideSideNav()">&#9776; X</span>`);
   $("#proposalDetails").append(`<h3 class="proposalDescription"></h3>`);
   $("#proposalDetails").append(`<hr>`);
   $("#proposalDetails").append(`<p>Submitted by: <span class="proposalUser"></span></p>`);
@@ -339,18 +346,18 @@ function addRanking() {
 
 // nav menu functions
 
-function showNav() {
+function showSideNav() {
   $("#mySidenav").css("width", "25%");
   $(".main").css({
     width: "70%",
     transition: "0.5s"
   })
-  $(".open").replaceWith(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="hideNav()">X</span>`);
+  $(".open").replaceWith(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="hideSideNav()">X</span>`);
 }
-function hideNav() {
+function hideSideNav() {
   $("#mySidenav").css("width", "0");
   $(".main").css("width", "90%");
-  $(".open").replaceWith(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="showNav()">Browse Nominees</span>`);
+  $(".open").replaceWith(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="showSideNav()">Browse Nominees</span>`);
   $(".open").css({
     "position":"fixed",
     "right":"7%"

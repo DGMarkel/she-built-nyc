@@ -191,7 +191,7 @@
             <%= link_to "My Profile", user_path(current_user), { :style=> 'float:left' } %>
             <%= link_to "Log Out", logout_path, { :method => "delete", :style=> 'float:right'  } %>
           <% else %>
-            <%= link_to "Log In", new_session_path, { :style=> 'float:left' }  %>
+            <a href = "#" onclick="loginTemplate(); return false;" style="float:left">Log In</a>
             <%= link_to "Sign Up", new_user_path, { :style=> 'float:right' } %>
           <% end %>
         </li>
