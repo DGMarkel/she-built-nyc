@@ -188,7 +188,7 @@
       <ul style="list-style-type:none">
         <li id="logInInfo">
           <% if current_user %>
-            <%= link_to "My Profile", user_path(current_user), { :style=> 'float:left' } %>
+            <a href="#" onclick="userProfileTemplate(); return false;" style="float:left">My Profile</a>
             <%= link_to "Log Out", logout_path, { :method => "delete", :style=> 'float:right'  } %>
           <% else %>
             <a href = "#" onclick="loginTemplate(); return false;" style="float:left">Log In</a>

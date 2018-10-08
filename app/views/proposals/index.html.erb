@@ -50,6 +50,14 @@ function documentReadyCalls(proposalId) {
 }
 
 
+// user profile functions
+
+function userProfileTemplate() {
+  $(".main").empty();
+  $(".main").append('<%= j render '/users/show' %>');
+}
+
+
 // login page functions
 
 function loginTemplate() {
