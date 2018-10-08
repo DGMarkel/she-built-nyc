@@ -49,11 +49,9 @@ function documentReadyCalls(proposalId) {
   showSideNav();
 }
 
-
 // user profile functions
 
 function userProfileTemplate() {
-  currentUser = `<%= current_user.id if current_user %>`
   $.get(`/users/${currentUser}.json`, function(data) {
     if (data.admin) {
       $(".main").empty();
