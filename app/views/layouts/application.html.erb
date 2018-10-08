@@ -201,7 +201,9 @@
         <li><%= link_to "Submit a Proposal", new_proposal_path %></li>
         <hr>
         <% if current_user %>
-          <li><%= link_to "Edit Your Proposal", edit_proposal_path(current_user.proposal) %></li>
+          <% if current_user.proposal %>
+            <li><%= link_to "Edit Your Proposal", edit_proposal_path(current_user.proposal) %></li>
+          <% end %>
           <hr>
           <li><%= link_to "Edit Your Profile", edit_user_path(current_user) %></li>
         <% end %>

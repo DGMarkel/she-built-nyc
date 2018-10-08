@@ -28,7 +28,7 @@ navId = null
 currentUser = null
 
 $(function () {
-  homeTemplate();
+  profileOrHomeTemplate();
 });
 
 function documentReadyCalls(proposalId) {
@@ -53,8 +53,16 @@ function documentReadyCalls(proposalId) {
 // user profile functions
 
 function userProfileTemplate() {
-  $(".main").empty();
-  $(".main").append('<%= j render '/users/show' %>');
+  currentUser = `<%= current_user.id if current_user %>`
+  $.get(`/users/${currentUser}.json`, function(data) {
+    if (data.admin) {
+      $(".main").empty();
+      $(".main").append('<%= j render '/users/admin_show' %>');
+    } else {
+      $(".main").empty();
+      $(".main").append('<%= j render '/users/non_admin_show' %>');
+    }
+  });
 }
 
 
@@ -66,6 +74,16 @@ function loginTemplate() {
 }
 
 // welcome page functions
+
+function profileOrHomeTemplate() {
+  currentUser = `<%= current_user.id if current_user %>`
+  if (currentUser === ``) {
+    $(".main").empty();
+    $(".main").append(`<%= j render '/sessions/welcome' %>`);
+  } else {
+    userProfileTemplate();
+  }
+}
 
 function homeTemplate() {
   $(".main").empty();

@@ -2,18 +2,18 @@ class UsersController < ApplicationController
   before_action :site_security, only: [:index, :show, :edit, :update, :destroy]
 
   def index
-    if current_user.admin
-      @users = User.all
-    else
-      redirect_to user_path(current_user)
+    @users = User.all
+    respond_to do |format|
+      format.html { render :show }
+      format.json {  render json: @user }
     end
   end
 
   def show
     @user = User.find_by(id: params[:id])
-    if !current_user.admin && @user.admin
-      flash[:non_admin_warning] = "Permission denied: restricted to admins only"
-      redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.html { render :show }
+      format.json {  render json: @user }
     end
   end
 
