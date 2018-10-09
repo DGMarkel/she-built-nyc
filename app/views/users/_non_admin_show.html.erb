@@ -32,7 +32,7 @@
       <h2>Favorite proposals</h2>
         <% @user.rankings.highest_ranking.limit(3).each do |ranking| %>
           <% @proposal = Proposal.find_by(id: ranking.proposal_id) %>
-          <h3><%= link_to @proposal.name, proposal_path(@proposal) %></h3>
+          <h3><a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false"><%= @proposal.name %></a></h3>
         <% end %>
 
   <hr>
@@ -42,14 +42,27 @@
       <hr>
       <% @user.comments.newest_first.limit(3).each do |comment| %>
         <% @proposal = Proposal.find_by(id: comment.proposal_id) %>
-        <em><%= comment.content %></em> - comment on <%= link_to @proposal.user.name, user_path(@proposal.user) %>'s proposal, <%= link_to @proposal.name, proposal_path(@proposal) %>
+
+        <em>
+
+            <%= comment.content %></em> - comment on <%= link_to @proposal.user.name, user_path(@proposal.user) %>'s
+            proposal, <a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false"><%= @proposal.name %>
+            </a>
+
+        </em>
         <hr>
       <% end %>
+
       <h2>Recent votes:</h2>
       <hr>
         <% @user.rankings.newest_first.limit(3).each do |ranking| %>
           <% @proposal = Proposal.find_by(id: ranking.proposal_id) %>
-          <p>You gave <%= link_to @proposal.name, proposal_path(@proposal) %> a score of <%= ranking.ranking %></p>
+          <p>
+
+            You gave <a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false"><%= @proposal.name %></a>
+            a score of <%= ranking.ranking %>
+
+          </p>
           <hr>
         <% end %>
   </div>
