@@ -9,8 +9,21 @@
     background-color:rgba(255, 255, 255, 0.6);
     padding: 10px;
     height: 205px;
+    width: 175px;
     margin: 200px 42%;
     border: 1px solid black;
+  }
+
+  #loginForm h1, p {
+    text-align: center;
+  }
+
+  #loginForm input {
+    margin-left: 20px;
+  }
+
+  #loginForm input[type="submit"] {
+    margin-right: 20px;
   }
 
 </style>
@@ -18,7 +31,7 @@
 
 
 <span>
-<%= form_for(:user, url: sessions_path, :html => {id: "login"}) do |f| %>
+<%= form_for(:user, url: sessions_path, :html => {id: "loginForm"}) do |f| %>
 <h1><%= f.label :name, "Username" %></h1>
 <%= f.text_field :name %>
 
