@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :site_security, only: [:index, :show, :edit, :update, :destroy]
 
+  def new
+    @user = User.new
+  end
+
   def index
     if current_user.admin
       @users = User.all

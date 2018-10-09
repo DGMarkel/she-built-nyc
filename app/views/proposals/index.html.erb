@@ -58,6 +58,24 @@ function loginTemplate() {
   $(".main").append('<%= j render 'login' %>');
 }
 
+function signUpTemplate() {
+  $(".main").empty();
+  hideSideNav();
+  $("body").css({
+    "background-image": "url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>)",
+    "background-size": "cover"
+  })
+  $(".main").append(`<div id="userForm"></div>`)
+  $("#userForm").append(`<h1>Sign Up</h1>`)
+  $("#userForm").append(`<form class="new_user" id="new_user"></form>`);
+  $(".new_user").append(`<p>Email</p>`)
+  $(".new_user").append(`<input type="text" name="user[email]" id="user_email">`)
+  $(".new_user").append(`<p>Password</p>`)
+  $(".new_user").append(`<input type="password" name="user[password]" id="user_password">`)
+  $(".new_user").append(`<input type="submit" name="commit" value="Create User" data-disable-with="Create User">`)
+  $(".new_user").append(`<p>Or <%= link_to "Sign up with Facebook", user_facebook_omniauth_authorize_path %></p>`)
+}
+
 // welcome page functions
 
 function profileOrHomeTemplate() {
