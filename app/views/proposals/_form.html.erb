@@ -1,4 +1,4 @@
-<% if current_user %>
+<% if current_user && current_user.proposal%>
 
   <%= form_for(current_user.proposal) do |f| %>
   <p>Name<br />
