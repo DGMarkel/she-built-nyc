@@ -1,0 +1,39 @@
+<style>
+  body {
+    background-image: url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>);
+    background-size: cover;
+  }
+
+  span {
+    display: inline-block;
+    background-color:rgba(255, 255, 255, 0.6);
+    padding: 10px;
+    height: 205px;
+    margin: 200px 42%;
+    border: 1px solid black;
+  }
+
+</style>
+
+
+
+<span>
+<%= form_for(:user, url: sessions_path, :html => {id: "login"}) do |f| %>
+<h1><%= f.label :name, "Username" %></h1>
+<%= f.text_field :name %>
+
+<h1><%= f.label :password %></h1>
+<%= f.password_field :password, :id => "password" %>
+
+<% if flash[:login_warning] %>
+  <div style="color:red;">
+    <%= flash[:login_warning] %>
+  </div>
+<% end %>
+
+<p><%= f.submit "Sign In" %></p>
+<% end %>
+
+
+<p style="color:red;"><%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %></p>
+</span>
