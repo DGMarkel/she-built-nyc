@@ -15,6 +15,8 @@
 
 </style>
 
+<% if current_user %>
+
 <span>
   <h1 style="font-size:60;">Edit Profile</h1>
   <hr>
@@ -32,3 +34,5 @@
   <%= f.submit %>
   <% end %>
 </span>
+
+<% end %>

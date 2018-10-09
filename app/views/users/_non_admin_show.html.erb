@@ -10,7 +10,7 @@
   <div id="userDetails">
 
     <h1><%= @user.name %></h1>
-    <h3 id="userOptions"><%= link_to "Edit Profile", edit_user_path(@user)%></h3>
+    <h3 id="userOptions"><a href="#" onclick="editProfileTemplate(); return false;">Edit Profile</a></h3>
     <% if logged_in? && current_user.admin %>
       <h3 id="userOptions"><%= link_to "Delete Profile", user_path(@user), data: {:confirm => 'Are you sure?'}, method: "delete"%></h3>
     <% end %>
