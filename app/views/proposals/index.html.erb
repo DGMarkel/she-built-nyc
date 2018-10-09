@@ -61,13 +61,10 @@ function loginTemplate() {
 function signUpTemplate() {
   $(".main").empty();
   hideSideNav();
-  // $(".main").css({
-  //   "margin":"80px 0px",
-  //   "width":"100%",
-  //   "height":"1500px",
-  //   "background-image": "url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>)",
-  //   "background-size": "cover"
-  // })
+  $("body").css({
+    "background-image": "url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>)",
+    "background-size": "cover"
+  })
   $(".main").append(`<div id="userForm"></div>`)
   $("#userForm").append(`<h1>Sign Up</h1>`)
   $("#userForm").append(`<form class="new_user" id="new_user" action="post"></form>`);
@@ -102,6 +99,7 @@ function postNewUser() {
 function profileOrHomeTemplate() {
   currentUser = `<%= current_user.id if current_user %>`
   if (currentUser === ``) {
+    $("body").css("background", "white")
     $(".main").empty();
     $(".main").append(`<%= j render '/sessions/welcome' %>`);
   } else {
@@ -110,6 +108,7 @@ function profileOrHomeTemplate() {
 }
 
 function homeTemplate() {
+  $("body").css("background", "white")
   $(".main").empty();
   $(".main").append('<%= j render '/sessions/welcome' %>');
   hideSideNav();
@@ -137,9 +136,11 @@ function userProfileTemplate() {
   hideSideNav();
   $.get(`/users/${currentUser}.json`, function(data) {
     if (data.admin) {
+      $("body").css("background", "white")
       $(".main").empty();
       $(".main").append('<%= j render '/users/admin_show' %>');
     } else {
+      $("body").css("background", "white")
       $(".main").empty();
       $(".main").append('<%= j render '/users/non_admin_show' %>');
     }
@@ -190,6 +191,7 @@ function indexProposalTemplate(proposal) {
 }
 
 function indexTemplate () {
+  $("body").css("background", "white")
   $(".main").empty();
   $(".main").append(`<h1 style="font-size:60px;margin-bottom:10px;">Nominees</h1>`);
   $(".main").append(`<hr style="border-top:1px solid black;">`);
