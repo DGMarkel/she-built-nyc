@@ -256,9 +256,11 @@ function proposalTemplate(navId) {
   $(".main").append('<%= j render 'logged_in_show' if current_user %>');
 
   if (currentUser != null) {
-    $(`<div id="proposalComments"><h1><a href="#" onclick="getRecentComments(${navId}); return false">View Comments</a></h1></div>`).insertAfter(`#proposalForms #rankingForm`)
-  } else {
+    $(`<div id="loggedInProposalComments"><h1><a href="#" onclick="getRecentComments(${navId}); return false">View Comments</a></h1></div>`).insertAfter(`#proposalForms #rankingForm`)
+  }
+  if (currentUser === "") {
   // div for comments
+    $(".main").append(`<hr>`)
     $(".main").append(`<div id="proposalComments">`);
     $("#proposalComments").append(`<h1><a href="#" onclick="getRecentComments(${navId}); return false">View Comments</a></h1>`);
     $("#proposalComments").append(`<div id="comments"></div>`);
@@ -298,6 +300,11 @@ function showProposalForms(navId) {
       } else {
         $("#proposalForms").hide();
       }
+  });
+}
+
+function checkUserProposal() {
+  return $.get(`/users/${currentUser}.json`, function(data) {
   });
 }
 
