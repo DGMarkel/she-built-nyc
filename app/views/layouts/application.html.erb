@@ -198,13 +198,14 @@
         <hr style="clear:both;">
         <li><a href="#" onclick="indexTemplate(); return false">View Nominees</a></li>
         <hr>
-        <li><%= link_to "Submit a Proposal", new_proposal_path %></li>
-        <hr>
         <% if current_user %>
           <% if current_user.proposal %>
             <li><%= link_to "Edit Your Proposal", edit_proposal_path(current_user.proposal) %></li>
+            <hr>
+          <% elsif !current_user.admin && !current_user.proposal %>
+            <li><%= link_to "Submit a Proposal", new_proposal_path %></li>
+            <hr>
           <% end %>
-          <hr>
           <li><%= link_to "Edit Your Profile", edit_user_path(current_user) %></li>
         <% end %>
       </ul>
