@@ -51,36 +51,33 @@ class ProposalsController < ApplicationController
   end
 
   def edit
-    @proposal = Proposal.find_by(id: params[:id])
-    if !logged_in? || (@proposal.user != current_user && !current_user.admin)
-      redirect_to proposal_path(@proposal)
-    end
+    @proposal = current_user.proposal
   end
 
   def update
-    @proposal = Proposal.find_by(id: params[:id])
-    if @proposal.update(proposal_params)
-      redirect_to proposal_path(@proposal)
-    else
-      if @proposal.errors[:description].any?
-        if @proposal.description.empty?
-          flash[:description_warning] = "This section must be filled out to proceed"
-        else
-          flash[:description_warning] = "Description cannot exceed 75 characters"
-        end
-      end
-      if @proposal.errors[:name].any?
-        if @proposal.name.empty?
-        flash[:name_warning] = "Your proposal needs a name!"
-        else
-        flash[:name_warning] = "A proposal with that name already exists"
-        end
-      end
-      if @proposal.errors[:pitch].any?
-        flash[:pitch_warning] = "This section must be filled out to proceed"
-      end
-      redirect_to edit_proposal_path(@proposal)
-    end
+    @proposal = current_user.proposal
+    @proposal.update(proposal_params)
+    #   redirect_to proposal_path(@proposal)
+    # else
+    #   if @proposal.errors[:description].any?
+    #     if @proposal.description.empty?
+    #       flash[:description_warning] = "This section must be filled out to proceed"
+    #     else
+    #       flash[:description_warning] = "Description cannot exceed 75 characters"
+    #     end
+    #   end
+    #   if @proposal.errors[:name].any?
+    #     if @proposal.name.empty?
+    #     flash[:name_warning] = "Your proposal needs a name!"
+    #     else
+    #     flash[:name_warning] = "A proposal with that name already exists"
+    #     end
+    #   end
+    #   if @proposal.errors[:pitch].any?
+    #     flash[:pitch_warning] = "This section must be filled out to proceed"
+    #   end
+    #   redirect_to edit_proposal_path(@proposal)
+    # end
   end
 
   def destroy

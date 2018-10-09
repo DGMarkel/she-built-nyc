@@ -76,7 +76,6 @@ function homeTemplate() {
   hideSideNav();
 }
 
-
 // function homeTemplate() {
 //   $(".main").empty();
 //   $(".main").append(`<div id="welcome" style="position:fixed;top:150px;left:30%;width:40%;text-align:justify;">`)
@@ -113,6 +112,23 @@ function editProfileTemplate() {
   $(".main").empty();
   $(".main").append('<%= j render '/users/edit' %>');
   hideSideNav();
+}
+
+function editProposalTemplate() {
+  $(".main").empty();
+  $(".main").append(`<%= j render '/proposals/edit' %>`);
+  editProposal()
+  hideSideNav();
+}
+
+function editProposal() {
+  $(".edit_proposal").on("submit", function(e) {
+    proposalId = this.id.match(/\d+/g)[0]
+    var values = $(this).serialize();
+    $.post(`/proposals/${proposalId}`, values);
+    documentReadyCalls(parseInt(proposalId));
+    e.preventDefault();
+  });
 }
 
 // index functions

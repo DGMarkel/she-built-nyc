@@ -222,13 +222,13 @@
         <hr>
         <% if current_user %>
           <% if current_user.proposal %>
-            <li><a href="#" onclick="editProfileTemplate(); return false;">Edit Profile</a></li>
+            <li><a href="#" onclick="editProposalTemplate(); return false;">Edit Proposal</a></li>
             <hr>
           <% elsif !current_user.admin && !current_user.proposal %>
             <li><%= link_to "Submit a Proposal", new_proposal_path %></li>
             <hr>
           <% end %>
-          <li><%= link_to "Edit Your Profile", edit_user_path(current_user) %></li>
+          <li><a href="#" onclick="editProfileTemplate(); return false;">Edit Profile</a></li>
         <% end %>
       </ul>
     </div>
