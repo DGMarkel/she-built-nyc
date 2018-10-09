@@ -10,212 +10,217 @@
 
 <style>
 
-      body {
-        margin: 0;
-      }
+  body {
+    margin: 0;
+  }
 
-      .main {
-        margin: 80px 40px;;
-      }
+  .main {
+    margin: 80px 40px;;
+  }
 
-      h1, h2, h3, h4, span, li {
-        font-family: 'Raleway', sans-serif;
-      }
+  h1, h2, h3, h4, span, li {
+    font-family: 'Raleway', sans-serif;
+  }
 
-      span {
-        line-height: 3px;
-      }
+  span {
+    line-height: 3px;
+  }
 
-      p {
-        font-family: 'PT Sans', sans-serif;
-      }
+  p {
+    font-family: 'PT Sans', sans-serif;
+  }
 
-      a {
-        text-decoration: none;
-        color: black;
-      }
+  a {
+    text-decoration: none;
+    color: black;
+  }
 
-      a:hover {
-        color: red;
-      }
 
-      .sticky {
-        position: fixed;
-        top: 0;
-        width: 100%;
-      }
+  p a {
+    text-decoration: underline
+  }
 
-      /* styling for _non_admin_show */
+  a:hover {
+    color: red;
+  }
 
-      #userDetails {
-        display: inline-block;
-        width:auto;
-        float:right;
-      }
+/* STYLING FOR NON_ADMIN_SHOW */
 
-      #userDetails h3 {
-        margin-top: 0px;
-        margin-bottom: 2px
-      }
+  #userDetails {
+    display: inline-block;
+    width:auto;
+    float:right;
+  }
 
-      #userDetails h3 a {
-        text-decoration: underline;
-      }
+  #userDetails h3 {
+    margin-top: 0px;
+    margin-bottom: 2px
+  }
 
-      #userOptions {
-        float: left;
-        margin-right: 10px;
-      }
+  #userDetails h3 a {
+    text-decoration: underline;
+  }
 
-      .edit_proposal, .new_proposal {
-        display: inline-block;
-        background-color:rgba(255, 255, 255, 0.6);
-        padding: 30px;
-        height: 100%;
-        margin: 200px 40%;
-      }
+  #userOptions {
+    float: left;
+    margin-right: 10px;
+  }
 
-      #formWrapper {
-        position: relative;
-        top: -20px;
-        left: -100px;
-        width: 125%;
-        height: 1000px;
-        background-image: url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>);
-        background-size: cover;
-      }
+  /* FORM STYLING  */
 
-      #userForm {
-        display: inline-block;
-        background-color:rgba(255, 255, 255, 0.6);
-        padding: 15px;
-        height: 290px;
-        width: 215px;
-        margin: 40px 42%;
-      }
+  .edit_proposal, .new_proposal {
+    display: inline-block;
+    background-color:rgba(255, 255, 255, 0.6);
+    padding: 20px;
+    height: 100%;
+    margin: 20px 40%;
+  }
 
-      #userForm h1 {
-        font-size: 60px;
-        margin: 10px 0;
-      }
+  #formWrapper {
+    position: relative;
+    top: -20px;
+    left: -100px;
+    width: 125%;
+    height: 1000px;
+    background-image: url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>);
+    background-size: cover;
+  }
 
-      #userForm p {
-        margin: 4px 0;
-      }
+  #userForm {
+    display: inline-block;
+    background-color:rgba(255, 255, 255, 0.6);
+    padding: 15px;
+    height: 290px;
+    width: 215px;
+    margin: 40px 42%;
+  }
 
-      #userForm input[type="submit"] {
-        margin: 15px 0;
-      }
+  #userForm h1 {
+    font-size: 60px;
+    margin: 10px 0;
+  }
 
-      #loginForm h1, #loginForm p {
-        text-align: center;
-      }
+  #userForm p {
+    margin: 4px 0;
+  }
 
-      #loginForm input {
-        margin-left: 20px;
-      }
+  #userForm input[type="submit"] {
+    margin: 15px 0;
+  }
 
-      #loginForm input[type="submit"] {
-        margin-right: 20px;
-      }
+  #loginForm h1, #loginForm p {
+    text-align: center;
+  }
 
-      navbar ul {
-        background-color: rgb(249,249,249);
-        height: 60px;
-      }
+  #loginForm input {
+    margin-left: 20px;
+  }
 
-      p a {
-        text-decoration: underline
-      }
+  #loginForm input[type="submit"] {
+    margin-right: 20px;
+  }
 
-      navbar li {
-        position: relative;
-        left: 50px;
-        display:inline;
-        padding-left: 5px;
-      }
+  #proposalForms {
+    border-top: 1px solid lightgray;
+    margin-top: 10px;
+    height: 110px;
+  }
 
-      navbar div {
-        position: relative;
-        right: 100px;
-      }
+  #rankingForm {
+    margin-top: 10px;
+    float: left;
+  }
 
-      div #proposalDetails {
-        overflow: overlay;
-        height: 500px;
-      }
+  #rankingForm h1 {
+    margin: 5px 10px 10px 0;
+  }
 
-      .js-next {
-        width: 175px;
-      }
+  #commentForm {
+    margin-top: 10px;
+    float: right;
+  }
 
-      .js-previous {
-        margin: 20px 20px 10px 0px;
-        width: 175px;
-      }
+  #commentForm h1 {
+    margin: 10px 10px 10px 0px;
+  }
 
-      #proposalForms {
-        border-top: 1px solid lightgray;
-        margin-top: 10px;
-        height: 110px;
-      }
+  #proposalComments {
+    border-top: 1px solid lightgray;
+    clear: both;
+  }
 
-      #rankingForm {
-        margin-top: 10px;
-        float: left;
-      }
+  /* NAVBAR AND NAVIGATION STYLING */
 
-      #rankingForm h1 {
-        margin: 5px 10px 10px 0;
-      }
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
 
-      #commentForm {
-        margin-top: 10px;
-        float: right;
-      }
+  navbar ul {
+    background-color: rgb(249,249,249);
+    height: 60px;
+  }
 
-      #commentForm h1 {
-        margin: 10px 10px 10px 0px;
-      }
+  navbar li {
+    position: relative;
+    left: 50px;
+    display:inline;
+    padding-left: 5px;
+  }
 
-      #proposalComments {
-        border-top: 1px solid lightgray;
-        clear: both;
-      }
+  navbar div {
+    position: relative;
+    right: 100px;
+  }
 
-      .sidenav {
-        height: 100%;
-        width: 0;
-        position: fixed;
-        z-index: 1;
-        top: 40;
-        right: 0;
-        border-left: 1px solid lightgray;
-        background-color: white;
-        overflow: overlay;
-        transition: 0.5s;
-        padding-top: 20px;
-        margin-top: -20px;
-      }
+  div #proposalDetails {
+    overflow: overlay;
+    height: 500px;
+  }
 
-      .sidenav a {
-        padding: 8px 8px 8px 32px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: block;
-        transition: 0.3s;
-      }
+  .js-next {
+    width: 175px;
+  }
 
-      .sidenav a:hover, .topNav a:hover {
-        color: #f1f1f1;
-      }
+  .js-previous {
+    margin: 20px 20px 10px 0px;
+    width: 175px;
+  }
 
-      .open {
-        background-color:rgb(175,200,229);
-        padding: 5px;
-        position: fixed;
-        right: 25%;
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 40;
+    right: 0;
+    border-left: 1px solid lightgray;
+    background-color: white;
+    overflow: overlay;
+    transition: 0.5s;
+    padding-top: 20px;
+    margin-top: -20px;
+  }
+
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .sidenav a:hover, .topNav a:hover {
+    color: #f1f1f1;
+  }
+
+  .open {
+    background-color:rgb(175,200,229);
+    padding: 5px;
+    position: fixed;
+    right: 25%;
      }
      .topNav {
        height: 0;
@@ -250,7 +255,7 @@
 
     <div id="mySidenav" class="sidenav">
       <h3 style="font-size:40px;color:rgb(175,200,229);display:inline;margin-left:26px; auto;">Nominees</h1>
-      <% if @proposals %>
+        <% if @proposals %>
         <% @proposals.each do |proposal| %>
         <h3><a class="proposalLink"><a href="#" onclick="documentReadyCalls(<%= proposal.id %>); return false"><%= proposal.name %></a></h3>
         <hr>
