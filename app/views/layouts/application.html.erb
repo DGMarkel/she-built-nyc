@@ -251,7 +251,7 @@
 
   .topNav {
     height: 0;
-    width: 25%;
+    width: 350px;
     position: fixed;
     z-index: 1;
     top: 60;
@@ -303,11 +303,12 @@
         </li>
         <hr style="clear:both;">
         <li><a href="#" onclick="indexTemplate(); return false">View Nominees</a></li>
-        <hr>
         <% if current_user %>
           <% if current_user.proposal %>
+            <hr>
             <li><a href="#" onclick="editProposalTemplate(); return false;">Edit Proposal</a></li>
           <% elsif !current_user.admin && !current_user.proposal %>
+            <hr>
             <li><%= link_to "Submit a Proposal", new_proposal_path %></li>
           <% end %>
         <% end %>
