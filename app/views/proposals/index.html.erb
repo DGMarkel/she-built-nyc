@@ -255,12 +255,15 @@ function proposalTemplate(navId) {
   // div adds ranking and comment forms
   $(".main").append('<%= j render 'logged_in_show' if current_user %>');
 
+  if (currentUser != null) {
+    $(`<div id="proposalComments"><h1><a href="#" onclick="getRecentComments(${navId}); return false">View Comments</a></h1></div>`).insertAfter(`#proposalForms #rankingForm`)
+  } else {
   // div for comments
-  $(".main").append(`<div id="proposalComments">`);
-  $("#proposalComments").append(`<h1><a href="#" onclick="getRecentComments(${navId}); return false">Recent Comments</a></h1>`);
-  $("#proposalComments").append(`<p><a id="comments_viewer" href="#" onclick="getAllComments(${navId}); return false;">View All Comments</a></p>`);
-  $("#proposalComments").append(`<div id="comments"></div>`);
-  $(".main").append(`</div>`);
+    $(".main").append(`<div id="proposalComments">`);
+    $("#proposalComments").append(`<h1><a href="#" onclick="getRecentComments(${navId}); return false">View Comments</a></h1>`);
+    $("#proposalComments").append(`<div id="comments"></div>`);
+    $(".main").append(`</div>`);
+  }
 }
 
 function proposalNavigation(){
