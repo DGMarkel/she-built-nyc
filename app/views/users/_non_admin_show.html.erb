@@ -19,11 +19,9 @@
     <% else %>
       <h3  id="userOptions"><%= link_to "My Comments", user_comments_path(@user)%></h3>
     <% end %>
-    <h3><%= proposal_link %></h3>
-    <% if proposal_link == "" %>
-      <br>
+    <% if @user.proposal %>
+      <h3 id="userOptions"><a href="#" onclick="documentReadyCalls(<%= @user.proposal.id %>); return false;">My Proposal</a></h3>
     <% end %>
-
 
     <h3>Affiliation: <%= @user.affiliation %></h3>
     <h3>Borough: <%= @user.borough %></h3>
