@@ -1,13 +1,8 @@
-today: 
+revisit @user fix in non_admin_show
+figure out how to add background to signUpTemplate correctly
 
-tomorrow:
-  finish formatting index
-  add filters to proposals index:
-    alphabetical
-    most popular
-    least popular
-    newest
-    oldest
+
+
 
 
 
