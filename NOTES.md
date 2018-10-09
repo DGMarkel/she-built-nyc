@@ -6,6 +6,7 @@ figure out how to add background to signUpTemplate correctly
 
 
 
+
 New Monuments to Women's History is based on NYC's initiative to build more monuments to women around the city.  My site will list proposed monuments, accept new proposals from the public, allow the public to vote on existing proposals and display other public input.
 
 Proposal

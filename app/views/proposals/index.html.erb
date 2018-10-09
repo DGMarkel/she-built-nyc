@@ -99,7 +99,7 @@ function postNewUser() {
 function profileOrHomeTemplate() {
   currentUser = `<%= current_user.id if current_user %>`
   if (currentUser === ``) {
-    $("body").css("background", "white")
+    
     $(".main").empty();
     $(".main").append(`<%= j render '/sessions/welcome' %>`);
   } else {
@@ -108,7 +108,7 @@ function profileOrHomeTemplate() {
 }
 
 function homeTemplate() {
-  $("body").css("background", "white")
+  
   $(".main").empty();
   $(".main").append('<%= j render '/sessions/welcome' %>');
   hideSideNav();
@@ -136,11 +136,11 @@ function userProfileTemplate() {
   hideSideNav();
   $.get(`/users/${currentUser}.json`, function(data) {
     if (data.admin) {
-      $("body").css("background", "white")
+      
       $(".main").empty();
       $(".main").append('<%= j render '/users/admin_show' %>');
     } else {
-      $("body").css("background", "white")
+      
       $(".main").empty();
       $(".main").append('<%= j render '/users/non_admin_show' %>');
     }
@@ -191,7 +191,7 @@ function indexProposalTemplate(proposal) {
 }
 
 function indexTemplate () {
-  $("body").css("background", "white")
+  
   $(".main").empty();
   $(".main").append(`<h1 style="font-size:60px;margin-bottom:10px;">Nominees</h1>`);
   $(".main").append(`<hr style="border-top:1px solid black;">`);
