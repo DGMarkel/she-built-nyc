@@ -310,6 +310,9 @@ function getRecentComments(navId) {
       recentComments.forEach(function(comment) {
         commentTemplate(comment);
       });
+      $(".main").prepend(`<span class="backToProposal"><a href="#" onclick="documentReadyCalls(navId); return false;">Back to Proposal</a></span>`)
+      $(".main").prepend(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="hideSideNav()">X</span>`);
+      showSideNav();
     }else {
       getAllComments(navId);
     }
@@ -322,6 +325,9 @@ function getAllComments(navId) {
     data.forEach(function(comment) {
       commentTemplate(comment)
     });
+    $(".main").prepend(`<span class="backToProposal"><a href="#" onclick="documentReadyCalls(navId); return false;">Back to Proposal</a></span>`)
+    $(".main").prepend(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="hideSideNav()">X</span>`);
+    showSideNav();
     if (data.length > 3) {
       $("#comments_viewer").replaceWith(`<p><a id="comments_viewer" href="#" onclick="getRecentComments(${navId}); return false;">View Most Recent Comments</a></p>`)
     }
