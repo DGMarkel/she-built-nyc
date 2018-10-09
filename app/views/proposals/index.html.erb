@@ -61,10 +61,6 @@ function loginTemplate() {
 function signUpTemplate() {
   $(".main").empty();
   hideSideNav();
-  $("body").css({
-    "background-image": "url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>)",
-    "background-size": "cover"
-  })
   $(".main").append(`<div id="userForm"></div>`)
   $("#userForm").append(`<h1>Sign Up</h1>`)
   $("#userForm").append(`<form class="new_user" id="new_user" action="post"></form>`);
@@ -99,7 +95,6 @@ function postNewUser() {
 function profileOrHomeTemplate() {
   currentUser = `<%= current_user.id if current_user %>`
   if (currentUser === ``) {
-    
     $(".main").empty();
     $(".main").append(`<%= j render '/sessions/welcome' %>`);
   } else {
@@ -108,7 +103,6 @@ function profileOrHomeTemplate() {
 }
 
 function homeTemplate() {
-  
   $(".main").empty();
   $(".main").append('<%= j render '/sessions/welcome' %>');
   hideSideNav();
@@ -136,11 +130,11 @@ function userProfileTemplate() {
   hideSideNav();
   $.get(`/users/${currentUser}.json`, function(data) {
     if (data.admin) {
-      
+
       $(".main").empty();
       $(".main").append('<%= j render '/users/admin_show' %>');
     } else {
-      
+
       $(".main").empty();
       $(".main").append('<%= j render '/users/non_admin_show' %>');
     }
@@ -191,7 +185,7 @@ function indexProposalTemplate(proposal) {
 }
 
 function indexTemplate () {
-  
+
   $(".main").empty();
   $(".main").append(`<h1 style="font-size:60px;margin-bottom:10px;">Nominees</h1>`);
   $(".main").append(`<hr style="border-top:1px solid black;">`);
