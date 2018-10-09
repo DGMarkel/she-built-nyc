@@ -6,34 +6,35 @@
     <img src="<%=@user.image_url%>" style="width: 100%; height: auto; float: left; margin: 0 50px;">
   <% end %>
   </div>
-  <div id="userDetails" style="display:inline-block;width:50%;float:right;">
-  <h1 style="margin-top:0px;"><%= @user.name %></h1>
-  <h3><%= link_to "Edit Profile", edit_user_path(@user), {:style => 'float:left; margin-right:10px;'} %></h3>
-  <% if logged_in? && current_user.admin %>
-    <h3><%= link_to "Delete Profile", user_path(@user), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'float:left; margin-right:10px;'%></h3>
-  <% end %>
-  <% if logged_in? && current_user.admin %>
-    <h3><%= link_to "#{@user.name}'s Comments", user_comments_path(@user), {:style => 'float:left; margin-right:10px;'} %></h3>
-  <% else %>
-    <h3><%= link_to "My Comments", user_comments_path(@user), {:style => 'float:left; margin-right:10px;'} %></h3>
-  <% end %>
-  <h3><%= proposal_link %></h3>
-  <% if proposal_link == "" %>
-    <br>
-  <% end %>
+
+  <div id="userDetails">
+
+    <h1><%= @user.name %></h1>
+    <h3 id="userOptions"><%= link_to "Edit Profile", edit_user_path(@user)%></h3>
+    <% if logged_in? && current_user.admin %>
+      <h3 id="userOptions"><%= link_to "Delete Profile", user_path(@user), data: {:confirm => 'Are you sure?'}, method: "delete"%></h3>
+    <% end %>
+    <% if logged_in? && current_user.admin %>
+      <h3 id="userOptions"><%= link_to "#{@user.name}'s Comments", user_comments_path(@user)%></h3>
+    <% else %>
+      <h3  id="userOptions"><%= link_to "My Comments", user_comments_path(@user)%></h3>
+    <% end %>
+    <h3><%= proposal_link %></h3>
+    <% if proposal_link == "" %>
+      <br>
+    <% end %>
 
 
-    <h3 style="margin-bottom: 2px;">Affiliation: <%= @user.affiliation %></h3>
-    <h3 style="margin-bottom: 2px;">Borough: <%= @user.borough %></h3>
-    <h3 style="margin-bottom: 2px;">Zip Code: <%= @user.zip_code %></h3>
+    <h3>Affiliation: <%= @user.affiliation %></h3>
+    <h3>Borough: <%= @user.borough %></h3>
+    <h3>Zip Code: <%= @user.zip_code %></h3>
 
-
-  <hr>
-    <h2>Favorite proposals</h2>
-      <% @user.rankings.highest_ranking.limit(3).each do |ranking| %>
-        <% @proposal = Proposal.find_by(id: ranking.proposal_id) %>
-        <h3 style="margin-bottom: 2px;"><%= link_to @proposal.name, proposal_path(@proposal) %></h3>
-      <% end %>
+    <hr>
+      <h2>Favorite proposals</h2>
+        <% @user.rankings.highest_ranking.limit(3).each do |ranking| %>
+          <% @proposal = Proposal.find_by(id: ranking.proposal_id) %>
+          <h3><%= link_to @proposal.name, proposal_path(@proposal) %></h3>
+        <% end %>
 
   <hr>
   <h1>Recent Activity:</h1>
