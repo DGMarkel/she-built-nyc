@@ -75,14 +75,23 @@
         margin: 200px 40%;
       }
 
+      #formWrapper {
+        position: relative;
+        top: -20px;
+        left: -100px;
+        width: 1200px;
+        height: 1000px;
+        background-image: url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>);
+        background-size: cover;
+      }
+
       #userForm {
         display: inline-block;
         background-color:rgba(255, 255, 255, 0.6);
         padding: 15px;
         height: 265px;
         width: 215px;
-        margin: 20px 42%;
-        border: 1px solid black;
+        margin: 40px 42%;
       }
 
       #userForm h1 {
