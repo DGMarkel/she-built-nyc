@@ -18,8 +18,8 @@ class ProposalsController < ApplicationController
   end
 
   def new
-    if current_user.admin
-      redirect_to user_path(current_user)
+    if current_user.admin || current_user.proposal
+      redirect_to root_path
     else
       @proposal = Proposal.new
     end
