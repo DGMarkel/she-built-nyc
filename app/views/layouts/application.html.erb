@@ -221,33 +221,37 @@
     padding: 5px;
     position: fixed;
     right: 25%;
-     }
-     .topNav {
-       height: 0;
-       width: 25%;
-       position: fixed;
-       z-index: 1;
-       top: 60;
-       left: 0;
-       border-right: 1px solid lightgray;
-       background-color: white;
-       overflow: overlay;
-       transition: 0.5s;
-       margin-top: -20px;
-     }
+  }
 
-     .topNav a {
-       padding: 8px 8px 8px 16px;
-       text-decoration: none;
-       font-size: 25px;
-       color: #818181;
-       display: block;
-       transition: 0.3s;
-     }
+  .topNav {
+    height: 0;
+    width: 25%;
+    position: fixed;
+    z-index: 1;
+    top: 60;
+    left: 0;
+    border-right: 1px solid lightgray;
+    background-color: white;
+    overflow: overlay;
+    margin-top: -20px;
+  }
 
-     .topNav li[id="logInInfo"] a {
-       font-size: 18px;
-     }
+  .topNav a {
+    padding: 8px 8px 8px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+  }
+
+  .topNav li[id="logInInfo"] a {
+    font-size: 18px;
+  }
+
+  .topNav li[id="logInInfo"] a[2] {
+    position: relative;
+    left: -10px;
+  }
 
     </style>
   </head>
@@ -268,6 +272,7 @@
         <li id="logInInfo">
           <% if current_user %>
             <a href="#" onclick="userProfileTemplate(); return false;" style="float:left">My Profile</a>
+            <a href="#" onclick="editProfileTemplate(); return false;" style="float:left">Edit Profile</a>
             <%= link_to "Log Out", logout_path, { :method => "delete", :style=> 'float:right'  } %>
           <% else %>
             <a href="#" onclick="loginTemplate(); return false;" style="float:left">Log In</a>
@@ -280,12 +285,9 @@
         <% if current_user %>
           <% if current_user.proposal %>
             <li><a href="#" onclick="editProposalTemplate(); return false;">Edit Proposal</a></li>
-            <hr>
           <% elsif !current_user.admin && !current_user.proposal %>
             <li><%= link_to "Submit a Proposal", new_proposal_path %></li>
-            <hr>
           <% end %>
-          <li><a href="#" onclick="editProfileTemplate(); return false;">Edit Profile</a></li>
         <% end %>
       </ul>
     </div>
