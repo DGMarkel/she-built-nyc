@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
   before_action :site_security, only: [:index, :show, :edit, :update, :destroy]
 
-  def new
-    @user = User.new
-  end
-
   def index
     if current_user.admin
       @users = User.all
@@ -33,20 +29,20 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to edit_user_path(@user)
-    else
-      if @user.errors[:email].any?
-        if params[:user][:email].empty?
-          flash[:email_warning] = "You must enter a valid email address to proceed"
-        else
-          flash[:email_warning] = "A user with that e-mail already exists"
-        end
-      end
-      if @user.errors[:email].any? && @user.errors[:password].any?
-        flash[:warning] = "Both fields must be filled in correctly to proceed"
-      end
-      redirect_to new_user_path
     end
+
+    # else
+    #   if @user.errors[:email].any?
+    #     if params[:user][:email].empty?
+    #       flash[:email_warning] = "You must enter a valid email address to proceed"
+    #     else
+    #       flash[:email_warning] = "A user with that e-mail already exists"
+    #     end
+    #   end
+    #   if @user.errors[:email].any? && @user.errors[:password].any?
+    #     flash[:warning] = "Both fields must be filled in correctly to proceed"
+    #   end
+    # end
   end
 
   def edit
