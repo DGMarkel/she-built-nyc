@@ -1,3 +1,11 @@
+<style>
+  body {
+    background-image: url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>);
+    background-size: cover;
+  }
+
+</style>
+
 <% if current_user && current_user.proposal%>
 
   <%= form_for(current_user.proposal) do |f| %>
@@ -24,7 +32,7 @@
   <%= f.text_area :pitch, cols:50, rows:10 %></p>
   <p>Historical Image<br />
   <%= f.text_area :image_url, cols:50 %></p>
-  <%= f.submit "Submit Proposal" %>
+  <%= f.submit%>
   <% end %>
 
 <% end %>
