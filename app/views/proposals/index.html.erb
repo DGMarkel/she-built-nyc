@@ -98,6 +98,7 @@ function profileOrHomeTemplate() {
   if (currentUser === ``) {
     $(".main").empty();
     $(".main").append(`<%= j render '/sessions/welcome' %>`);
+    topThreeProposalDisplay();
   } else {
     userProfileTemplate();
   }
@@ -107,6 +108,24 @@ function homeTemplate() {
   $(".main").empty();
   $(".main").append('<%= j render '/sessions/welcome' %>');
   hideSideNav();
+  topThreeProposalDisplay();
+}
+
+function topThreeProposalDisplay() {
+  $(".topThreeImages div img").hover(
+    function() {
+      $(this).css({
+        "transition": "0.5s",
+        "opacity": "0.2",
+        "border": "1px solid black"
+      });
+    },
+    function() {
+      $(this).css({
+        "opacity": "1",
+        "border": "0"
+      })
+    });
 }
 
 // function homeTemplate() {
