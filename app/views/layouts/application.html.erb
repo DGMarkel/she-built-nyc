@@ -81,7 +81,7 @@
         padding: 15px;
         height: 265px;
         width: 215px;
-        margin: 0 42%;
+        margin: 20px 42%;
         border: 1px solid black;
       }
 
@@ -244,8 +244,8 @@
             <a href="#" onclick="userProfileTemplate(); return false;" style="float:left">My Profile</a>
             <%= link_to "Log Out", logout_path, { :method => "delete", :style=> 'float:right'  } %>
           <% else %>
-            <a href = "#" onclick="loginTemplate(); return false;" style="float:left">Log In</a>
-            <%= link_to "Sign Up", new_user_path, { :style=> 'float:right' } %>
+            <a href="#" onclick="loginTemplate(); return false;" style="float:left">Log In</a>
+            <a href="#" onclick="signUpTemplate(); return false;" style="float:right">Sign Up</a>
           <% end %>
         </li>
         <hr style="clear:both;">

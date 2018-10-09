@@ -61,10 +61,13 @@ function loginTemplate() {
 function signUpTemplate() {
   $(".main").empty();
   hideSideNav();
-  $("body").css({
-    "background-image": "url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>)",
-    "background-size": "cover"
-  })
+  // $(".main").css({
+  //   "margin":"80px 0px",
+  //   "width":"100%",
+  //   "height":"1500px",
+  //   "background-image": "url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>)",
+  //   "background-size": "cover"
+  // })
   $(".main").append(`<div id="userForm"></div>`)
   $("#userForm").append(`<h1>Sign Up</h1>`)
   $("#userForm").append(`<form class="new_user" id="new_user" action="post"></form>`);
@@ -85,13 +88,13 @@ function postNewUser() {
       type: "POST",
       url: '/users/',
       data: values
-    })
-    debugger
+    });
     let users = await $.get(`/users.json`, function(data) {
     });
-    let newUser = users.pop();
-    debugger
-  })
+    newUser = users.pop()
+    currentUser = newUser.id
+    editProfileTemplate();
+  });
 }
 
 // welcome page functions
@@ -447,6 +450,7 @@ function showSideNav() {
   })
   $(".open").replaceWith(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="hideSideNav()">X</span>`);
 }
+
 function hideSideNav() {
   $("#mySidenav").css("width", "0");
   $(".main").css("width", "90%");

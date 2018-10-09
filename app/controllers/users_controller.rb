@@ -2,11 +2,12 @@ class UsersController < ApplicationController
   before_action :site_security, only: [:index, :show, :edit, :update, :destroy]
 
   def index
-    if current_user.admin
-      @users = User.all
-    else
-      redirect_to root_path
+    @users = User.all
+    respond_to do |format|
+      format.html { render :show }
+      format.json {  render json: @users }
     end
+
   end
 
   def show
