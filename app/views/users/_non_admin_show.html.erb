@@ -1,21 +1,13 @@
 <% if current_user %>
 
-  <style>
-    h3 {
-      margin-top: 0px;
-    }
-    h3 a {
-      text-decoration: underline;
-    }
-  </style>
-  <div style="width:35%">
+  <div style="display:inline-block;width:35%;">
   <% @user = current_user %>
   <% if @user.image_url && !@user.image_url.empty? %>
     <img src="<%=@user.image_url%>" style="width: 100%; height: auto; float: left; margin: 0 50px;">
   <% end %>
   </div>
-  <div style="display:block;width: 54%;margin-right: 50px;float:right;">
-  <h1 style="margin-top:10px;"><%= @user.name %></h1>
+  <div id="userDetails" style="display:inline-block;width:50%;float:right;">
+  <h1 style="margin-top:0px;"><%= @user.name %></h1>
   <h3><%= link_to "Edit Profile", edit_user_path(@user), {:style => 'float:left; margin-right:10px;'} %></h3>
   <% if logged_in? && current_user.admin %>
     <h3><%= link_to "Delete Profile", user_path(@user), data: {:confirm => 'Are you sure?'}, method: "delete", :style => 'float:left; margin-right:10px;'%></h3>
