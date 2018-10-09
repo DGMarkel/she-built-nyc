@@ -44,6 +44,32 @@
     color: red;
   }
 
+  .img_wrap {
+    position: relative;
+    height: 200px;
+    width: 100%;
+  }
+
+  .topThreeDescriptions {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(29, 106, 154, 0.72);
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+
+    /* transition effect. not necessary */
+    transition: opacity .2s, visibility .2s;
+  }
+
+  .img__wrap:hover .topThreeDescriptions {
+  visibility: visible;
+  opacity: 1;
+}
+
 /* STYLING FOR NON_ADMIN_SHOW */
 
   #userDetails {
@@ -248,13 +274,9 @@
     font-size: 18px;
   }
 
-  .topNav li[id="logInInfo"] a[2] {
-    position: relative;
-    left: -10px;
-  }
+  </style>
+</head>
 
-    </style>
-  </head>
   <body>
 
     <div id="mySidenav" class="sidenav">
