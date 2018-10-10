@@ -1,5 +1,4 @@
-revisit @user fix in non_admin_show
-figure out how to add background to signUpTemplate correctly
+Major fix needed for line 264 in index.html
 
 
 
