@@ -469,7 +469,7 @@ function showTopNav() {
     "height":"auto",
     "border-bottom":"1px solid lightgray"
   })
-  $("#topNavBurger").replaceWith(`<a id="topNavBurger" href="#" onclick="hideTopNav(); return false;" style="font-size:40px;color:rgb(175,200,229);">&#9776;</a></li>`);
+  $("#topNavBurger").replaceWith(`<a id="topNavBurger" href="#" onclick="hideTopNav(); return false;">&#9776;</a></li>`);
 }
 
 function hideTopNav() {
@@ -477,7 +477,7 @@ function hideTopNav() {
     "height":"0",
     "border-bottom":"0"
   })
-  $("#topNavBurger").replaceWith(`<a id="topNavBurger" href="#" onclick="showTopNav(); return false;" style="font-size:40px;color:rgb(175,200,229);">&#9776;</a></li>`);
+  $("#topNavBurger").replaceWith(`<a id="topNavBurger" href="#" onclick="showTopNav(); return false;">&#9776;</a></li>`);
 }
 
 </script>
