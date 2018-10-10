@@ -43,7 +43,7 @@
     color: red;
   }
 
-/* STYLING FOR WELCOME PAGE "TOP NOMINATIONS" SECTION */
+/*===== STYLING FOR WELCOME PAGE "TOP NOMINATIONS" SECTION =====*/
 
   .img_wrap {
     position: relative;
@@ -71,7 +71,7 @@
   font-family: 'Raleway', sans-serif;
 }
 
-/* STYLING FOR NON_ADMIN_SHOW */
+/*===== STYLING FOR NON_ADMIN_SHOW =====*/
 
   #userDetails {
     display: inline-block;
@@ -93,7 +93,14 @@
     margin-right: 10px;
   }
 
-/* FORM STYLING  */
+/*===== PROPOSAL SHOW PAGE STYLING ======*/
+
+div #proposalDetails {
+  overflow: overlay;
+  height: 500px;
+}
+
+/*===== FORM STYLING  ======*/
 
   /* forms to edit and create proposals*/
 
@@ -193,7 +200,9 @@
   }
 
 
-  /* NAVBAR AND NAVIGATION STYLING */
+/*===== NAVBAR AND NAVIGATION STYLING =====*/
+
+  /* styles top navbar */
 
   .sticky {
     position: fixed;
@@ -218,10 +227,22 @@
     right: 100px;
   }
 
-  div #proposalDetails {
-    overflow: overlay;
-    height: 500px;
+  #loggedInIcon {
+    height:40px;
+    width:40px;
+    float:right;
+    margin-top:10px;
+    margin-right:-40px;
+    overflow: hidden;
+    border-radius:50%;
   }
+
+  #loggedInIcon img {
+    height:100%;
+    width:auto;
+  }
+
+  /* next and previous proposal navigation  */
 
   .js-next {
     width: 175px;
@@ -231,6 +252,8 @@
     margin: 20px 20px 10px 0px;
     width: 175px;
   }
+
+  /* proposal index -- popout side navigation menu */
 
   .sidenav {
     height: 100%;
@@ -267,14 +290,7 @@
     right: 25%;
   }
 
-  .backToProposal {
-    background-color:rgb(175,200,229);
-    padding: 20px;
-    font-size: 30px;
-    position: fixed;
-    right: 25%;
-    top: 150px;
-  }
+  /* user options menu - login, signup, etc - popout on man navbar */
 
   .topNav {
     height: 0;
@@ -301,22 +317,16 @@
     font-size: 18px;
   }
 
-  #loggedInIcon {
-    height:40px;
-    width:40px;
-    float:right;
-    margin-top:10px;
-    margin-right:-40px;
-    overflow: hidden;
-    border-radius:50%;
+  /* takes users back to proposal from proposal comments page */
+
+  .backToProposal {
+    background-color:rgb(175,200,229);
+    padding: 20px;
+    font-size: 30px;
+    position: fixed;
+    right: 25%;
+    top: 150px;
   }
-
-  #loggedInIcon img {
-    height:100%;
-    width:auto;
-  }
-
-
 
   </style>
 </head>
