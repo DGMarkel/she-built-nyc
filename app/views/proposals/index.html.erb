@@ -377,6 +377,7 @@ function commentTemplate(comment) {
   $(`#comment-${comment["id"]}`).append(`<p><a id="replies_viewer_${comment['id']}" href="#" onclick="showCommentReplies(${comment["id"]}, ${replyCount});return false;")>${replyCount} Replies</a></p>`);
   $(`#comment-${comment["id"]}`).append(`</div>`)
   $(`#comment-${comment["id"]}`).append(`<div id="replies_to_comment_${comment['id']}"></div>`)
+  $(`#comment-${comment["id"]}`).append(`<hr>`)
   repliesTemplate(comment);
 }
 
