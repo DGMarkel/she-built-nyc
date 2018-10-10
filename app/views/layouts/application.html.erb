@@ -291,6 +291,23 @@
     font-size: 18px;
   }
 
+  #loggedInIcon {
+    height:40px;
+    width:40px;
+    float:right;
+    margin-top:10px;
+    margin-right:-40px;
+    overflow: hidden;
+    border-radius:50%;
+  }
+
+  #loggedInIcon img {
+    height:100%;
+    width:auto;
+  }
+
+
+
   </style>
 </head>
 
@@ -336,6 +353,9 @@
       <ul style="list-style-type:none;margin:0;padding:0;">
         <li><a id="topNavBurger" href="#" onclick="showTopNav(); return false;" style="font-size:40px;color:rgb(175,200,229);">&#9776;</a></li>
         <li><h1 style="display:inline"><a href="#" onclick="homeTemplate(); return false;">sheBuiltNYC</a></h3></li>
+        <% if current_user %>
+        <li><div id="loggedInIcon"><a href="#" onclick="userProfileTemplate(); return false;"><img src="<%= current_user.image_url %>"></a></div></li>
+        <% end %>
       </ul>
     </navbar>
 
