@@ -153,11 +153,19 @@ div #proposalDetails {
 
   /* forms to edit and create proposals*/
 
-  .edit_proposal, .new_proposal {
+  .edit_proposal {
     display: inline-block;
     background-color:rgba(255, 255, 255, 0.6);
     padding: 20px;
     height: 100%;
+    margin: 20px 40%;
+  }
+
+  .new_proposal {
+    display: inline-block;
+    background-color:rgba(255, 255, 255, 0.6);
+    padding: 20px;
+    height: auto;
     margin: 20px 40%;
   }
 
@@ -419,7 +427,7 @@ div #proposalDetails {
             <li><a href="#" onclick="editProposalTemplate(); return false;">Edit Proposal</a></li>
           <% elsif !current_user.admin && !current_user.proposal %>
             <hr>
-            <li><%= link_to "Submit a Proposal", new_proposal_path %></li>
+            <li><a href="#" onclick="newProposalTemplate(); return false;">Submit a Proposal</a></li>
           <% end %>
         <% end %>
       </ul>
