@@ -375,8 +375,14 @@ function postandInsertReply(comment) {
   let replies = await $.get(`/proposals/${navId}/comments/${comment}.json`)
   let newReply = replies["replies"].pop();
   $('#new_reply').remove();
+  updateReplyCount(comment);
   newReplyTemplate(newReply, comment);
   });
+}
+
+function updateReplyCount(comment) {
+  newReplyCount = parseInt($(`#replies_viewer_${comment}`)[0].text.match(/\d+/)[0]) + 1
+  $(`#replies_viewer_${comment}`)[0].text = `${newReplyCount} Replies`
 }
 
 function newReplyTemplate(newReply, comment) {
