@@ -34,7 +34,7 @@ Admin Stats</h1><br>
   <% if User.any? %>
     <div style="width:500px;height:180px;margin:5px 10px 5px 10px;float:left;background:white;border-radius:5px;padding:10px;">
       <h2 style="margin:10px 0;">Users</h2>
-      <h3 style="margin-top:0"><%= link_to "View All Users", users_path, :style => 'margin-top:0px;' %></h3>
+      <h3 style="margin-top:0"><a href="#" style="margin-top:0px;" onclick="userIndexTemplate(); return false;">View All Users</a></h3>
 
         <p style="margin:0px;">Newest User: <%= link_to User.last.name, user_path(User.last) %></p>
         <p style="margin:0px;">Number of users that joined the site today: <%= User.created_today.count %> </p>

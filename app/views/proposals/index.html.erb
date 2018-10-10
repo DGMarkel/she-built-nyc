@@ -144,6 +144,11 @@ function topThreeProposalDisplay() {
 
 // user profile functions
 
+function userIndexTemplate() {
+  $(".main").empty();
+  $(".main").append('<%= j render '/users/index' if current_user && current_user.admin %>');
+}
+
 function userProfileTemplate() {
   hideSideNav();
   $.get(`/users/${currentUser}.json`, function(data) {
