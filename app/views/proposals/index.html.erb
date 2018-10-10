@@ -1,6 +1,7 @@
 <script type="text/javascript" charset="utf-8">
 navId = null
 currentUser = null
+currentUserProposal = null
 
 $(function () {
   profileOrHomeTemplate();
@@ -301,13 +302,18 @@ function postNewProposal() {
     let proposals = await $.get(`/proposals.json`, function(data) {
     });
     newProposal = proposals.pop()
+    updateSideNav(newProposal.id, newProposal.name)
     updateTopNav()
     documentReadyCalls(newProposal.id)
   });
 }
 
 function updateTopNav() {
-  $("#submitProposalLink").replaceWith(`<a href="#" onclick="editProposalTemplate(); return false;">Edit Proposal</a>`)
+  $("#submitProposalLink").replaceWith(`<a href="#" onclick="editProposalTemplate(); return false;">Edit Proposal</a>`);
+}
+
+function updateSideNav(newProposalId, newProposalName) {
+  $(".sidenav").append(`<h3><a class="proposalLink"><a href="#" onclick="documentReadyCalls(${newProposalId}); return false">${newProposalName}</a></h3>`);
 }
 
 // comment functions
