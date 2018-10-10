@@ -31,7 +31,6 @@ class ProposalsController < ApplicationController
       current_user.update(proposal_id: @proposal.id)
       @proposal.update(user_id: current_user.id)
       @proposal.rankings.create(user_id: current_user.id, ranking: 5)
-      redirect_to proposal_path(@proposal)
     else
       if @proposal.name.empty?
         flash[:name_warning] = "Your proposal must have a name"
@@ -46,7 +45,6 @@ class ProposalsController < ApplicationController
       if @proposal.errors[:pitch].any?
         flash[:pitch_warning] = "You must provide a case for your nomination"
       end
-      render new_proposal_path
     end
   end
 
