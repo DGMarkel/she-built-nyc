@@ -12,7 +12,7 @@ Admin Stats</h1><br>
 <% if Proposal.any? && Proposal.winning_proposal %>
 
   <h2 style="width:1040px;height:auto;margin:10px 0px 10px 10px;float:left;background:white;border-radius:5px;padding:10px;"><%= link_to Proposal.winning_proposal[0].user.name, user_path(Proposal.winning_proposal[0].user) %>'s proposal,
-  <%= link_to Proposal.winning_proposal[0].name, proposal_path(Proposal.winning_proposal[0]) %>, has the highest
+  <a href="#" onclick="documentReadyCalls(<%= Proposal.winning_proposal[0].id %>); return false;"><%= Proposal.winning_proposal[0].name %></a>, has the highest
   average user rating and highest number of votes.</h2>
 
 <% end %>
@@ -23,7 +23,7 @@ Admin Stats</h1><br>
 
     <div style="width:500px;height:180px;margin:5px 10px 5px 10px;float:left;background:white;border-radius:5px;padding:10px;">
       <h2 style="margin:10px 0;">Proposals</h2>
-      <h3 style="margin-top:0"><%= link_to "View All Proposals", proposals_path, :style => 'margin-top:0px;' %></h3>
+      <h3 style="margin-top:0"><a href="#" style="margin-top:0px;" onclick="indexTemplate();return false;">View All Proposals"</a></h3>
       <p style="margin:0px;">Newest Proposal: <%= link_to Proposal.last.name, proposal_path(Proposal.last) %></p>
       <p style="margin:0px;">Number of proposals submitted today: <%= Proposal.created_today.count %> </p>
       <p style="margin:0px;">Total number of proposals: <%= Proposal.all.count %></p>
