@@ -335,8 +335,8 @@ function commentTemplate(comment) {
   $(`#comment-${comment["id"]}`).append(`<h4>${comment["content"]}</h4>`);
 
   // viewable to registered users only
-  if (currentUser != null) {
-  $(`#comment-${comment["id"]}`).append(`<p id="reply_form_${comment['id']}"><a href="#" onclick="replyForm(${comment['id']});return false;"}/replies/new">Reply</a></p>`);
+  if (currentUser != "") {
+  $(`#comment-${comment["id"]}`).append(`<p id="reply_form_${comment['id']}"><a href="#" onclick="replyForm(${comment['id']});return false;"}">Reply</a></p>`);
   }
 
   $(`#comment-${comment["id"]}`).append(`<p><a id="replies_viewer_${comment['id']}" href="#" onclick="showCommentReplies(${comment["id"]}, ${replyCount});return false;")>${replyCount} Replies</a></p>`);
