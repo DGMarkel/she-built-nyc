@@ -232,6 +232,7 @@ function getProposal(navId) {
 }
 
 function proposalTemplate(navId) {
+
   $(".main").empty();
 
   //div contains all proposal details
@@ -256,9 +257,10 @@ function proposalTemplate(navId) {
   $(".main").append('<%= j render 'logged_in_show' if current_user %>');
 
   if (currentUser != null) {
+
     $(`<div id="loggedInProposalComments"><h1><a href="#" onclick="getRecentComments(${navId}); return false">View Comments</a></h1></div>`).insertAfter(`#proposalForms #rankingForm`)
   }
-  if (currentUser === "") {
+  if (currentUser === "" || parseInt(`<%= current_user.proposal.id %>`) === navId) {
   // div for comments
     $(".main").append(`<hr>`)
     $(".main").append(`<div id="proposalComments">`);
@@ -292,19 +294,13 @@ function ProposalFormIds(navId) {
 }
 
 function showProposalForms(navId) {
-  $.get("/proposals/" + navId + ".json", function(data) {
-      currentUser = $("#badIdea")[0]["value"]
+  $.get(`/proposals/${navId}.json`, function(data) {
       if (data["user"]["id"].toString() != currentUser) {
         $("#proposalForms").show();
         $("proposalNavigation").next().show()
       } else {
         $("#proposalForms").hide();
       }
-  });
-}
-
-function checkUserProposal() {
-  return $.get(`/users/${currentUser}.json`, function(data) {
   });
 }
 
@@ -441,7 +437,6 @@ function hideCommentReplies(commentId, replyCount) {
 //ranking functions
 
 async function checkForUserRanking() {
-  let currentUser = $("#badIdea")[0]["value"]
   let currentProposal = $("#ranking_proposal")[0]["value"]
   let res = await fetch('/rankings.json')
   let foundData = await res.json()
