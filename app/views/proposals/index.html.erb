@@ -301,8 +301,13 @@ function postNewProposal() {
     let proposals = await $.get(`/proposals.json`, function(data) {
     });
     newProposal = proposals.pop()
+    updateTopNav()
     documentReadyCalls(newProposal.id)
   });
+}
+
+function updateTopNav() {
+  $("#submitProposalLink").replaceWith(`<a href="#" onclick="editProposalTemplate(); return false;">Edit Proposal</a>`)
 }
 
 // comment functions

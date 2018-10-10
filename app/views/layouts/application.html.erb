@@ -313,7 +313,7 @@ div #proposalDetails {
   /* proposal index -- popout side navigation menu */
 
   .sidenav {
-    height: 100%;
+    max-height: calc(100vh - 9rem);
     width: 0;
     position: fixed;
     z-index: 1;
@@ -321,7 +321,7 @@ div #proposalDetails {
     right: 0;
     border-left: 1px solid lightgray;
     background-color: white;
-    overflow: overlay;
+    overflow-y: scroll;
     transition: 0.5s;
     padding-top: 20px;
     margin-top: -20px;
@@ -427,7 +427,7 @@ div #proposalDetails {
             <li><a href="#" onclick="editProposalTemplate(); return false;">Edit Proposal</a></li>
           <% elsif !current_user.admin && !current_user.proposal %>
             <hr>
-            <li><a href="#" onclick="newProposalTemplate(); return false;">Submit a Proposal</a></li>
+            <li><a id="submitProposalLink" href="#" onclick="newProposalTemplate(); return false;">Submit a Proposal</a></li>
           <% end %>
         <% end %>
       </ul>
