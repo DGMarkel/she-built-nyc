@@ -7,6 +7,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=PT+Sans|Raleway:100" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:700" rel="stylesheet">
 
 <style>
 
@@ -108,7 +109,7 @@
     left: -100px;
     width: 125%;
     height: 1000px;
-    background-image: url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>);
+    background-image: url(<%= Proposal.find(6).image_url %>);
     background-size: cover;
   }
 
