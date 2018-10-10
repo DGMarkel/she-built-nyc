@@ -261,8 +261,6 @@ function proposalTemplate(navId) {
     $(`<div id="loggedInProposalComments"><h1><a href="#" onclick="getRecentComments(${navId}); return false">View Comments</a></h1></div>`).insertAfter(`#proposalForms #rankingForm`)
   }
 
-  // if (currentUser === "" || parseInt(`<%= current_user.proposal.id %>`) === navId) {
-
   if (currentUser === "") {
   // div for comments
     $(".main").append(`<hr>`)

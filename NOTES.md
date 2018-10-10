@@ -1,4 +1,7 @@
-Major fix needed for line 264 in index.html
+Major fix needed for line 264 in index.html:
+had to move it here to get my code working
+ if (currentUser === "" || parseInt(`<%= current_user.proposal.id %>`) === navId) {
+
 
 
 
