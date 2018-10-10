@@ -104,6 +104,13 @@ div #proposalDetails {
   display: inline;
 }
 
+.proposalImage img {
+  width:35%;
+  height:auto;
+  float:left;
+  margin-right:40px;
+}
+
 /*===== PROPOSAL INDEX STYLING =====*/
 
   #proposalIndex {
@@ -114,6 +121,11 @@ div #proposalDetails {
      float:left;
      height:90%;
      margin-right:20px;
+  }
+
+  #proposalIndexHeader {
+    font-size:60px;
+    margin-bottom:10px;
   }
 
   [id*='proposal-'] {
@@ -314,7 +326,9 @@ div #proposalDetails {
 
   .open {
     background-color:rgb(175,200,229);
-    padding: 5px;
+    font-size:30px;
+    cursor:pointer;
+    padding:20px;
     position: fixed;
     right: 25%;
   }

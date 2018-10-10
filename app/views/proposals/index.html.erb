@@ -184,7 +184,7 @@ function getProposal(navId) {
       alert("You're at the end of the line, buddy")
     }else {
       $(".proposalName").text(data["name"]);
-      $(".proposalImage").html(`<img src="${data["image_url"]}" style="width:35%;height:auto;float:left;margin-right:40px;">`)
+      $(".proposalImage").html(`<img src="${data["image_url"]}">`)
       $(".proposalDescription").text(data["description"]);
       let user = data["user"]["id"]
       $(".proposalUser").html(`<a href="/users/${data['user']['id']}">${data["user"]["name"]}</a>`);
@@ -203,7 +203,7 @@ function proposalTemplate(navId) {
   $(".main").append(`<div id="proposalDetails">`)
   $("#proposalDetails").append(`<span class="proposalImage"></span>`);
   $("#proposalDetails").append(`<h1 class="proposalName"></h1>`);
-  $("#proposalDetails").append(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="hideSideNav()">X</span>`);
+  $("#proposalDetails").append(`<span class="open" onclick="hideSideNav()">X</span>`);
   $("#proposalDetails").append(`<h3 class="proposalDescription"></h3>`);
   $("#proposalDetails").append(`<hr>`);
   $("#proposalDetails").append(`<p>Submitted by: <span class="proposalUser"></span></p>`);
@@ -285,7 +285,7 @@ function getRecentComments(navId) {
       $(".main").prepend(`<span><a href="#" onclick="getAllComments(navId); return false;">View All Comments</a></span>`)
       $(".main").prepend(`<h1>Recent Comments</h1>`)
       $(".main").prepend(`<span class="backToProposal"><a href="#" onclick="documentReadyCalls(navId); return false;">Back to Proposal</a></span>`)
-      $(".main").prepend(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="hideSideNav()">X</span>`);
+      $(".main").prepend(`<span class="open" onclick="hideSideNav()">X</span>`);
       showSideNav();
     }else {
       getAllComments(navId);
@@ -303,7 +303,7 @@ function getAllComments(navId) {
     $(".main").prepend(`<span><a href="#" onclick="getRecentComments(navId); return false;">View Recent Comments</a></span>`)
     $(".main").prepend(`<h1>Comments</h1>`)
     $(".main").prepend(`<span class="backToProposal"><a href="#" onclick="documentReadyCalls(navId); return false;">Back to Proposal</a></span>`)
-    $(".main").prepend(`<span class="open" style="font-size:30px;cursor:pointer;padding:20px;" onclick="hideSideNav()">X</span>`);
+    $(".main").prepend(`<span class="open" onclick="hideSideNav()">X</span>`);
     showSideNav();
     if (data.length > 3) {
       $("#comments_viewer").replaceWith(`<p><a id="comments_viewer" href="#" onclick="getRecentComments(${navId}); return false;">View Most Recent Comments</a></p>`)
