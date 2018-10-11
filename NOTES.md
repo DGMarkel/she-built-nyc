@@ -4,6 +4,24 @@ had to move it here to get my code working
 
 problem with new proposal submit - it updates side and top nav even if a new proposal doesnt save to the db
 
+replace lines 181-207 with this function after the assessment:
+
+function getProposal(navId) {
+  $.get("/proposals/" + navId + ".json", function(data) {
+    if (data === null) {
+      alert("You're at the end of the line, buddy")
+    }else {
+      $(".proposalName").text(data["name"]);
+      $(".proposalImage").html(`<img src="${data["image_url"]}">`)
+      $(".proposalDescription").text(data["description"]);
+      let user = data["user"]["id"]
+      $(".proposalUser").html(`<a href="/users/${data['user']['id']}">${data["user"]["name"]}</a>`);
+      $(".proposalPitch").text(data["pitch"])
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", data["id"]);
+    }
+  });
+}
 
 
 
