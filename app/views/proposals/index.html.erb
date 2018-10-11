@@ -183,16 +183,24 @@ function getProposal(navId) {
     if (data === null) {
       alert("You're at the end of the line, buddy")
     }else {
-      $(".proposalName").text(data["name"]);
-      $(".proposalImage").html(`<img src="${data["image_url"]}">`)
-      $(".proposalDescription").text(data["description"]);
-      let user = data["user"]["id"]
-      $(".proposalUser").html(`<a href="/users/${data['user']['id']}">${data["user"]["name"]}</a>`);
-      $(".proposalPitch").text(data["pitch"])
-      // re-set the id to current on the link
-      $(".js-next").attr("data-id", data["id"]);
+      proposal = new Proposal();
+      proposal.appendData(data);
     }
   });
+}
+
+function Proposal() {
+  this.appendData = function(data) {
+    debugger
+    $(".proposalName").text(data["name"]);
+    $(".proposalImage").html(`<img src="${data["image_url"]}">`)
+    $(".proposalDescription").text(data["description"]);
+    let user = data["user"]["id"]
+    $(".proposalUser").html(`<a href="/users/${data['user']['id']}">${data["user"]["name"]}</a>`);
+    $(".proposalPitch").text(data["pitch"])
+    // re-set the id to current on the link
+    $(".js-next").attr("data-id", data["id"]);
+  }
 }
 
 function proposalTemplate(navId) {
