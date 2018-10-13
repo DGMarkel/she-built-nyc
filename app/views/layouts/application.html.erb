@@ -221,26 +221,28 @@ div #proposalDetails {
   /* user signup form */
 
   #userForm {
-    display: inline-block;
-    background-color:rgba(255, 255, 255, 0.6);
-    padding: 15px;
-    height: 290px;
-    width: 215px;
-    margin: 40px 42%;
+    position: absolute;
+    top: 200px;
+    z-index: -1;
+    width: 20%;
+    margin: 0 38%;
+    padding: 20px 20px 40px 20px;
+    background-color:rgba(255, 255, 255, 0.7);
+    text-align: center;
+  }
+
+  #userForm input[type="password"] {
+    width: 75%;
+    height: 30px;
+    border-radius: 5px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    text-align: center;
   }
 
   #userForm h1 {
     font-size: 60px;
     margin: 10px 0;
-
-  }
-
-  #userForm p {
-    margin: 4px 0;
-  }
-
-  #userForm input[type="submit"] {
-    margin: 15px 0;
   }
 
   #formWrapper {
@@ -282,7 +284,6 @@ div #proposalDetails {
     overflow: overlay;
     background-color:rgba(255, 255, 255, 0.8);
     text-align: center;
-    transition: 0.3s;
   }
 
   #editUserDetails h1 {
@@ -307,18 +308,18 @@ div #proposalDetails {
     border-top: 1px solid black;
   }
 
-  #editUserDetails input[type="submit"] {
+  #editUserDetails input[type="submit"], #userForm input[type="submit"] {
     background: orange;
     padding: 10px 18px;
     margin-top: 20px;
     border-radius: 5px;
-    width: 75%;
+    width: 80%;
     font-family: 'Raleway', sans-serif;
     font-size: 20px;
     color: white;
   }
 
-  #editUserDetails input[type="text"], input[type="number"] {
+  #editUserDetails input[type="text"], input[type="number"], #userForm input[type="text"] {
     width: 75%;
     height: 30px;
     border-radius: 5px;
@@ -327,7 +328,7 @@ div #proposalDetails {
     text-align: center;
   }
 
-  #editUserDetails a:hover {
+  #editUserDetails a:hover, #userForm input[type="submit"]:hover {
     color: red;
   }
 
