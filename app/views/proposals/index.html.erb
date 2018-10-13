@@ -205,12 +205,8 @@ function indexProposalTemplate(proposal) {
 
 function getProposal(navId) {
   $.get("/proposals/" + navId + ".json", function(data) {
-    if (data === null) {
-      alert("You're at the end of the line, buddy")
-    }else {
-      proposal = new Proposal();
-      proposal.appendData(data);
-    }
+    proposal = new Proposal();
+    proposal.appendData(data);
   });
 }
 
@@ -271,15 +267,18 @@ function proposalNavigation(){
   $(".js-next").on("click", function() {
     // set id for next proposal
     navId = (parseInt($(".js-next").attr("data-id")) + 1).toString();
-    documentReadyCalls(navId);
+    $.get(`/proposals/${navId}.json`, function(data) {
+      if (data != null) {
+        documentReadyCalls(navId);
+      }
+    });
   });
   $(".js-previous").on("click", function() {
     // set id for previous proposal
     navId = (parseInt($(".js-next").attr("data-id")) - 1).toString();
-    if (navId === "0") {
-      alert("Try clicking on 'next proposal' instead.")
+    if (navId != "0") {
+      documentReadyCalls(navId);
     }
-    documentReadyCalls(navId);
   });
 }
 
