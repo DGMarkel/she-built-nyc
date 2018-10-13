@@ -11,9 +11,11 @@ Admin Stats</h1><br>
 
 <% if Proposal.any? && Proposal.winning_proposal %>
 
-  <h2 style="width:1040px;height:auto;margin:10px 0px 10px 10px;float:left;background:white;border-radius:5px;padding:10px;"><%= link_to Proposal.winning_proposal[0].user.name, user_path(Proposal.winning_proposal[0].user) %>'s proposal,
-  <a href="#" onclick="documentReadyCalls(<%= Proposal.winning_proposal[0].id %>); return false;"><%= Proposal.winning_proposal[0].name %></a>, has the highest
-  average user rating and highest number of votes.</h2>
+  <h2 style="width:1040px;height:auto;margin:10px 0px 10px 10px;float:left;background:white;border-radius:5px;padding:10px;">
+    <a href="#" onclick="getOtherUserProfile(<%= Proposal.winning_proposal[0].user.id %>); return false"><%= Proposal.winning_proposal[0].user.name %></a>'s proposal,
+    <a href="#" onclick="documentReadyCalls(<%= Proposal.winning_proposal[0].id %>); return false;"><%= Proposal.winning_proposal[0].name %></a>, has the highest
+    average user rating and highest number of votes.
+  </h2>
 
 <% end %>
 
@@ -23,8 +25,8 @@ Admin Stats</h1><br>
 
     <div style="width:500px;height:180px;margin:5px 10px 5px 10px;float:left;background:white;border-radius:5px;padding:10px;">
       <h2 style="margin:10px 0;">Proposals</h2>
-      <h3 style="margin-top:0"><a href="#" style="margin-top:0px;" onclick="indexTemplate();return false;">View All Proposals"</a></h3>
-      <p style="margin:0px;">Newest Proposal: <%= link_to Proposal.last.name, proposal_path(Proposal.last) %></p>
+      <h3 style="margin-top:0"><a href="#" style="margin-top:0px;" onclick="indexTemplate();return false;">View All Proposals</a></h3>
+      <p style="margin:0px;">Newest Proposal: <a href="#" onlick="documentReadyCalls(<%= Proposal.last.id %>); return false;"><%= Proposal.last.name %></a></p>
       <p style="margin:0px;">Number of proposals submitted today: <%= Proposal.created_today.count %> </p>
       <p style="margin:0px;">Total number of proposals: <%= Proposal.all.count %></p>
     </div>
@@ -36,7 +38,7 @@ Admin Stats</h1><br>
       <h2 style="margin:10px 0;">Users</h2>
       <h3 style="margin-top:0"><a href="#" style="margin-top:0px;" onclick="userIndexTemplate(); return false;">View All Users</a></h3>
 
-        <p style="margin:0px;">Newest User: <%= link_to User.last.name, user_path(User.last) %></p>
+        <p style="margin:0px;">Newest User: <a href="#" onclick="getOtherUserProfile(<%= User.last.id %>); return false;"><%= User.last.name %></a></p>
         <p style="margin:0px;">Number of users that joined the site today: <%= User.created_today.count %> </p>
         <p style="margin:0px;">Total number of users: <%= User.all.count %></p>
 
