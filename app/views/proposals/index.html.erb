@@ -129,9 +129,20 @@ function getOtherUserProfile() {
   $(".userLink").on("click", function(e) {
       e.preventDefault();
       $.get(`/users/${this.id}.json`, function(data) {
-        debugger
+        otherUserProfileTemplate(data);
       })
   });
+}
+
+function otherUserProfileTemplate(data) {
+  $(".main").empty();
+  $(".main").append(`<div id="formWrapper"></div>`)
+  $("#formWrapper").append(`<div id="otherUserDetails"></div>`)
+  $("#otherUserDetails").append(`<img src="${data.image_url}">`)
+  $("#otherUserDetails").append(`<h1>${data.name}</h1>`)
+  $("#otherUserDetails").append(`<h3>Affiliation: ${data.affiliation} </h3>`)
+  $("#otherUserDetails").append(`<h3>Borough: ${data.borough} </h3>`)
+  $("#otherUserDetails").append(`<h3>Zip Code: ${data.zip_code} </h3>`)
 }
 
 // edit profile functions
