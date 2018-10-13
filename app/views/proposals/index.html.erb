@@ -245,8 +245,8 @@ function proposalTemplate(navId) {
 
   // div contains site navigation buttons
   $(".main").append(`<div id="proposalNavigation">`)
-  $("#proposalNavigation").append(`<button class=".arrow-left" data-id="${navId}">Previous Proposal</button>`);
-  $("#proposalNavigation").append(`<button class=".arrow-right" data-id="${navId}">Next Proposal</button>`);
+  $("#proposalNavigation").append(`<button class="js-previous" data-id="${navId}">Previous Proposal</button>`);
+   $("#proposalNavigation").append(`<button class="js-next" data-id="${navId}">Next Proposal</button>`);
   $(".proposalNavigation").append(`</div>`);
 
   // div adds ranking and comment forms
