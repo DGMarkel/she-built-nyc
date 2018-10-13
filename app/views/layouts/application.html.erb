@@ -268,6 +268,68 @@ div #proposalDetails {
     margin-right: 20px;
   }
 
+  /* edit user form */
+
+  #editUserDetails {
+    z-index: -1;
+    position: fixed;
+    top: 60px;
+    right: 32%;
+    max-height: calc(100vh - 6rem);
+    width: 30%;
+    margin: 0 35%;
+    padding: 20px 20px 40px 20px;
+    overflow: overlay;
+    background-color:rgba(255, 255, 255, 0.8);
+    text-align: center;
+  }
+
+  #editUserDetails h1 {
+    margin: 0px;
+  }
+
+  #editUserDetails h3:last-of-type {
+    margin-bottom: 25px;
+  }
+
+  #editUserDetails img {
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  #editUserDetails hr:first-of-type {
+    margin-top: 20px;
+  }
+
+  #editUserDetails hr {
+    border-top: 1px solid black;
+  }
+
+  #editUserDetails input[type="submit"] {
+    background: orange;
+    padding: 10px 18px;
+    margin-top: 20px;
+    border-radius: 5px;
+    width: 75%;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    color: white;
+  }
+
+  #editUserDetails input[type="text"], input[type="number"] {
+    width: 75%;
+    height: 30px;
+    border-radius: 5px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  #editUserDetails a:hover {
+    color: red;
+  }
+
   /* forms to comment on and rank specific proposals */
 
   #proposalForms {

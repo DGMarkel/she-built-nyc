@@ -2,14 +2,7 @@
   body {
     background-image: url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>);
     background-size: cover;
-  }
-
-  span {
-    display: inline-block;
-    background-color:rgba(255, 255, 255, 0.6);
-    padding: 10px;
-    height: 365px;
-    margin: 20px 42%;
+    background-repeat: no-repeat;
   }
 
 </style>
@@ -20,20 +13,22 @@
   <% @user = User.last %>
 <% end %>
 
-<span>
+<div id="editUserDetails">
+  <img src="<%= @user.image_url %>">
+  <hr>
   <h1 style="font-size:60;">Edit Profile</h1>
   <hr>
   <%= form_for(@user) do |f| %>
-  <p>Name</p>
-  <%= f.text_field :name %></p>
-  <p>Affiliation</p>
-  <%= f.text_field :affiliation %></p>
-  <p>Borough</p>
-  <%= f.text_field :borough %></p>
-  <p>Zip Code</p>
-  <%= f.number_field :zip_code %></p>
-  <p>Profile Picture (optional)</p>
-  <%= f.text_field :image_url %></p>
+  <h2>Name</h2>
+  <%= f.text_field :name %>
+  <h2>Affiliation</h2>
+  <%= f.text_field :affiliation %>
+  <h2>Borough</h2>
+  <%= f.text_field :borough %>
+  <h2>Zip Code</h2>
+  <%= f.number_field :zip_code %>
+  <h2>Profile Picture (optional)</h2>
+  <%= f.text_field :image_url %>
   <%= f.submit %>
   <% end %>
-</span>
+</div>
