@@ -4,6 +4,9 @@ currentUser = null
 
 $(function () {
   profileOrHomeTemplate();
+  $(".main").on("click", function() {
+    hideTopNav();
+  });
 });
 
 function documentReadyCalls(proposalId) {
@@ -137,6 +140,7 @@ function otherUserProfileTemplate(data) {
   $(".main").append(`<div id="formWrapper"></div>`);
   $("#formWrapper").append(`<div id="otherUserDetails"></div>`);
   $("#otherUserDetails").append(`<img src="${data.image_url}">`);
+  $("#otherUserDetails").append(`<hr>`);
   $("#otherUserDetails").append(`<h1>${data.name}</h1>`);
   $("#otherUserDetails").append(`<hr>`);
   $("#otherUserDetails").append(`<h3>Affiliation: ${data.affiliation} </h3>`);
