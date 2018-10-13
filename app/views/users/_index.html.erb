@@ -9,7 +9,7 @@
   <% if user.image_url && !user.image_url.empty? %>
     <img src="<%=user.image_url%>" style="float:left;height:90%;margin-right:20px;">
   <% end %>
-  <h1><%= link_to user.name, user_path(user) %></h1>
+  <h1><a href="#" onclick="getOtherUserProfile(<%= user.id %>); return false;"><%= user.name %></h1>
   <h3>Joined <%= user.created_at %></h3>
   <% if current_user && current_user.admin %>
     <p style="float:left;">

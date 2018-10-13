@@ -125,6 +125,7 @@ function currentUserProfileTemplate() {
 
 // submits get request for non-currentUser user profiles
 function getOtherUserProfile(otherUserId) {
+
   $.get(`/users/${otherUserId}.json`, function(data) {
       otherUserProfileTemplate(data);
   })
