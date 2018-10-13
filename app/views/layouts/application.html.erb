@@ -412,7 +412,7 @@ div #proposalDetails {
       <ul style="list-style-type:none">
         <li id="logInInfo">
           <% if current_user %>
-            <a href="#" onclick="userProfileTemplate(); return false;" style="float:left">My Profile</a>
+            <a href="#" onclick="currentUserProfileTemplate(); return false;" style="float:left">My Profile</a>
             <a href="#" onclick="editProfileTemplate(); return false;" style="float:left">Edit Profile</a>
             <%= link_to "Log Out", logout_path, { :method => "delete", :style=> 'float:right'  } %>
           <% else %>
@@ -439,7 +439,7 @@ div #proposalDetails {
         <li><a id="topNavBurger" href="#" onclick="showTopNav(); return false;" style="font-size:40px;color:rgb(175,200,229);">&#9776;</a></li>
         <li><h1 style="display:inline"><a href="#" onclick="homeTemplate(); return false;">sheBuiltNYC</a></h3></li>
         <% if current_user %>
-        <li><div id="loggedInIcon"><a href="#" onclick="userProfileTemplate(); return false;"><img src="<%= current_user.image_url %>"></a></div></li>
+        <li><div id="loggedInIcon"><a href="#" onclick="currentUserProfileTemplate(); return false;"><img src="<%= current_user.image_url %>"></a></div></li>
         <% end %>
       </ul>
     </navbar>

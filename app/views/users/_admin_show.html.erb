@@ -57,7 +57,7 @@ Admin Stats</h1><br>
   <% if Comment.any? %>
     <div style="width:500px;height:180px;margin:5px 10px 5px 10px;float:left;background:white;border-radius:5px;padding:10px;overflow:scroll">
     <h2 style="margin:10px 0;">Comments</h2>
-      <p style="margin:0px;">Most recent comment: <%= Comment.last.content %> - <%= link_to Comment.last.user.name, user_path(Comment.last.user)%>
+      <p style="margin:0px;">Most recent comment: <%= Comment.last.content %> - <a class="userLink" id="<%= Comment.last.user.id %>" href="#"><%= Comment.last.user.name %></a>
       <p style="margin:0px;">Number of comments posted today: <%= Comment.created_today.count %></p>
       <p style="margin:0px;">Total number of comments: <%= Ranking.all.count %> </p>
     </div>
