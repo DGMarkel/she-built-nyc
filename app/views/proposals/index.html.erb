@@ -132,6 +132,7 @@ function getOtherUserProfile(otherUserId) {
 }
 
 function otherUserProfileTemplate(data) {
+  hideSideNav();
   $(".main").empty();
   $(".main").append(`<div id="formWrapper"></div>`);
   $("#formWrapper").append(`<div id="otherUserDetails"></div>`);
@@ -219,7 +220,7 @@ function Proposal() {
     $(".proposalImage").html(`<img src="${data["image_url"]}">`)
     $(".proposalDescription").text(data["description"]);
     let user = data["user"]["id"]
-    $(".proposalUser").html(`<a href="/users/${data['user']['id']}">${data["user"]["name"]}</a>`);
+    $(".proposalUser").html(`<a href="#" onclick="getOtherUserProfile(${user}); return false;">${data["user"]["name"]}</a>`);
     $(".proposalPitch").text(data["pitch"])
     // re-set the id to current on the link
     $(".js-next").attr("data-id", data["id"]);

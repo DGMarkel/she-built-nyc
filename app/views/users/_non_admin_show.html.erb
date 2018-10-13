@@ -45,7 +45,7 @@
 
         <em>
 
-            <%= comment.content %></em> - comment on <%= link_to @proposal.user.name, user_path(@proposal.user) %>'s
+            <%= comment.content %></em> - comment on <a href="#" onclick="getOtherUserProfile(<%= @proposal.user.id %>); return false;"><%= @proposal.user.name %></a>'s
             proposal, <a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false"><%= @proposal.name %>
             </a>
 
