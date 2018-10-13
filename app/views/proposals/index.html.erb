@@ -115,7 +115,6 @@ function currentUserProfileTemplate() {
 
       $(".main").empty();
       $(".main").append('<%= j render '/users/admin_show' %>');
-      getOtherUserProfile();
     } else {
 
       $(".main").empty();
@@ -125,13 +124,10 @@ function currentUserProfileTemplate() {
 }
 
 // submits get request for non-currentUser user profiles
-function getOtherUserProfile() {
-  $(".userLink").on("click", function(e) {
-      e.preventDefault();
-      $.get(`/users/${this.id}.json`, function(data) {
-        otherUserProfileTemplate(data);
-      })
-  });
+function getOtherUserProfile(otherUserId) {
+  $.get(`/users/${otherUserId}.json`, function(data) {
+      otherUserProfileTemplate(data);
+  })
 }
 
 function otherUserProfileTemplate(data) {
