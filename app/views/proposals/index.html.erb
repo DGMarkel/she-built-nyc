@@ -157,7 +157,9 @@ function otherUserProfileTemplate(data) {
 function editProfileTemplate() {
   $(".main").empty();
   $(".main").append('<%= j render '/users/edit' %>');
+  $("#editUserDetails").animate({"right": "32%"}, 100, function() {});
   hideSideNav();
+
 }
 
 function editProposalTemplate() {
