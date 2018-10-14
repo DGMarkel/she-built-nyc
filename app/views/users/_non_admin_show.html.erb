@@ -1,24 +1,26 @@
+<style>
+  body {
+    background-image: url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+</style>
+
 <% if current_user %>
   <% @user = current_user %>
 
-<div style="display:inline-block;width:50%;">
+  <div id="otherUserDetails">
 
-  <% if @user.image_url && !@user.image_url.empty? %>
-    <img src="<%=@user.image_url%>" style="width: 100%; height: auto; float: left;margin-top:20px;margin-left:16px;">
-  <% end %>
-  </div>
+    <% if @user.image_url && !@user.image_url.empty? %>
+      <img src="<%=@user.image_url%>">
+    <% end %>
 
-  <div id="userDetails">
-
+    <hr>
     <h1><%= @user.name %></h1>
+    <hr>
     <h3 id="userOptions"><a href="#" onclick="editProfileTemplate(); return false;">Edit Profile</a></h3>
     <% if logged_in? && current_user.admin %>
       <h3 id="userOptions"><%= link_to "Delete Profile", user_path(@user), data: {:confirm => 'Are you sure?'}, method: "delete"%></h3>
-    <% end %>
-    <% if logged_in? && current_user.admin %>
-      <h3 id="userOptions"><%= link_to "#{@user.name}'s Comments", user_comments_path(@user)%></h3>
-    <% else %>
-      <h3  id="userOptions"><%= link_to "My Comments", user_comments_path(@user)%></h3>
     <% end %>
     <% if @user.proposal %>
       <h3><a href="#" onclick="documentReadyCalls(<%= @user.proposal.id %>); return false;">My Proposal</a></h3>
