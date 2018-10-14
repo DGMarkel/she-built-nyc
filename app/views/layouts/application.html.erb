@@ -258,17 +258,32 @@ div #proposalDetails {
 
   /* user login form */
 
-  #loginForm h1, #loginForm p {
-    text-align: center;
+  #loginForm {
+    margin-top: 30px;
+    margin-left: 55px;
   }
 
   #loginForm input {
-    margin-left: 20px;
+    height: 20px;
+    width: 90%;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+    color: gray;
+    font-family: 'Raleway', sans-serif;
   }
 
-  #loginForm input[type="submit"] {
-    margin-right: 20px;
-  }
+    #loginForm input[type="submit"] {
+      background-color: orange;
+      width: 92%;
+      height: 30px;
+      color: black;
+    }
+
+    #loginForm a {
+      font-size: 16px;
+      margin-left: -15px;
+    }
 
   /* edit user form */
 
@@ -524,29 +539,31 @@ div #proposalDetails {
     </div>
 
     <div class="topNav">
-      <ul style="list-style-type:none">
-        <li id="logInInfo">
+      <div id ="topNavMenu">
+        <ul style="list-style-type:none">
+          <li id="logInInfo">
+            <% if current_user %>
+              <a href="#" onclick="currentUserProfileTemplate(); return false;" style="float:left">My Profile</a>
+              <a href="#" onclick="editProfileTemplate(); return false;" style="float:left">Edit Profile</a>
+              <%= link_to "Log Out", logout_path, { :method => "delete", :style=> 'float:right'  } %>
+            <% else %>
+              <a href="#" onclick="loginTemplate(); return false;" style="float:left">Log In</a>
+              <a href="#" onclick="signUpTemplate(); return false;" style="float:right">Sign Up</a>
+            <% end %>
+          </li>
+          <hr style="clear:both;">
+          <li><a href="#" onclick="indexTemplate(); return false">View Nominees</a></li>
           <% if current_user %>
-            <a href="#" onclick="currentUserProfileTemplate(); return false;" style="float:left">My Profile</a>
-            <a href="#" onclick="editProfileTemplate(); return false;" style="float:left">Edit Profile</a>
-            <%= link_to "Log Out", logout_path, { :method => "delete", :style=> 'float:right'  } %>
-          <% else %>
-            <a href="#" onclick="loginTemplate(); return false;" style="float:left">Log In</a>
-            <a href="#" onclick="signUpTemplate(); return false;" style="float:right">Sign Up</a>
+            <% if current_user.proposal %>
+              <hr>
+              <li><a href="#" onclick="editProposalTemplate(); return false;">Edit Proposal</a></li>
+            <% elsif !current_user.admin && !current_user.proposal %>
+              <hr>
+              <li><a id="submitProposalLink" href="#" onclick="newProposalTemplate(); return false;">Submit a Proposal</a></li>
+            <% end %>
           <% end %>
-        </li>
-        <hr style="clear:both;">
-        <li><a href="#" onclick="indexTemplate(); return false">View Nominees</a></li>
-        <% if current_user %>
-          <% if current_user.proposal %>
-            <hr>
-            <li><a href="#" onclick="editProposalTemplate(); return false;">Edit Proposal</a></li>
-          <% elsif !current_user.admin && !current_user.proposal %>
-            <hr>
-            <li><a id="submitProposalLink" href="#" onclick="newProposalTemplate(); return false;">Submit a Proposal</a></li>
-          <% end %>
-        <% end %>
-      </ul>
+        </ul>
+      </div>
     </div>
 
     <navbar class="sticky">
