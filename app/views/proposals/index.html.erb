@@ -25,16 +25,6 @@ function documentReadyCalls(proposalId) {
   showSideNav();
 }
 
-
-// login page functions
-
-// function loginTemplate() {
-//   $(".main").empty();
-//   hideSideNav();
-//   $(".main").append('<%= j render 'login' %>');
-// }
-
-
 function loginTemplate() {
   hideSideNav();
   $("#topNavMenu").replaceWith(`<%= j render 'login' %>`);
@@ -564,7 +554,7 @@ function showTopNav() {
     "height":"auto",
     "border-bottom":"1px solid lightgray"
   })
-  $("#topNavBurger").replaceWith(`<a id="topNavBurger" href="#" onclick="hideTopNav(); return false;">&#9776;</a></li>`);  
+  $("#topNavBurger").replaceWith(`<a id="topNavBurger" href="#" onclick="hideTopNav(); return false;">&#9776;</a></li>`);
 }
 
 function hideTopNav() {
