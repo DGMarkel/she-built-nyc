@@ -2,5 +2,10 @@
 <p><%= f.text_field :name, :placeholder => "Username" %></p>
 <p><%= f.password_field :password, :id => "password", :placeholder => "Password" %><p>
 <p><%= f.submit "Sign In" %></p>
+<% if flash[:login_warning] %>
+  <div style="color:red;">
+    <%= flash[:login_warning] %>
+  </div>
+<% end %>
 <p><%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %></p>
 <% end %>

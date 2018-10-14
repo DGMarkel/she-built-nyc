@@ -28,6 +28,7 @@ function documentReadyCalls(proposalId) {
 function loginTemplate() {
   hideSideNav();
   $("#topNavMenu").replaceWith(`<%= j render 'login' %>`);
+  $("[type='submit']").removeAttr("data-disable-with");
 }
 
 function signUpTemplate() {
