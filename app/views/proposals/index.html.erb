@@ -62,9 +62,14 @@ function postNewUser() {
     });
     let users = await $.get(`/users.json`, function(data) {
     });
-    newUser = users.pop()
-    currentUser = newUser.id
-    editProfileTemplate();
+    if (users.pop) {
+      newUser = users.pop()
+      currentUser = newUser.id
+      editProfileTemplate();
+    } else {
+      alert("Let's try that again.")
+      $('[type="submit"]').removeAttr("disabled");
+    }
   });
 }
 
@@ -158,7 +163,7 @@ function otherUserProfileTemplate(data) {
 function editProfileTemplate() {
   $(".main").empty();
   $(".main").append('<%= j render '/users/edit' %>');
-  $("#editUserDetails").animate({"right": "32%"}, 100, function() {});
+  $("#editUserDetails").animate({"right": "31.5%"}, 100, function() {});
   hideSideNav();
 
 }
