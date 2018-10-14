@@ -1,8 +1,9 @@
 <% if current_user %>
+<% backgroundProposal = Proposal.find(rand(1..Proposal.count)) %>
 
 <style>
   body {
-    background-image: url(<%= current_user.image_url %>);
+    background-image: url(<%= backgroundProposal.image_url %>);
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -14,42 +15,33 @@
   <% @user = current_user %>
 
   <div id="userDetails">
+    <% if @user.image_url && !@user.image_url.empty? %>
+      <img src="<%=@user.image_url%>">
+    <% end %>
     <h1><%= @user.name %></h1>
     <hr>
-    <h3 id="userOptions"><a href="#" onclick="editProfileTemplate(); return false;">Edit Profile</a></h3>
-    <% if logged_in? && current_user.admin %>
-      <h3 id="userOptions"><%= link_to "Delete Profile", user_path(@user), data: {:confirm => 'Are you sure?'}, method: "delete"%></h3>
-    <% end %>
-    <% if @user.proposal %>
-      <h3><a href="#" onclick="documentReadyCalls(<%= @user.proposal.id %>); return false;">My Proposal</a></h3>
-    <% end %>
-
     <h3>Affiliation: <%= @user.affiliation %></h3>
     <h3>Borough: <%= @user.borough %></h3>
     <h3>Zip Code: <%= @user.zip_code %></h3>
 
     <hr>
-      <h2>Favorite proposals</h2>
+      <h2 id="favPropos">Favorite proposals</h2>
         <% @user.rankings.highest_ranking.limit(3).each do |ranking| %>
           <% @proposal = Proposal.find_by(id: ranking.proposal_id) %>
           <h3><a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false"><%= @proposal.name %></a></h3>
         <% end %>
 
   <hr>
-  <h1>Recent Activity:</h1>
-  <hr>
-    <h2>Recent Comments:</h2>
+    <h2>Recent Comments</h2>
       <hr>
       <% @user.comments.newest_first.limit(3).each do |comment| %>
         <% @proposal = Proposal.find_by(id: comment.proposal_id) %>
 
-        <em>
-
-            <%= comment.content %></em> - comment on <a href="#" onclick="getOtherUserProfile(<%= @proposal.user.id %>); return false;"><%= @proposal.user.name %></a>'s
-            proposal, <a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false"><%= @proposal.name %>
-            </a>
-
-        </em>
+        <h3>
+        <%= comment.content %> - comment on <a href="#" onclick="getOtherUserProfile(<%= @proposal.user.id %>); return false;">
+        <%= @proposal.user.name %></a>'s proposal, <a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false">
+        <%= @proposal.name %></a>
+        </h3>
         <hr>
       <% end %>
 
@@ -57,13 +49,15 @@
       <hr>
         <% @user.rankings.newest_first.limit(3).each do |ranking| %>
           <% @proposal = Proposal.find_by(id: ranking.proposal_id) %>
-          <p>
-
-            You gave <a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false"><%= @proposal.name %></a>
-            a score of <%= ranking.ranking %>
-
-          </p>
-          <hr>
-        <% end %>
+          <h3>
+          You gave <a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false"><%= @proposal.name %></a>
+          a score of <%= ranking.ranking %>
+          </h3>
+      <hr>
+      <% end %>
   </div>
+
+  <!-- <div id="proposalSignature">
+    <h1><%= backgroundProposal.name %></h1>
+  </div> -->
 <% end %>
