@@ -121,7 +121,10 @@
 
   #userDetails hr {
     border-top: 1px solid black;
-    border-bottom: 0;
+  }
+
+  #userDetails hr:nth-of-type(1) {
+    margin-top: 15px;
   }
 
   #userDetails h2 {
@@ -619,6 +622,8 @@ div #proposalDetails {
           <li><a href="#" onclick="indexTemplate(); return false">View Nominees</a></li>
           <% if current_user %>
             <% if current_user.proposal %>
+              <hr>
+              <li><a href="#" onclick="documentReadyCalls(<%= current_user.proposal.id %>); return false;">View Proposal</a></li>
               <hr>
               <li><a href="#" onclick="editProposalTemplate(); return false;">Edit Proposal</a></li>
             <% elsif !current_user.admin && !current_user.proposal %>
