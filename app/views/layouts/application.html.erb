@@ -93,51 +93,37 @@
     margin-right: 10px;
   } */
 
-  #otherUserDetails {
-    position: absolute;
-    top: 150px;
+  #userDetails {
+    z-index: -1;
+    position: fixed;
+    top: 60px;
+    right: 70%;
+    max-height: calc(100vh - 6rem);
+    width: 30%;
+    margin: 0 35%;
     padding: 20px 20px 40px 20px;
-    height: auto;
-    width: 20%;
-    margin: 0 36%;
-    background-color:rgba(255, 255, 255);
-    border-radius: 5px;
+    overflow: overlay;
+    background-color:rgba(255, 255, 255, 0.6);
     text-align: center;
+    transition: 0.5s;
   }
 
-  #otherUserDetails h1 {
+  #userDetails h1 {
     margin: 0px;
   }
 
-  #otherUserDetails h3:last-of-type {
-    margin-bottom: 25px;
-  }
-
-  #otherUserDetails img {
+  #userDetails img {
     border-radius: 5px;
     margin: 0 auto;
     width: 100%;
   }
 
-  #otherUserDetails hr:first-of-type {
+  #userDetails hr:first-of-type {
     margin-top: 20px;
   }
 
-  #otherUserDetails hr {
+  #userDetails hr {
     border-top: 1px solid black;
-  }
-
-  #otherUserDetails a {
-    background: orange;
-    padding: 10px 18px;
-    width: 75%;
-    border-radius: 5px;
-    font-family: 'Raleway', sans-serif;
-    color: white;
-  }
-
-  #otherUserDetails a:hover {
-    color: red;
   }
 
 /*===== STYLING FOR OTHER USER PROFILE TEMPLATE =====*/

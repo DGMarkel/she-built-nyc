@@ -125,6 +125,7 @@ function currentUserProfileTemplate() {
 
       $(".main").empty();
       $(".main").append('<%= j render '/users/non_admin_show' %>');
+      $("#userDetails").animate({"right": "32%"}, 100, function() {});
     }
   });
 }
