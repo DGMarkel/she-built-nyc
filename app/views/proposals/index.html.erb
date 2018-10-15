@@ -114,6 +114,18 @@ function currentUserProfileTemplate() {
   });
 }
 
+// displays/hides current user details on profile card
+
+function showFavoriteProposals() {
+  $("#favoriteProposals").css("display", "block");
+  $("#favProps").replaceWith(`<a class="detailsButton" id="favProps" href="#" onclick="hideFavoriteProposals(); return false;">Hide Proposals</a>`)
+}
+
+function hideFavoriteProposals() {
+  $("#favoriteProposals").css("display", "none");
+  $("#favProps").replaceWith(`<a class="detailsButton" id="favProps" href="#" onclick="showFavoriteProposals(); return false;">Favorite proposals</a>`)
+}
+
 // submits get request for non-currentUser user profiles
 function getOtherUserProfile(otherUserId) {
 
