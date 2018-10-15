@@ -258,12 +258,12 @@ function proposalTemplate() {
   // div adds ranking and comment forms
   $(".main").append('<%= j render 'logged_in_show' if current_user %>');
 
-  if (currentUser != null) {
+  if (currentUser != "") {
 
     $(`<div id="loggedInProposalComments"><h1><a href="#" onclick="getRecentComments(${navId}); return false">View Comments</a></h1></div>`).insertAfter(`#proposalForms #rankingForm`)
   }
 
-  if (currentUser === "") {
+  else {
   // div for comments
     $(".main").append(`<hr>`)
     $(".main").append(`<div id="proposalComments">`);
