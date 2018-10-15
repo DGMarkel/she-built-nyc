@@ -256,7 +256,12 @@ function proposalTemplate() {
   $(".proposalNavigation").append(`</div>`);
 
   // div adds ranking and comment forms
-  $(".main").append('<%= j render 'logged_in_show' if current_user %>');
+  // $(".main").append('<%= j render 'logged_in_show' if current_user %>');
+  $(".main").append(`<div id="proposalForms"></div>`);
+  $("#proposalForms").append(`<div id="rankingForm"></div>`);
+  $("#rankingForm").append(`<a href="#" onclick="showRankingForm(); return false"><h1>Rank this proposal</h1></a>`);
+  $("#proposalForms").append(`<div id="commentForm"></div>`);
+  $("#commentForm").append(`<a href="#" onclick="showCommentForm(); return false"><h1>Submit a Comment</h1></a>`)
 
   if (currentUser != "") {
 
