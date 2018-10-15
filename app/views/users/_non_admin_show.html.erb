@@ -36,29 +36,33 @@
       </div>
 
 
-      <a class="detailsButton" href="#" onclick="recentComments; return false">Recent Comments</a>
+      <a class="detailsButton" id="recComs" href="#" onclick="showRecentComments(); return false">Recent Comments</a>
 
-      <!-- <% @user.comments.newest_first.limit(3).each do |comment| %>
-        <% @proposal = Proposal.find_by(id: comment.proposal_id) %>
+      <div id="recentComments" style="display: none">
+        <% @user.comments.newest_first.limit(3).each do |comment| %>
+          <% @proposal = Proposal.find_by(id: comment.proposal_id) %>
 
-        <h3>
-        <%= comment.content %> - comment on <a href="#" onclick="getOtherUserProfile(<%= @proposal.user.id %>); return false;">
-        <%= @proposal.user.name %></a>'s proposal, <a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false">
-        <%= @proposal.name %></a>
-        </h3>
-        <hr>
-      <% end %> -->
+          <h3>
+          <%= comment.content %> - comment on <a href="#" onclick="getOtherUserProfile(<%= @proposal.user.id %>); return false;">
+          <%= @proposal.user.name %></a>'s proposal, <a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false">
+          <%= @proposal.name %></a>
+          </h3>
+          <hr>
+        <% end %>
+      </div>
 
-      <a class="detailsButton" href="#" onclick="recentVotes(); return false">Recent votes:</a>
-      <!-- <hr>
+      <a class="detailsButton" id="recVotes" href="#" onclick="showRecentVotes(); return false">Recent Votes</a>
+
+      <div id="recentVotes" style="display:none;">
         <% @user.rankings.newest_first.limit(3).each do |ranking| %>
           <% @proposal = Proposal.find_by(id: ranking.proposal_id) %>
           <h3>
           You gave <a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false"><%= @proposal.name %></a>
           a score of <%= ranking.ranking %>
           </h3>
-      <hr>
-      <% end %> -->
+      <% end %>
+      </div>
+
   </div>
 
   <!-- <div id="proposalSignature">

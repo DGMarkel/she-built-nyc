@@ -126,6 +126,26 @@ function hideFavoriteProposals() {
   $("#favProps").replaceWith(`<a class="detailsButton" id="favProps" href="#" onclick="showFavoriteProposals(); return false;">Favorite proposals</a>`)
 }
 
+function showRecentComments() {
+  $("#recentComments").css("display", "block");
+  $("#recComs").replaceWith(`<a class="detailsButton" id="recComs" href="#" onclick="hideRecentComments(); return false;">Hide Comments</a>`)
+}
+
+function hideRecentComments() {
+  $("#recentComments").css("display", "none");
+  $("#recComs").replaceWith(`<a class="detailsButton" id="recComs" href="#" onclick="showRecentComments(); return false;">Recent Comments</a>`)
+}
+
+function showRecentVotes() {
+  $("#recentVotes").css("display", "block");
+  $("#recVotes").replaceWith(`<a class="detailsButton" id="recVotes" href="#" onclick="hideRecentVotes(); return false;">Hide Votes</a>`)
+}
+
+function hideRecentVotes() {
+  $("#recentVotes").css("display", "none");
+  $("#recVotes").replaceWith(`<a class="detailsButton" id="recVotes" href="#" onclick="showRecentVotes(); return false;">Recent Votes</a>`)
+}
+
 // submits get request for non-currentUser user profiles
 function getOtherUserProfile(otherUserId) {
 
