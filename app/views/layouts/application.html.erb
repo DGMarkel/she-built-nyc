@@ -590,23 +590,36 @@ div #proposalDetails {
 
   #commentPopUp {
     height: 0;
-    width: 350px;
+    width: 30%;
     position: absolute;
     z-index: 1;
-    bottom: 65px;
-    right: 400px;
-    border: 1px solid lightgray;
+    bottom: 0;
+    right: 25%;
     border-radius: 5px;
     background-color: white;
     overflow: overlay;
-    margin-top: -20px;
     transition: 0.5s;
   }
 
+  #commentPopUp input {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+  }
+
   #commentPopUp input[type="text"] {
-    width: 80%;
-    height: 100px;
-    margin: 10px 10%;
+    width: 90%;
+    height: 80px;
+    margin: 20px;
+    margin-left: 15px;
+    border-radius: 5px;
+  }
+
+  #commentPopUp input[type="submit"] {
+    width: 92%;
+    height: 50px;
+    margin: 0px 4%;
+    border-radius: 5px;
+    background-color: orange
   }
 
   </style>

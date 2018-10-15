@@ -580,9 +580,15 @@ function hideTopNav() {
 function showOrHideCommentForm() {
   $(".main").on("click", function(e) {
     if ($(e.target).is("#commentForm h1")) {
-      $("#commentPopUp").css("height", "150px");
+      $("#commentPopUp").css({
+        "height": "200px",
+        "border": "1px solid lightgray"
+      });
     } else {
-      $("#commentPopUp").css("height", "0");
+      $("#commentPopUp").css({
+        "height": "0",
+        "border": "0"
+      });
     };
   });
 }
