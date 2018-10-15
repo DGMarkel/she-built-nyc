@@ -155,15 +155,15 @@ function editProfileTemplate() {
 
 function documentReadyCalls(proposalId) {
   navId = proposalId
-  proposalTemplate(navId);
+  proposalTemplate();
   // add next proposal details to DOM
-  getProposal(navId);
+  getProposal();
   // associate ranking and comment forms with the correct proposal
-  ProposalFormIds(navId);
+  ProposalFormIds();
   // add proposal comments to the DOM for current proposal
   addRanking();
   // displays ranking and comments forms for current proposal UNLESS it is the current user's proposal
-  showProposalForms(navId);
+  showProposalForms();
   proposalNavigation();
   postandInsertComment();
   showSideNav();
@@ -213,7 +213,7 @@ function indexProposalTemplate(proposal) {
   $(`#proposalIndex`).append(`<hr>`);
 }
 
-function getProposal(navId) {
+function getProposal() {
   $.get("/proposals/" + navId + ".json", function(data) {
     proposal = new Proposal();
     proposal.appendData(data);
@@ -233,8 +233,10 @@ function Proposal() {
   }
 }
 
-function proposalTemplate(navId) {
+function proposalTemplate() {
+
   $(".main").empty();
+
   //div contains all proposal details
   $(".main").append(`<div id="proposalDetails">`)
   $("#proposalDetails").append(`<span class="proposalImage"></span>`);
@@ -277,7 +279,7 @@ function proposalNavigation(){
     navId = (parseInt($(".js-next").attr("data-id")) + 1).toString();
     $.get(`/proposals/${navId}.json`, function(data) {
       if (data != null) {
-        documentReadyCalls(navId);
+        documentReadyCalls();
       }
     });
   });
@@ -285,19 +287,19 @@ function proposalNavigation(){
     // set id for previous proposal
     navId = (parseInt($(".js-next").attr("data-id")) - 1).toString();
     if (navId != "0") {
-      documentReadyCalls(navId);
+      documentReadyCalls();
     }
   });
 }
 
-function ProposalFormIds(navId) {
+function ProposalFormIds() {
   if($("#comment_proposal")[0] && $("#ranking_proposal")[0]) {
     $("#comment_proposal")[0]["value"] = navId;
     $("#ranking_proposal")[0]["value"] = navId;
   };
 }
 
-function showProposalForms(navId) {
+function showProposalForms() {
   $.get(`/proposals/${navId}.json`, function(data) {
       if (data["user"]["id"].toString() != currentUser) {
         $("#proposalForms").show();
@@ -356,7 +358,7 @@ function updateSideNav(newProposalId, newProposalName) {
 
 // comment functions
 
-function getRecentComments(navId) {
+function getRecentComments() {
   $(".main").empty()
   $.get(`/proposals/${navId}/comments.json`, function(data) {
     if (data.length > 3) {
@@ -367,27 +369,27 @@ function getRecentComments(navId) {
         commentTemplate(comment);
       });
       $(".main").prepend(`<hr>`)
-      $(".main").prepend(`<span><a href="#" onclick="getAllComments(navId); return false;">View All Comments</a></span>`)
+      $(".main").prepend(`<span><a href="#" onclick="getAllComments(); return false;">View All Comments</a></span>`)
       $(".main").prepend(`<h1>Recent Comments</h1>`)
-      $(".main").prepend(`<span class="backToProposal"><a href="#" onclick="documentReadyCalls(navId); return false;">Back to Proposal</a></span>`)
+      $(".main").prepend(`<span class="backToProposal"><a href="#" onclick="documentReadyCalls(); return false;">Back to Proposal</a></span>`)
       $(".main").prepend(`<span class="open" onclick="hideSideNav()">X</span>`);
       showSideNav();
     }else {
-      getAllComments(navId);
+      getAllComments();
     }
   });
 }
 
-function getAllComments(navId) {
+function getAllComments() {
   $(".main").empty()
   $.get(`/proposals/${navId}/comments.json`, function(data) {
     data.forEach(function(comment) {
       commentTemplate(comment)
     });
     $(".main").prepend(`<hr>`)
-    $(".main").prepend(`<span><a href="#" onclick="getRecentComments(navId); return false;">View Recent Comments</a></span>`)
+    $(".main").prepend(`<span><a href="#" onclick="getRecentComments(); return false;">View Recent Comments</a></span>`)
     $(".main").prepend(`<h1>Comments</h1>`)
-    $(".main").prepend(`<span class="backToProposal"><a href="#" onclick="documentReadyCalls(navId); return false;">Back to Proposal</a></span>`)
+    $(".main").prepend(`<span class="backToProposal"><a href="#" onclick="documentReadyCalls(); return false;">Back to Proposal</a></span>`)
     $(".main").prepend(`<span class="open" onclick="hideSideNav()">X</span>`);
     showSideNav();
     if (data.length > 3) {
