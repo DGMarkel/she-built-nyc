@@ -588,25 +588,33 @@ div #proposalDetails {
 
 /*=== STYLES POPUP FORMS  */
 
-  #commentPopUp {
+  #commentPopUp, #rankingPopUp {
     height: 0;
     width: 30%;
     position: absolute;
     z-index: 1;
-    bottom: 0;
-    right: 25%;
     border-radius: 5px;
     background-color: white;
     overflow: overlay;
     transition: 0.5s;
   }
 
-  #commentPopUp input {
+  #commentPopUp {
+    bottom: 0;
+    right: 25%;
+  }
+
+  #rankingPopUp {
+    bottom: 0;
+    left: 0;
+  }
+
+  #commentPopUp input, #rankingPopUp input {
     font-family: 'Raleway', sans-serif;
     font-size: 20px;
   }
 
-  #commentPopUp input[type="text"] {
+  #commentPopUp input[type="text"], #rankingPopUp input[type="number"] {
     width: 90%;
     height: 80px;
     margin: 20px;
@@ -614,7 +622,7 @@ div #proposalDetails {
     border-radius: 5px;
   }
 
-  #commentPopUp input[type="submit"] {
+  #commentPopUp input[type="submit"], #rankingPopUp input[type="submit"] {
     width: 92%;
     height: 50px;
     margin: 0px 4%;

@@ -259,7 +259,7 @@ function proposalTemplate() {
   // $(".main").append('<%= j render 'logged_in_show' if current_user %>');
   $(".main").append(`<div id="proposalForms"></div>`);
   $("#proposalForms").append(`<div id="rankingForm"></div>`);
-  $("#rankingForm").append(`<a href="#" onclick="showRankingForm(); return false"><h1>Rank this proposal</h1></a>`);
+  $("#rankingForm").append(`<a href="#" onclick="showOrHideRankingForm(); return false"><h1>Rank this proposal</h1></a>`);
   $("#proposalForms").append(`<div id="commentForm"></div>`);
   $("#commentForm").append(`<a href="#" onclick="showOrHideCommentForm(); return false"><h1>Submit a Comment</h1></a>`)
 
@@ -597,7 +597,20 @@ function hideCommentForm() {
   $("#commentPopUp").css("height", "0");
 }
 
-
-
+function showOrHideRankingForm() {
+  $(".main").on("click", function(e) {
+    if ($(e.target).is("#rankingForm h1")) {
+      $("#rankingPopUp").css({
+        "height": "200px",
+        "border": "1px solid lightgray"
+      });
+    } else {
+      $("#rankingPopUp").css({
+        "height": "0",
+        "border": "0"
+      });
+    };
+  });
+}
 
 </script>
