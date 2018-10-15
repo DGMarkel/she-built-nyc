@@ -586,6 +586,19 @@ div #proposalDetails {
     top: 150px;
   }
 
+  #commentPopUp {
+    height: 0;
+    width: 350px;
+    position: fixed;
+    z-index: 1;
+    bottom: 60px;
+    right: 400px;
+    border-right: 1px solid lightgray;
+    background-color: white;
+    overflow: overlay;
+    margin-top: -20px;
+  }
+
   </style>
 </head>
 
@@ -599,6 +612,20 @@ div #proposalDetails {
         <hr>
         <% end %>
       <% end %>
+    </div>
+
+    <div id="rankingPopUp">
+      <%= form_for(:ranking, :url => rankings_path, :html => {id: "new_ranking"}) do |f| %>
+        <%= f.number_field :ranking %>
+        <%= f.hidden_field :proposal, :value => "" %>
+        <%= f.hidden_field :user, :value => current_user.id, id: "badIdea" %>
+        <%= f.submit "Submit" %>
+      <% end %>
+    </div>
+
+    <div id="commentPopUp">
+      <h1>hi!</h1>
+
     </div>
 
     <div class="topNav">
