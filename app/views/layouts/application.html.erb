@@ -613,7 +613,6 @@ div #proposalDetails {
 
   #commentPopUp input, #rankingPopUp input {
     font-family: 'Raleway', sans-serif;
-    font-size: 20px;
   }
 
   #commentPopUp input[type="text"], #rankingPopUp input[type="number"] {
@@ -622,6 +621,7 @@ div #proposalDetails {
     margin: 20px;
     margin-left: 15px;
     border-radius: 5px;
+    font-size: 20px;
   }
 
   #commentPopUp input[type="submit"], #rankingPopUp input[type="submit"] {
@@ -629,7 +629,8 @@ div #proposalDetails {
     height: 50px;
     margin: 0px 4%;
     border-radius: 5px;
-    background-color: orange
+    background-color: rgb(175,200,229);
+    font-size: 30px;
   }
 
   </style>
@@ -654,13 +655,13 @@ div #proposalDetails {
         <%= f.number_field :ranking %>
         <%= f.hidden_field :proposal, :value => "" %>
         <%= f.hidden_field :user, :value => current_user.id, id: "badIdea" %>
-        <%= f.submit "Submit" %>
+        <%= f.submit "Rank This Proposal" %>
       <% end %>
     </div>
 
     <div id="commentPopUp">
       <%= form_for(:comment, url: comments_path, :html => {id: "new_comment"}) do |f| %>
-        <%= f.text_field :content %>
+        <%= f.text_field :content, :rows => 5 %>
         <%= f.hidden_field :proposal, :value => "" %>
         <%= f.submit "Submit" %>
       <% end %>
