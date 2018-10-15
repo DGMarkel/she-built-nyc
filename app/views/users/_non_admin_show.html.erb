@@ -1,5 +1,5 @@
 <% if current_user %>
-<% backgroundProposal = Proposal.find(rand(1..Proposal.count)) %>
+<% backgroundProposal = Proposal.find(6) %>
 
 <style>
   body {
@@ -26,7 +26,7 @@
     <h3>Zip Code: <%= @user.zip_code %></h3>
 
     <hr>
-      <h2 id="favPropos">Favorite proposals</h2>
+      <h2>Favorite proposals</h2>
         <% @user.rankings.highest_ranking.limit(3).each do |ranking| %>
           <% @proposal = Proposal.find_by(id: ranking.proposal_id) %>
           <h3><a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false"><%= @proposal.name %></a></h3>
