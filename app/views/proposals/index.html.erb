@@ -1,4 +1,5 @@
 <script type="text/javascript" charset="utf-8">
+
 navId = null
 currentUser = null
 
@@ -8,22 +9,6 @@ $(function () {
     hideTopNav();
   });
 });
-
-function documentReadyCalls(proposalId) {
-  navId = proposalId
-  proposalTemplate(navId);
-  // add next proposal details to DOM
-  getProposal(navId);
-  // associate ranking and comment forms with the correct proposal
-  ProposalFormIds(navId);
-  // add proposal comments to the DOM for current proposal
-  addRanking();
-  // displays ranking and comments forms for current proposal UNLESS it is the current user's proposal
-  showProposalForms(navId);
-  proposalNavigation();
-  postandInsertComment();
-  showSideNav();
-}
 
 function loginTemplate() {
   hideSideNav();
@@ -166,6 +151,24 @@ function editProfileTemplate() {
 
 }
 
+// proposal functions
+
+function documentReadyCalls(proposalId) {
+  navId = proposalId
+  proposalTemplate(navId);
+  // add next proposal details to DOM
+  getProposal(navId);
+  // associate ranking and comment forms with the correct proposal
+  ProposalFormIds(navId);
+  // add proposal comments to the DOM for current proposal
+  addRanking();
+  // displays ranking and comments forms for current proposal UNLESS it is the current user's proposal
+  showProposalForms(navId);
+  proposalNavigation();
+  postandInsertComment();
+  showSideNav();
+}
+
 function editProposalTemplate() {
   $(".main").empty();
   $(".main").append(`<%= j render '/proposals/edit' %>`);
@@ -183,7 +186,6 @@ function editProposal() {
   });
 }
 
-// index functions
 
 function indexTemplate() {
   $(".main").empty();
@@ -211,8 +213,6 @@ function indexProposalTemplate(proposal) {
   $(`#proposalIndex`).append(`<hr>`);
 }
 
-// proposal functions
-
 function getProposal(navId) {
   $.get("/proposals/" + navId + ".json", function(data) {
     proposal = new Proposal();
@@ -234,9 +234,7 @@ function Proposal() {
 }
 
 function proposalTemplate(navId) {
-
   $(".main").empty();
-
   //div contains all proposal details
   $(".main").append(`<div id="proposalDetails">`)
   $("#proposalDetails").append(`<span class="proposalImage"></span>`);
