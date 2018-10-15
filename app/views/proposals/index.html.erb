@@ -236,7 +236,6 @@ function Proposal() {
 function proposalTemplate() {
 
   $(".main").empty();
-  $("#proposalForms").empty();
 
   //div contains all proposal details
   $(".main").append(`<div id="proposalDetails">`)
@@ -258,7 +257,7 @@ function proposalTemplate() {
 
   // div adds ranking and comment forms
   // $(".main").append('<%= j render 'logged_in_show' if current_user %>');
-  $("body").append(`<div id="proposalForms"></div>`);
+  $(".main").append(`<div id="proposalForms"></div>`);
 
 
   if (currentUser != "") {
