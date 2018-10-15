@@ -155,15 +155,15 @@ function editProfileTemplate() {
 
 function documentReadyCalls(proposalId) {
   navId = proposalId
-  proposalTemplate();
+  proposalTemplate(navId);
   // add next proposal details to DOM
-  getProposal();
+  getProposal(navId);
   // associate ranking and comment forms with the correct proposal
-  ProposalFormIds();
+  ProposalFormIds(navId);
   // add proposal comments to the DOM for current proposal
   addRanking();
   // displays ranking and comments forms for current proposal UNLESS it is the current user's proposal
-  showProposalForms();
+  showProposalForms(navId);
   proposalNavigation();
   postandInsertComment();
   showSideNav();
@@ -284,7 +284,7 @@ function proposalNavigation(){
     navId = (parseInt($(".js-next").attr("data-id")) + 1).toString();
     $.get(`/proposals/${navId}.json`, function(data) {
       if (data != null) {
-        documentReadyCalls();
+        documentReadyCalls(navId);
       }
     });
   });
