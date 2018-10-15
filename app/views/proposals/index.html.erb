@@ -250,22 +250,23 @@ function proposalTemplate() {
   $(".proposalDetails").append(`</div>`)
 
   // div contains site navigation buttons
-  $(".main").append(`<div id="proposalNavigation">`)
-  $("#proposalNavigation").append(`<button class="js-previous" data-id="${navId}">Previous Proposal</button>`);
-   $("#proposalNavigation").append(`<button class="js-next" data-id="${navId}">Next Proposal</button>`);
-  $(".proposalNavigation").append(`</div>`);
+  // $(".main").append(`<div id="proposalNavigation">`)
+  // $("#proposalNavigation").append(`<button class="js-previous" data-id="${navId}">Previous Proposal</button>`);
+  //  $("#proposalNavigation").append(`<button class="js-next" data-id="${navId}">Next Proposal</button>`);
+  // $(".proposalNavigation").append(`</div>`);
 
   // div adds ranking and comment forms
   // $(".main").append('<%= j render 'logged_in_show' if current_user %>');
-  $(".main").append(`<div id="proposalForms"></div>`);
-  $("#proposalForms").append(`<div id="rankingForm"></div>`);
-  $("#rankingForm").append(`<a href="#" onclick="showOrHideRankingForm(); return false"><h1>Rank this proposal</h1></a>`);
-  $("#proposalForms").append(`<div id="commentForm"></div>`);
-  $("#commentForm").append(`<a href="#" onclick="showOrHideCommentForm(); return false"><h1>Submit a Comment</h1></a>`)
+  $("body").append(`<div id="proposalForms"></div>`);
+
 
   if (currentUser != "") {
-
-    $(`<div id="loggedInProposalComments"><h1><a href="#" onclick="getRecentComments(${navId}); return false">View Comments</a></h1></div>`).insertAfter(`#proposalForms #rankingForm`)
+    $("#proposalForms").append(`<div id="rankingForm"></div>`);
+    $("#rankingForm").append(`<a href="#" onclick="showOrHideRankingForm(); return false"><h1>Rank this proposal</h1></a>`);
+    $("#proposalForms").append(`<div id="loggedInProposalComments"></div>`);
+    $("#loggedInProposalComments").append(`<h1><a href="#" onclick="getRecentComments(${navId}); return false">View Comments</a></h1></div>`)
+    $("#proposalForms").append(`<div id="commentForm"></div>`);
+    $("#commentForm").append(`<a href="#" onclick="showOrHideCommentForm(); return false"><h1>Submit a Comment</h1></a>`)
   }
 
   else {
@@ -578,7 +579,7 @@ function hideTopNav() {
 // popup form functions //
 
 function showOrHideCommentForm() {
-  $(".main").on("click", function(e) {
+  $("html").on("click", function(e) {
     if ($(e.target).is("#commentForm h1")) {
       $("#commentPopUp").css({
         "height": "200px",
@@ -598,7 +599,7 @@ function hideCommentForm() {
 }
 
 function showOrHideRankingForm() {
-  $(".main").on("click", function(e) {
+  $("html").on("click", function(e) {
     if ($(e.target).is("#rankingForm h1")) {
       $("#rankingPopUp").css({
         "height": "200px",

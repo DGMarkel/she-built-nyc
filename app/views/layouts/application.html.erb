@@ -205,7 +205,7 @@
 
 div #proposalDetails {
   overflow: overlay;
-  height: 500px;
+  height: 90%;
 }
 
 .proposalName {
@@ -418,16 +418,18 @@ div #proposalDetails {
   /* forms to comment on and rank specific proposals */
 
   #proposalForms {
+    position: absolute;
+    bottom: 0;
+    width: 75%;
     border-top: 1px solid lightgray;
-    margin: 0
-    height: 110px;
+    background-color: white;
   }
 
   #rankingForm {
     display: inline-block;
     width: 31%;
     text-align: center;
-    margin: 0;
+    margin-left: 3%;
   }
 
   #commentForm {
@@ -645,6 +647,8 @@ div #proposalDetails {
       <% end %>
     </div>
 
+<% if current_user %>
+
     <div id="rankingPopUp">
       <%= form_for(:ranking, :url => rankings_path, :html => {id: "new_ranking"}) do |f| %>
         <%= f.number_field :ranking %>
@@ -661,6 +665,8 @@ div #proposalDetails {
         <%= f.submit "Submit" %>
       <% end %>
     </div>
+
+<% end %>
 
     <div class="topNav">
       <div id ="topNavMenu">
