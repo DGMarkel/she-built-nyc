@@ -586,18 +586,27 @@ div #proposalDetails {
     top: 150px;
   }
 
+/*=== STYLES POPUP FORMS  */
+
   #commentPopUp {
     height: 0;
     width: 350px;
-    position: fixed;
+    position: absolute;
     z-index: 1;
-    bottom: 60px;
+    bottom: 65px;
     right: 400px;
-    border-right: 1px solid lightgray;
+    border: 1px solid lightgray;
+    border-radius: 5px;
     background-color: white;
     overflow: overlay;
     margin-top: -20px;
     transition: 0.5s;
+  }
+
+  #commentPopUp input[type="text"] {
+    width: 80%;
+    height: 100px;
+    margin: 10px 10%;
   }
 
   </style>

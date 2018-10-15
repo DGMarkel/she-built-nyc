@@ -376,7 +376,7 @@ function getRecentComments() {
       $(".main").prepend(`<hr>`)
       $(".main").prepend(`<span><a href="#" onclick="getAllComments(); return false;">View All Comments</a></span>`)
       $(".main").prepend(`<h1>Recent Comments</h1>`)
-      $(".main").prepend(`<span class="backToProposal"><a href="#" onclick="documentReadyCalls(); return false;">Back to Proposal</a></span>`)
+      $(".main").prepend(`<span class="backToProposal"><a href="#" onclick="documentReadyCalls(navId); return false;">Back to Proposal</a></span>`)
       $(".main").prepend(`<span class="open" onclick="hideSideNav()">X</span>`);
       showSideNav();
     }else {
@@ -412,7 +412,7 @@ function postandInsertComment() {
       let comments = await $.get(`/proposals/${navId}/comments.json`, function(data) {
       });
       let newComment = comments.pop();
-      getAllComments(`${navId}`);
+      getRecentComments(`${navId}`);
       hideCommentForm();
       $("input[type='submit']").removeAttr('disabled');
     } else {
@@ -439,13 +439,15 @@ function commentTemplate(comment) {
   repliesTemplate(comment);
 }
 
-function newCommentTemplate(newComment) {
-  $("#comments").prepend(`</div>`)
-  $("#comments").prepend(`<p><a href="/proposals/${navId}/comments/${newComment.id}/replies/new">Reply</a></p>`)
-  $("#comments").prepend(`<h4>${newComment.content}</h4>`)
-  $("#comments").prepend(`<h4><a href="/users/${newComment.user.id}">${newComment.user.name}</a> - ${newComment.created_at} </h4>`);
-  $("#comments").prepend(`<div id="comment-${newComment["id"]}">`)
-}
+// POSSIBLY UNNECESSARY FUNCTION BELOW - may come in handy later?
+
+// function newCommentTemplate(newComment) {
+//   $("#comments").prepend(`</div>`)
+//   $("#comments").prepend(`<p><a href="/proposals/${navId}/comments/${newComment.id}/replies/new">Reply</a></p>`)
+//   $("#comments").prepend(`<h4>${newComment.content}</h4>`)
+//   $("#comments").prepend(`<h4><a href="/users/${newComment.user.id}">${newComment.user.name}</a> - ${newComment.created_at} </h4>`);
+//   $("#comments").prepend(`<div id="comment-${newComment["id"]}">`)
+// }
 
 //reply functions
 
