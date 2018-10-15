@@ -261,7 +261,7 @@ function proposalTemplate() {
   $("#proposalForms").append(`<div id="rankingForm"></div>`);
   $("#rankingForm").append(`<a href="#" onclick="showRankingForm(); return false"><h1>Rank this proposal</h1></a>`);
   $("#proposalForms").append(`<div id="commentForm"></div>`);
-  $("#commentForm").append(`<a href="#" onclick="showCommentForm(); return false"><h1>Submit a Comment</h1></a>`)
+  $("#commentForm").append(`<a href="#" onclick="showOrHideCommentForm(); return false"><h1>Submit a Comment</h1></a>`)
 
   if (currentUser != "") {
 
@@ -292,7 +292,7 @@ function proposalNavigation(){
     // set id for previous proposal
     navId = (parseInt($(".js-next").attr("data-id")) - 1).toString();
     if (navId != "0") {
-      documentReadyCalls();
+      documentReadyCalls(navId);
     }
   });
 }
@@ -412,7 +412,8 @@ function postandInsertComment() {
       let comments = await $.get(`/proposals/${navId}/comments.json`, function(data) {
       });
       let newComment = comments.pop();
-      newCommentTemplate(newComment);
+      getAllComments(`${navId}`);
+      hideCommentForm();
       $("input[type='submit']").removeAttr('disabled');
     } else {
       alert("Comments need content")
@@ -574,8 +575,21 @@ function hideTopNav() {
 
 // popup form functions //
 
-function showCommentForm() {
-  $("#commentPopUp").css("height", "150px");
+function showOrHideCommentForm() {
+  $(".main").on("click", function(e) {
+    if ($(e.target).is("#commentForm h1")) {
+      $("#commentPopUp").css("height", "150px");
+    } else {
+      $("#commentPopUp").css("height", "0");
+    };
+  });
 }
+
+function hideCommentForm() {
+  $("#commentPopUp").css("height", "0");
+}
+
+
+
 
 </script>

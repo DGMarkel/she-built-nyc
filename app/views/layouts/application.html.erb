@@ -597,6 +597,7 @@ div #proposalDetails {
     background-color: white;
     overflow: overlay;
     margin-top: -20px;
+    transition: 0.5s;
   }
 
   </style>
@@ -624,8 +625,11 @@ div #proposalDetails {
     </div>
 
     <div id="commentPopUp">
-      <h1>hi!</h1>
-
+      <%= form_for(:comment, url: comments_path, :html => {id: "new_comment"}) do |f| %>
+        <%= f.text_field :content %>
+        <%= f.hidden_field :proposal, :value => "" %>
+        <%= f.submit "Submit" %>
+      <% end %>
     </div>
 
     <div class="topNav">
