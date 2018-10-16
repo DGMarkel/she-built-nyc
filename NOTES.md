@@ -1,5 +1,7 @@
 add next/previous arrows to other user profile cards
 
+need to fix View Nominees link on line 326-333 - commented out for now
+
 Major fix needed for line 264 in index.html:
 had to move it here to get my code working
  if (currentUser === "" || parseInt(`<%= current_user.proposal.id %>`) === navId) {
