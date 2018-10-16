@@ -287,15 +287,6 @@ div #proposalDetails {
 
   /* forms to edit and create proposals*/
 
-  .edit_proposal {
-    display: inline-block;
-    background-color:rgba(255, 255, 255, 0.6);
-    padding: 20px;
-    height: 100%;
-    width: auto;
-    margin: 20px 40%;
-  }
-
   .new_proposal {
     display: inline-block;
     background-color:rgba(255, 255, 255, 0.6);
@@ -378,6 +369,22 @@ div #proposalDetails {
       color: red;
     }
 
+  /* edit proposal form */
+
+  #editProposalDetails {
+    position: fixed;
+    top: 60px;
+    height: 100%;
+    width: 33%;
+    margin: 0 32%;
+    padding: 20px 20px 40px 20px;
+    overflow: overlay;
+    background-color:rgba(255, 255, 255, 0.8);
+    text-align: center;
+    transition: 0.5s;
+  }
+
+
   /* edit user form */
 
   #editUserDetails {
@@ -409,7 +416,7 @@ div #proposalDetails {
     border-top: 1px solid black;
   }
 
-  #editUserDetails input[type="submit"], #userForm input[type="submit"] {
+  #editUserDetails input[type="submit"], #userForm input[type="submit"], #editProposalDetails input[type="submit"]{
     background: orange;
     padding: 10px 18px;
     margin-top: 20px;
@@ -420,7 +427,7 @@ div #proposalDetails {
     color: white;
   }
 
-  #editUserDetails input[type="text"], input[type="number"], #userForm input[type="text"] {
+  #editUserDetails input[type="text"], input[type="number"], #userForm input[type="text"], #editProposalDetails input[type="text"], #editProposalDetails input[type="text"]{
     width: 75%;
     height: 30px;
     border-radius: 5px;

@@ -1,38 +1,16 @@
-<style>
-  body {
-    background-image: url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>);
-    background-size: cover;
-  }
-
-</style>
-
 <% if current_user && current_user.proposal%>
 
+<div id="editProposalDetails">
   <%= form_for(current_user.proposal) do |f| %>
-  <p>Name<br />
-    <% if flash[:name_warning] %>
-      <span style="color:red;">
-        <%= flash[:name_warning] %>
-      </span><br/>
-    <% end %>
+  <h2>Name</h2>
   <%= f.text_field :name %></p>
-  <p>Brief Description (75 characters or less)<br />
-    <% if flash[:description_warning] %>
-      <span style="color:red;">
-        <%= flash[:description_warning] %>
-      </span><br />
-    <% end %>
-  <%= f.text_area :description, cols:50 %></p>
-  <p>Why should she be considered?<br />
-    <% if flash[:pitch_warning] %>
-      <span style="color:red;">
-        <%= flash[:pitch_warning] %>
-      </span><br />
-    <% end %>
-  <%= f.text_area :pitch, cols:50, rows:10 %></p>
-  <p>Historical Image<br />
-  <%= f.text_area :image_url, cols:50 %></p>
+  <h2>Brief Description (75 characters or less)</h2>
+  <%= f.text_field :description, cols:50 %>
+  <h2>Why should she be considered?</h2>
+  <%= f.text_field :pitch, cols:50, rows:10 %>
+  <h2>Historical Image</h2>
+  <%= f.text_field :image_url, cols:50 %>
   <%= f.submit%>
   <% end %>
-
+</div>
 <% end %>

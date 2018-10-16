@@ -226,10 +226,11 @@ function documentReadyCalls(proposalId) {
 }
 
 function editProposalTemplate() {
-  $(".main").empty();
+  hideCurrentUserProfileTemplate()
   $(".main").append(`<%= j render '/proposals/edit' %>`);
   editProposal()
   hideSideNav();
+  $("#editUserDetails").animate({"left": "31.5%"}, 10, function() {});
 }
 
 function editProposal() {
