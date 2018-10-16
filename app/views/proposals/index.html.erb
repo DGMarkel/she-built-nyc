@@ -103,18 +103,20 @@ function currentUserProfileTemplate() {
   hideSideNav();
   $.get(`/users/${currentUser}.json`, function(data) {
     if (data.admin) {
-
       $(".main").empty();
       $(".main").append('<%= j render '/users/admin_show' %>');
     } else {
-
       $(".main").empty();
       $(".main").append('<%= j render '/users/non_admin_show' %>');
-      $("#loggedInIcon").animate({width:"170px",height:"170px",top:"0",right:"15%","margin-bottom":"100px"},1000,function(){})
-      $("#userDetails h1").animate({"margin-top":"120px"},1000,function(){})
-      shrinkLoggedInIcon()
+      enlargeLoggedInIcon();
+      shrinkLoggedInIcon();
     }
   });
+}
+
+function enlargeLoggedInIcon() {
+  $("#loggedInIcon").animate({width:"170px",height:"170px",top:"0",right:"15%","margin-bottom":"100px"},1000,function(){})
+  $("#userDetails h1").animate({"margin-top":"120px"},1000,function(){})
 }
 
 function shrinkLoggedInIcon() {
@@ -139,6 +141,8 @@ function animateShrinkage() {
 // displays/hides current user details on profile card
 
 function showFavoriteProposals() {
+  hideRecentComments();
+  hideRecentVotes();
   $("#favoriteProposals").css("display", "block");
   $("#favProps").replaceWith(`<a class="detailsButton" id="favProps" href="#" onclick="hideFavoriteProposals(); return false;">Hide Proposals</a>`)
 }
@@ -149,6 +153,8 @@ function hideFavoriteProposals() {
 }
 
 function showRecentComments() {
+  hideFavoriteProposals();
+  hideRecentVotes();
   $("#recentComments").css("display", "block");
   $("#recComs").replaceWith(`<a class="detailsButton" id="recComs" href="#" onclick="hideRecentComments(); return false;">Hide Comments</a>`)
 }
@@ -159,6 +165,8 @@ function hideRecentComments() {
 }
 
 function showRecentVotes() {
+  hideRecentComments();
+  hideFavoriteProposals();
   $("#recentVotes").css("display", "block");
   $("#recVotes").replaceWith(`<a class="detailsButton" id="recVotes" href="#" onclick="hideRecentVotes(); return false;">Hide Votes</a>`)
 }
@@ -602,7 +610,7 @@ function showSideNav() {
   $("#mySidenav").css("width", "25%");
   $(".main").css({
     width: "70%",
-    transition: "0.5s"
+    transition: "1s"
   })
   $(".open").replaceWith(`<span class="open" onclick="hideSideNav()">X</span>`);
 }
@@ -615,6 +623,18 @@ function hideSideNav() {
     "position":"fixed",
     "right":"7%"
   })
+}
+
+function showProfileSideNav() {
+  animateShrinkage();
+  $("#mySidenav").css("width", "35%");
+  $(".viewNomineesButton").replaceWith(`<a class="viewNomineesButton" onclick="hideProfileSideNav()">Return to Profile</a>`);
+}
+
+function hideProfileSideNav() {
+  enlargeLoggedInIcon();
+  $("#mySidenav").css("width", "0");
+  $(".viewNomineesButton").replaceWith(`<a class="viewNomineesButton" onclick="showProfileSideNav()">Browse Nominees</a>`);
 }
 
 function showTopNav() {
