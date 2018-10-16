@@ -1,15 +1,22 @@
-<% if current_user && current_user.proposal%>
+<style>
+  body {
+    background-image: url(<%= Proposal.find(5).image_url %>);
+    background-size: cover;
+  }
 
+</style>
+
+<% if current_user && current_user.proposal %>
 <div id="editProposalDetails">
   <%= form_for(current_user.proposal) do |f| %>
   <h2>Name</h2>
   <%= f.text_field :name %></p>
   <h2>Brief Description (75 characters or less)</h2>
-  <%= f.text_field :description, cols:50 %>
+  <%= f.text_area :description, cols:50 %>
   <h2>Why should she be considered?</h2>
-  <%= f.text_field :pitch, cols:50, rows:10 %>
+  <%= f.text_area :pitch, cols:50, rows:10 %>
   <h2>Historical Image</h2>
-  <%= f.text_field :image_url, cols:50 %>
+  <%= f.text_area :image_url, cols:50 %>
   <%= f.submit%>
   <% end %>
 </div>

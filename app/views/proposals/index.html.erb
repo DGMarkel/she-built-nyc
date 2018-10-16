@@ -230,7 +230,7 @@ function editProposalTemplate() {
   $(".main").append(`<%= j render '/proposals/edit' %>`);
   editProposal()
   hideSideNav();
-  $("#editUserDetails").animate({"left": "31.5%"}, 10, function() {});
+  $("#editProposalDetails").animate({"right": "-33%"}, 10, function() {});
 }
 
 function editProposal() {
