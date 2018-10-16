@@ -20,6 +20,14 @@
     <% end %> -->
     <h1><%= @user.name %></h1>
     <hr>
+    <a class="detailsButton" href="#" onclick="editProfileTemplate();hideTopNav();animateShrinkage();return false;">Edit Profile</a>
+    <% if current_user.proposal %>
+    <a class="detailsButton" href="#" onclick="documentReadyCalls(<%= @user.proposal.id %>);hideTopNav();animateShrinkage();return false;">View Proposal</a>
+    <a class="detailsButton" href="#" onclick="editProposalTemplate();animateShrinkage();hideTopNav();return false;">Edit Proposal</a>
+    <% else %>
+    <a class="detailsButton" href="#" onclick="newProposalTemplate();animateShrinkage();hideTopNav();return false;">Submit a Proposal</a>
+    <% end %>
+
     <h3>Affiliation: <%= @user.affiliation %></h3>
     <h3>Borough: <%= @user.borough %></h3>
     <h3>Zip Code: <%= @user.zip_code %></h3>
