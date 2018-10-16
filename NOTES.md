@@ -1,3 +1,5 @@
+declaring success for now, will return later
+
 add next/previous arrows to other user profile cards
 
 need to fix View Nominees link on line 326-333 - commented out for now
