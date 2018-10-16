@@ -1,5 +1,4 @@
 <% if current_user %>
-<% backgroundProposal = Proposal.find(6) %>
 
 <style>
   body {
@@ -15,15 +14,13 @@
   <% @user = current_user %>
 
   <div id="userDetails">
-    <!-- <% if @user.image_url && !@user.image_url.empty? %>
-      <div id="userImage"><img src="<%=@user.image_url%>"></div>
-    <% end %> -->
+
     <h1><%= @user.name %></h1>
     <hr>
-    <a class="detailsButton" href="#" onclick="editProfileTemplate();hideTopNav();animateShrinkage();return false;">Edit Profile</a>
+    <a class="detailsButton" href="#" onclick="editProfileTemplate();hideTopNav();return false;">Edit Profile</a>
     <% if current_user.proposal %>
     <a class="detailsButton" href="#" onclick="documentReadyCalls(<%= @user.proposal.id %>);hideTopNav();animateShrinkage();return false;">View Proposal</a>
-    <a class="detailsButton" href="#" onclick="editProposalTemplate();animateShrinkage();hideTopNav();return false;">Edit Proposal</a>
+    <a class="detailsButton" href="#" onclick="editProposalTemplate();hideTopNav();animateShrinkage();return false;">Edit Proposal</a>
     <% else %>
     <a class="detailsButton" href="#" onclick="newProposalTemplate();animateShrinkage();hideTopNav();return false;">Submit a Proposal</a>
     <% end %>
@@ -32,7 +29,7 @@
     <h3>Borough: <%= @user.borough %></h3>
     <h3>Zip Code: <%= @user.zip_code %></h3>
 
-    <hr>
+
 
     <div id="userNav">
       <a class="detailsButton" id="favProps" href="#" onclick="showFavoriteProposals(); return false;">Favorite Proposals</a>
@@ -71,10 +68,6 @@
         <% end %>
         </div>
 
-
   </div>
 
-  <!-- <div id="proposalSignature">
-    <h1><%= backgroundProposal.name %></h1>
-  </div> -->
 <% end %>
