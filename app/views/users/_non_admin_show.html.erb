@@ -29,6 +29,15 @@
     <h3>Borough: <%= @user.borough %></h3>
     <h3>Zip Code: <%= @user.zip_code %></h3>
 
+
+
+    <div id="userNav">
+      <a class="detailsButton" id="favProps" href="#" onclick="showFavoriteProposals(); return false;">Favorite Proposals</a>
+      <a class="detailsButton" id="recComs" href="#" onclick="showRecentComments(); return false">Recent Comments</a>
+      <a class="detailsButton" id="recVotes" href="#" onclick="showRecentVotes(); return false">Recent Votes</a>
+    </div>
+
+
         <div id="favoriteProposals" style="display:none;">
           <% @user.rankings.highest_ranking.limit(3).each do |ranking| %>
             <% @proposal = Proposal.find_by(id: ranking.proposal_id) %>

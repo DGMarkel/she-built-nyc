@@ -108,11 +108,6 @@ function currentUserProfileTemplate() {
     } else {
       $(".main").empty();
       $(".main").append('<%= j render '/users/non_admin_show' %>');
-      $("body").append(`<div id="userNav"></div>`);
-      $("#userNav").append(`<a class="detailsButton" id="viewNominees" onclick="showProfileSideNav(); return false;">Browse Nominees</a>`);
-      $("#userNav").append(`<a class="detailsButton" id="favProps" href="#" onclick="showFavoriteProposals(); return false;">Favorite Proposals</a><p></p>`);
-      $("#userNav").append(`<a class="detailsButton" id="recComs" href="#" onclick="showRecentComments(); return false">Recent Comments</a>`);
-      $("#userNav").append(`<a class="detailsButton" id="recVotes" href="#" onclick="showRecentVotes(); return false">Recent Votes</a>`);
       enlargeLoggedInIcon();
       shrinkLoggedInIcon();
     }
@@ -633,13 +628,13 @@ function hideSideNav() {
 function showProfileSideNav() {
   animateShrinkage();
   $("#mySidenav").css("width", "35%");
-  $("#viewNominees").replaceWith(`<a class="detailsButton" id="viewNominees" onclick="hideProfileSideNav()">Return to Profile</a>`);
+  $(".viewNomineesButton").replaceWith(`<a class="viewNomineesButton" onclick="hideProfileSideNav()">Return to Profile</a>`);
 }
 
 function hideProfileSideNav() {
   enlargeLoggedInIcon();
   $("#mySidenav").css("width", "0");
-  $("#viewNominees").replaceWith(`<a class="detailsButton" id="viewNominees" onclick="showProfileSideNav()">Browse Nominees</a>`);
+  $(".viewNomineesButton").replaceWith(`<a class="viewNomineesButton" onclick="showProfileSideNav()">Browse Nominees</a>`);
 }
 
 function showTopNav() {
