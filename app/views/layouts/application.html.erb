@@ -217,6 +217,40 @@ div #proposalDetails {
     margin: 20px 40%;
   }
 
+  #editProposalDetails {
+    position: fixed;
+    top: 60px;
+    right: -70%;
+    max-height: calc(100vh - 6rem);
+    width: 33%;
+    margin: 0 32%;
+    padding: 20px 20px 40px 20px;
+    overflow: overlay;
+    background-color:rgba(255, 255, 255, 0.8);
+    text-align: center;
+    transition: 0.5s;
+  }
+
+  #editProposalDetails input[type="text"] {
+    width: 75%;
+    border-radius: 5px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  #editProposalDetails textarea {
+    width: 75%;
+    border-radius: 5px;
+    border-top: 3px solid gray;
+    border-left: 3px solid gray;
+    border-right: 3px solid lightgray;
+    border-bottom: 3px solid lightgray;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    text-align: center;
+  }
+
   /* user signup form */
 
   #userForm {
@@ -290,42 +324,6 @@ div #proposalDetails {
     #loginForm a:hover {
       color: red;
     }
-
-  /* edit proposal form */
-
-  #editProposalDetails {
-    position: fixed;
-    top: 60px;
-    right: -70%;
-    max-height: calc(100vh - 6rem);
-    width: 33%;
-    margin: 0 32%;
-    padding: 20px 20px 40px 20px;
-    overflow: overlay;
-    background-color:rgba(255, 255, 255, 0.8);
-    text-align: center;
-    transition: 0.5s;
-  }
-
-  #editProposalDetails input[type="text"] {
-    width: 75%;
-    border-radius: 5px;
-    font-family: 'Raleway', sans-serif;
-    font-size: 20px;
-    text-align: center;
-  }
-
-  #editProposalDetails textarea {
-    width: 75%;
-    border-radius: 5px;
-    border-top: 3px solid gray;
-    border-left: 3px solid gray;
-    border-right: 3px solid lightgray;
-    border-bottom: 3px solid lightgray;
-    font-family: 'Raleway', sans-serif;
-    font-size: 20px;
-    text-align: center;
-  }
 
   /* edit user form */
 
