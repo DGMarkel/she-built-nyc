@@ -118,7 +118,7 @@ function currentUserProfileTemplate() {
 }
 
 function shrinkLoggedInIcon() {
-  $("body").on("click", function() {
+  $("a").on("click", function() {
     $("#loggedInIcon").animate({
       "height":"40px",
       "width":"40px",
