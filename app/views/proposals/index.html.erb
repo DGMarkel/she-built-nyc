@@ -110,8 +110,29 @@ function currentUserProfileTemplate() {
 
       $(".main").empty();
       $(".main").append('<%= j render '/users/non_admin_show' %>');
+      $("#loggedInIcon").animate({width:"170px",height:"170px",top:"0",right:"15%","margin-bottom":"100px"},1000,function(){})
+      $("#userDetails h1").animate({"margin-top":"120px"},1000,function(){})
+      shrinkLoggedInIcon()
     }
   });
+}
+
+function shrinkLoggedInIcon() {
+  $("body").on("click", function() {
+    $("#loggedInIcon").animate({
+      "height":"40px",
+      "width":"40px",
+      "float":"right",
+      "margin-top":"10px",
+      "margin-right":"-40px",
+      "overflow": "hidden",
+      "border-radius":"50%"
+    },1000,function(){});
+    $("#userDetails h1").animate({"margin-top":"0px"},1000,function(){})
+  })
+
+
+
 }
 
 // displays/hides current user details on profile card
