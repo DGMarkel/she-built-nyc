@@ -36,7 +36,7 @@
         <div id="favoriteProposals" style="display:none;">
           <% @user.rankings.highest_ranking.limit(3).each do |ranking| %>
             <% @proposal = Proposal.find_by(id: ranking.proposal_id) %>
-            <h3><a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false"><%= @proposal.name %></a></h3>
+            <h3><a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); animateShrinkage();return false"><%= @proposal.name %></a></h3>
           <% end %>
         </div>
 
@@ -46,7 +46,7 @@
 
             <h3>
             <%= comment.content %> - comment on <a href="#" onclick="getOtherUserProfile(<%= @proposal.user.id %>); return false;">
-            <%= @proposal.user.name %></a>'s proposal, <a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false">
+            <%= @proposal.user.name %></a>'s proposal, <a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); animateShrinkage();return false">
             <%= @proposal.name %></a>
             </h3>
             <hr>
@@ -57,7 +57,7 @@
           <% @user.rankings.newest_first.limit(3).each do |ranking| %>
             <% @proposal = Proposal.find_by(id: ranking.proposal_id) %>
             <h3>
-            You gave <a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); return false"><%= @proposal.name %></a>
+            You gave <a href="#" onclick="documentReadyCalls(<%= @proposal.id %>); animateShrinkage();return false"><%= @proposal.name %></a>
             a score of <%= ranking.ranking %>
             </h3>
         <% end %>

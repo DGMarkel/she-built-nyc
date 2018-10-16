@@ -119,20 +119,21 @@ function currentUserProfileTemplate() {
 
 function shrinkLoggedInIcon() {
   $("a").on("click", function() {
-    $("#loggedInIcon").animate({
-      "height":"40px",
-      "width":"40px",
-      "float":"right",
-      "margin-top":"10px",
-      "margin-right":"-40px",
-      "overflow": "hidden",
-      "border-radius":"50%"
-    },1000,function(){});
-    $("#userDetails h1").animate({"margin-top":"0px"},1000,function(){})
+    animateShrinkage();
   })
+}
 
-
-
+function animateShrinkage() {
+  $("#loggedInIcon").animate({
+    "height":"40px",
+    "width":"40px",
+    "float":"right",
+    "margin-top":"10px",
+    "margin-right":"-40px",
+    "overflow": "hidden",
+    "border-radius":"50%"
+  },1000,function(){});
+  $("#userDetails h1").animate({"margin-top":"0px"},1000,function(){})
 }
 
 // displays/hides current user details on profile card
@@ -613,18 +614,18 @@ function hideSideNav() {
 }
 
 function showTopNav() {
-  $(".topNav").css({
-    "height":"auto",
+  $(".topNav").animate({
+    "max-height":"100%",
     "border-bottom":"1px solid lightgray"
-  })
+  },500,function(){})
   $("#topNavBurger").replaceWith(`<a id="topNavBurger" href="#" onclick="hideTopNav(); return false;">&#9776;</a></li>`);
 }
 
 function hideTopNav() {
-  $(".topNav").css({
-    "height":"0",
-    "border-bottom":"0"
-  })
+  $(".topNav").animate({
+    "max-height":"0"
+
+  },250,function(){})
   $("#topNavBurger").replaceWith(`<a id="topNavBurger" href="#" onclick="showTopNav(); return false;">&#9776;</a></li>`);
 }
 
