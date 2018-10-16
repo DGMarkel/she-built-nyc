@@ -74,92 +74,13 @@
 
 /*===== STYLING FOR NON_ADMIN_SHOW =====*/
 
-  /* #userDetails {
-    display: inline-block;
-    width:auto;
-    float:right;
-  }
-
-  #userDetails h3 {
-    margin-top: 0px;
-    margin-bottom: 2px
-  }
-
-  #userDetails h3 a {
-    text-decoration: underline;
-  }
-
-  #userOptions {
-    float: left;
-    margin-right: 10px;
-  } */
-
-  /* #userDetails {
-    z-index: -1;
-    position: fixed;
-    top: 60px;
-    right: 70%;
-    max-height: calc(100vh - 6rem);
-    width: 30%;
-    margin: 0 35%;
-    padding: 20px 20px 40px 20px;
-    overflow: overlay;
-    background-color:rgba(255, 255, 255, 0.7);
-    transition: 0.5s;
-  }
-
-  #userDetails img {
-    border-radius: 5px;
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  #userDetails h1 {
-    font-size: 60px;
-    margin: 0 0 0 20px;
-  }
-
-  #userDetails hr {
-    border-top: 1px solid black;
-  }
-
-  #userDetails hr:nth-of-type(1) {
-    margin-top: 15px;
-  }
-
-  #userDetails h2 {
-    display: inline;
-    margin: 20px;
-    text-align: center;
-    font-size: 40px;
-  }
-
-  #userDetails h3 {
-    margin-left: 20px;
-  }
-
-  #userDetails h3 a {
-    margin-bottom: 0px;
-  } */
-
-  /* #proposalSignature {
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
-  }
-
-  #proposalSignature h1 {
-    font-size: 60px;
-    color:white
-  } */
-
   #userDetails {
     position: absolute;
     top: 60px;
     right: 0;
     padding: 20px 20px 40px 20px;
     width: 33%;
-    background-color:rgba(260,249,249,0.8);
+    background-color:rgba(255,249,249,0.8);
     text-align: center;
     height: 100%;
     overflow: scroll;
@@ -168,12 +89,13 @@
 
   .detailsButton {
     margin: 0;
-    background-color: gray;
-    padding: 3px;
-    max-width:31%;
+    background-color: #01abaa;
+    padding: 8px 8px 6px 8px;
+    max-width:30%;
+    height: 20px;
     display: inline-block;
     font-family: 'Raleway', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     color: white;
   }
 
@@ -748,7 +670,7 @@ div #proposalDetails {
     <navbar class="sticky">
       <ul style="list-style-type:none;margin:0;padding:0;">
         <li><a id="topNavBurger" href="#" onclick="showTopNav(); return false;" style="font-size:40px;color:rgb(175,200,229);">&#9776;</a></li>
-        <li><h1 style="display:inline"><a href="#" onclick="homeTemplate(); return false;">sheBuiltNYC</a></h3></li>
+        <li><h1 style="display:inline"><a href="#" onclick="homeTemplate();hideTopNav();return false;">sheBuiltNYC</a></h3></li>
         <% if current_user %>
         <li><div id="loggedInIcon"><a href="#" onclick="currentUserProfileTemplate(); return false;"><img src="<%= current_user.image_url %>"></a></div></li>
         <% end %>
