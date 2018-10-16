@@ -640,13 +640,13 @@ function hideTopNav() {
 // popup form functions //
 
 function showOrHideCommentForm() {
-  $("html").on("click", function(e) {
+  $("body").on("click", function(e) {
     if ($(e.target).is("#commentForm h1")) {
       $("#commentPopUp").css({
         "height": "200px",
         "border": "1px solid lightgray"
       });
-    } else {
+    } else if (!$(e.target).is("#commentPopUp") && !$(e.target).parents().is("#commentPopUp")) {
       $("#commentPopUp").css({
         "height": "0",
         "border": "0"
@@ -666,7 +666,7 @@ function showOrHideRankingForm() {
         "height": "200px",
         "border": "1px solid lightgray"
       });
-    } else {
+    } else if (!$(e.target).is("#rankingPopUp") && !$(e.target).parents().is("#rankingPopUp")) {
       $("#rankingPopUp").css({
         "height": "0",
         "border": "0"
