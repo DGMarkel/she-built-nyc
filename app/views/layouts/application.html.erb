@@ -88,15 +88,25 @@
   }
 
   .detailsButton {
-    margin: 0;
+    /* margin: 0; */
     background-color: #01abaa;
-    padding: 8px 8px 6px 8px;
-    max-width:30%;
+    /* padding: 8px 8px 6px 8px;
+    max-width:30%; */
     height: 20px;
-    display: inline-block;
+    /* display: inline-block; */
     font-family: 'Raleway', sans-serif;
     font-size: 14px;
     color: white;
+  }
+
+  .userNav ul {
+    list-style: none;
+    margin-right: 500px;
+    width: 80%;
+  }
+
+  .userNav li {
+    display: inline-block;
   }
 
 /*===== STYLING FOR OTHER USER PROFILE TEMPLATE =====*/
@@ -156,6 +166,11 @@ div #proposalDetails {
 
 .proposalName {
   display: inline;
+  margin-bottom: 0;
+}
+
+.proposalDescription {
+  margin-top: 5px;
 }
 
 .proposalImage img {
@@ -163,6 +178,7 @@ div #proposalDetails {
   height:auto;
   float:left;
   margin-right:40px;
+  margin-bottom: 10px;
   transition: 1.5s;
 }
 
@@ -170,6 +186,10 @@ div #proposalDetails {
   width: 70%;
   height: auto;
   margin-bottom: 10px;
+}
+
+.proposalPitch {
+  overflow: scroll;
 }
 
 /*===== PROPOSAL INDEX STYLING =====*/
@@ -389,7 +409,7 @@ div #proposalDetails {
   /* forms to comment on and rank specific proposals */
 
   #proposalForms {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 75%;
@@ -515,6 +535,7 @@ div #proposalDetails {
     padding:20px;
     position: fixed;
     right: 25%;
+    top: 60px;
   }
 
   /* user options menu - login, signup, etc - popout on man navbar */

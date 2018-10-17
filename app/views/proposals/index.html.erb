@@ -115,8 +115,8 @@ function currentUserProfileTemplate() {
 }
 
 function enlargeLoggedInIcon() {
-  $("#loggedInIcon").animate({width:"170px",height:"170px",top:"0",right:"15%","margin-bottom":"100px"},1000,function(){})
-  $("#userDetails h1").animate({"margin-top":"120px"},1000,function(){})
+  $("#loggedInIcon").animate({width:"220px",height:"220px",top:"0",right:"13%"},1000,function(){})
+  $("#userDetails h1").animate({"margin-top":"170px"},1000,function(){})
 }
 
 function shrinkLoggedInIcon() {
@@ -134,7 +134,7 @@ function animateShrinkage() {
     "margin-right":"-40px",
     "overflow": "hidden",
     "border-radius":"50%"
-  },1000,function(){});
+  },400,function(){});
   $("#userDetails h1").animate({"margin-top":"0px"},1000,function(){})
 }
 
@@ -625,17 +625,19 @@ function hideSideNav() {
   })
 }
 
-function showProfileSideNav() {
-  animateShrinkage();
-  $("#mySidenav").css("width", "35%");
-  $(".viewNomineesButton").replaceWith(`<a class="viewNomineesButton" onclick="hideProfileSideNav()">Return to Profile</a>`);
-}
+// relic from a failed experiment, may come in handy later 
 
-function hideProfileSideNav() {
-  enlargeLoggedInIcon();
-  $("#mySidenav").css("width", "0");
-  $(".viewNomineesButton").replaceWith(`<a class="viewNomineesButton" onclick="showProfileSideNav()">Browse Nominees</a>`);
-}
+// function showProfileSideNav() {
+//   animateShrinkage();
+//   $("#mySidenav").css("width", "35%");
+//   $(".viewNomineesButton").replaceWith(`<a class="viewNomineesButton" onclick="hideProfileSideNav()">Return to Profile</a>`);
+// }
+//
+// function hideProfileSideNav() {
+//   enlargeLoggedInIcon();
+//   $("#mySidenav").css("width", "0");
+//   $(".viewNomineesButton").replaceWith(`<a class="viewNomineesButton" onclick="showProfileSideNav()">Browse Nominees</a>`);
+// }
 
 function showTopNav() {
   $(".topNav").css({

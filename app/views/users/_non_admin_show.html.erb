@@ -17,24 +17,29 @@
 
     <h1 style="font-size:50px;margin-bottom:0px"><%= @user.name %></h1>
     <hr style="border:0;">
-    <a class="detailsButton" href="#" onclick="editProfileTemplate();hideTopNav();return false;">Edit Profile</a>
-    <% if current_user.proposal %>
-    <a class="detailsButton" href="#" onclick="documentReadyCalls(<%= @user.proposal.id %>);hideTopNav();animateShrinkage();return false;">View Proposal</a>
-    <a class="detailsButton" href="#" onclick="editProposalTemplate();hideTopNav();animateShrinkage();return false;">Edit Proposal</a>
-    <% else %>
-    <a class="detailsButton" href="#" onclick="newProposalTemplate();animateShrinkage();hideTopNav();return false;">Submit a Proposal</a>
-    <% end %>
+
+    <div class="userNav">
+      <ul>
+        <li><a class="detailsButton" href="#" onclick="editProfileTemplate();hideTopNav();return false;">Edit Profile</a></li>
+        <% if current_user.proposal %>
+        <li><a class="detailsButton" href="#" onclick="documentReadyCalls(<%= @user.proposal.id %>);hideTopNav();animateShrinkage();return false;">View Proposal</a></li>
+        <li><a class="detailsButton" href="#" onclick="editProposalTemplate();hideTopNav();animateShrinkage();return false;">Edit Proposal</a></li>
+        <% else %>
+        <li><a class="detailsButton" href="#" onclick="newProposalTemplate();animateShrinkage();hideTopNav();return false;">Submit a Proposal</a></li>
+      <% end %>
+      </ul>
+    </div>
 
     <h3>Affiliation: <%= @user.affiliation %></h3>
     <h3>Borough: <%= @user.borough %></h3>
     <h3>Zip Code: <%= @user.zip_code %></h3>
 
-
-
-    <div id="userNav">
-      <a class="detailsButton" id="favProps" href="#" onclick="showFavoriteProposals(); return false;">Favorite Proposals</a>
-      <a class="detailsButton" id="recComs" href="#" onclick="showRecentComments(); return false">Recent Comments</a>
-      <a class="detailsButton" id="recVotes" href="#" onclick="showRecentVotes(); return false">Recent Votes</a>
+    <div class="userNav">
+      <ul>
+        <li><a class="detailsButton" id="favProps" href="#" onclick="showFavoriteProposals(); return false;">Favorite Proposals</a></li>
+        <li><a class="detailsButton" id="recComs" href="#" onclick="showRecentComments(); return false">Recent Comments</a></li>
+        <li><a class="detailsButton" id="recVotes" href="#" onclick="showRecentVotes(); return false">Recent Votes</a></li>
+      </ul>
     </div>
 
 
