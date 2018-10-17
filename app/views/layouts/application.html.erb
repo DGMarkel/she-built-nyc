@@ -142,7 +142,7 @@
     margin-top: 20px;
   }
 
-  #otherUserDetails hr, #userDetails hr {
+  #otherUserDetails hr {
     border-top: 1px solid black;
   }
 
@@ -376,10 +376,6 @@ div #proposalDetails {
     margin-bottom: 25px;
   }
 
-  #editUserDetails hr:first-of-type {
-    margin-top: 20px;
-  }
-
   #editUserDetails hr {
     border-top: 1px solid black;
   }
@@ -543,16 +539,17 @@ div #proposalDetails {
   /* user options menu - login, signup, etc - popout on man navbar */
 
   .topNav {
-    max-height: 0;
-    width: 350px;
     position: fixed;
-    z-index: 1;
     top: 60;
     left: 0;
+    margin-top: -20px;
+    max-height: 0;
+    width: 350px;
+    z-index: 1;
     border-right: 1px solid lightgray;
     background-color: white;
     overflow: overlay;
-    margin-top: -20px;
+    padding-right: 20px;
   }
 
   .topNav a {
@@ -565,6 +562,10 @@ div #proposalDetails {
 
   .topNav li[id="logInInfo"] a {
     font-size: 18px;
+  }
+
+  #topNavMenu hr {
+    border-top: 1px solid lightgray;
   }
 
   #topNavBurger {
