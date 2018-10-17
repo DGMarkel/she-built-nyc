@@ -1,24 +1,33 @@
+<div class="background">
+<img src="<%= Proposal.find(5).image_url %>" style="position:relative;object-fit:cover;width:100%;height:100%;opacity:0.9">
+</div>
+
 <div id="welcome">
 
-  <div style="position:relative;top:80px;left:30%;width:40%;text-align:justify;margin-bottom:150px;z-index:-1">
-      <h3><span style="font-size:60px;margin-right:-2px;color:rgb(175,200,229);">sheBuiltNYC</span>
-      invites New Yorkers to join us in our effort to build new public monuments that honor women’s history
-      in New York City.</h3>
-      <h3>
-      This is an open call for nominations. We invite you to submit one nominee, and vote on all of our nominees,
-      from the vast array of inspiring women who have contributed to our city.
-    </h3><h3>
-       Our advisory panel will announce the subject and site of the monument for the winning nominee in January 2019.</p>
+  <div style="position:relative;top:-10px;left:55px;height:700px;width:50%;">
+    <h1 style="font-family: 'Arvo', serif;color:white;font-size:50px;z-index:1">
+    is a city-wide initiative to build new public monuments dedicated to women’s history
+    in NYC.
+    </h1>
   </div>
 
-  <div class="img_wrap">
+  <div style="background-color:rgba(175,200,229);height:800px;width:120%;position:relative;top:-20px;left:-50px;">
+    <div style="position:absolute;top:20%;width:60%;margin:0 20%;">
+    <h1>
+    This is an open call for nominations. We invite you to submit one nominee, and vote on all of our nominees,
+    from the vast array of inspiring women who have contributed to our city.
+  </h1><h1>
+     Our advisory panel will announce the subject and site of the monument for the winning nominee in January 2019.</h1>
+   </div>
+  </div>
+
+  <!-- <div class="img_wrap">
     <h2 style="text-align:center;">Highest Rated Nominations:</h2>
     <hr>
 
     <div class="topThreeImages">
           <% Proposal.top_three_proposals.each do |proposal| %>
             <div id="image-<%proposal[0].id%>" style="display:inline-block;width:29%;margin:5px;height:250px;padding:15px">
-              <!-- <a href="#" onclick="documentReadyCalls(<%= proposal[0].id %>); return false"><div class="topThreeImages" id="<%= proposal[0].id %>" style="display:inline-block;width:29%;margin:5px;height:250px;padding:15px;background:url(<%=proposal[0].image_url%>) center center;background-size:cover;"> -->
               <a href="#" onclick="documentReadyCalls(<%= proposal[0].id %>); return false"><img src="<%=proposal[0].image_url%>" style="object-fit:cover;width:100%;height:250px;"></a>
             </div>
         <% end %>
@@ -33,6 +42,6 @@
       <% end %>
     </div>
 
-  </div>
+  </div> -->
 
 </div>

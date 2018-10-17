@@ -665,7 +665,6 @@ function hideTopNav() {
   $(".topNav").css("border-bottom", "0");
   $(".topNav").animate({
     "max-height":"0"
-
   },250,function(){})
   $("#topNavBurger").replaceWith(`<a id="topNavBurger" href="#" onclick="showTopNav(); return false;">&#9776;</a></li>`);
 }
