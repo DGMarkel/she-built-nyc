@@ -532,6 +532,17 @@ div #proposalDetails {
     color: #f1f1f1;
   }
 
+  .sidenav hr {
+    border-top: 1px solid lightgray;
+  }
+
+  #title {
+    font-size:40px;
+    color:rgb(175,200,229);
+    display:inline;
+    margin-left:26px;
+  }
+
   .open {
     background-color:rgb(175,200,229);
     font-size:30px;
@@ -641,7 +652,7 @@ div #proposalDetails {
   <body>
 
     <div id="mySidenav" class="sidenav">
-      <h3 style="font-size:40px;color:rgb(175,200,229);display:inline;margin-left:26px; auto;">Nominees</h1>
+      <h3 id="title">Nominees</h3>
         <% if @proposals %>
         <% @proposals.each do |proposal| %>
         <h3><a class="proposalLink"><a href="#" onclick="documentReadyCalls(<%= proposal.id %>); return false"><%= proposal.name %></a></h3>
