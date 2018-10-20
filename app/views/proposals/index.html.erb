@@ -538,6 +538,18 @@ function repliesTemplate(comment) {
   $('[id*="replies_to_comment"]').hide()
 }
 
+function replyForm(comment) {
+  $(`#reply_form_${comment}`).append(`<%= j render partial: "/replies/form" %>`);
+  setReplyFormIds(comment)
+  postAndInsertReply(comment);
+}
+
+function setReplyFormIds(comment) {
+  $("#reply_proposal")[0]["value"] = navId;
+  $("#reply_comment")[0]["value"] = `${comment}`;
+}
+
+
 function postAndInsertReply(comment) {
   $('#new_reply').on("submit", async function(e) {
     e.preventDefault();
@@ -560,17 +572,6 @@ function newReplyTemplate(newReply, comment) {
   $(`#replies_to_comment_${comment}`).append(`<h4><a href="/users/${newReply['user']['id']}">${newReply["user"]["name"]}</a> - ${newReply["created_at"]} </h4>`);
   $(`#replies_to_comment_${comment}`).append(`<h4>${newReply["content"]}</h4>`);
   $(`#replies_to_comment_${comment}`).append('<hr>')
-}
-
-function replyForm(comment) {
-  $(`#reply_form_${comment}`).append(`<%= j render partial: "/replies/form" %>`);
-  setReplyFormIds(comment)
-  postAndInsertReply(comment);
-}
-
-function setReplyFormIds(comment) {
-  $("#reply_proposal")[0]["value"] = navId;
-  $("#reply_comment")[0]["value"] = `${comment}`;
 }
 
 function showCommentReplies(commentId, replyCount) {
