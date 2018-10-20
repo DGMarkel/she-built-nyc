@@ -372,9 +372,9 @@ div #proposalDetails {
 #editUserDetails {
   position: fixed;
   top: 60px;
-  max-height: calc(100vh - 1rem);
+  height: calc(100vh - 1rem);
   width: 33%;
-  margin: 0 32%;
+  margin: 0 33%;
   padding: 20px 20px 40px 20px;
   overflow: overlay;
   background-color:rgba(255, 255, 255, 0.8);
