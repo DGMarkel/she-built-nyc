@@ -538,7 +538,7 @@ function repliesTemplate(comment) {
   $('[id*="replies_to_comment"]').hide()
 }
 
-function postandInsertReply(comment) {
+function postAndInsertReply(comment) {
   $('#new_reply').on("submit", async function(e) {
     e.preventDefault();
     var values = $(this).serialize();
@@ -565,7 +565,7 @@ function newReplyTemplate(newReply, comment) {
 function replyForm(comment) {
   $(`#reply_form_${comment}`).append(`<%= j render partial: "/replies/form" %>`);
   setReplyFormIds(comment)
-  postandInsertReply(comment);
+  postAndInsertReply(comment);
 }
 
 function setReplyFormIds(comment) {
