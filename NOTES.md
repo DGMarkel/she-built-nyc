@@ -1,4 +1,6 @@
-declaring success for now, will return later
+multiple issues with comment replies:
+  updated reply count disappears after opening/closing "view replies" link
+  new replies are only appended to the DOM if replies are hidden
 
 add next/previous arrows to other user profile cards
 
