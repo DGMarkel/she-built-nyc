@@ -3,7 +3,7 @@
   <head>
     <title>New Monuments to Women's History</title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=PT+Sans|Raleway:100" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:700" rel="stylesheet">
@@ -649,88 +649,93 @@ div #proposalDetails {
   </style>
 </head>
 
-  <body>
+<body>
 
-    <div id="mySidenav" class="sidenav">
-      <h3 id="title">Nominees</h3>
-        <% if @proposals %>
-        <% @proposals.each do |proposal| %>
-        <h3><a class="proposalLink"><a href="#" onclick="documentReadyCalls(<%= proposal.id %>); return false"><%= proposal.name %></a></h3>
-        <hr>
-        <% end %>
+  <!-- MAIN NAVBAR  -->
+
+  <navbar class="sticky">
+    <ul style="list-style-type:none;margin:0;padding:0;">
+      <li><a id="topNavBurger" href="#" onclick="showTopNav(); return false;" style="font-size:40px;color:rgb(175,200,229);">&#9776;</a></li>
+      <li><h1 style="display:inline"><a href="#" onclick="homeTemplate();hideTopNav();return false;">sheBuiltNYC</a></h3></li>
+      <% if current_user %>
+      <li><div id="loggedInIcon"><a href="#" onclick="currentUserProfileTemplate(); return false;"><img src="<%= current_user.image_url %>"></a></div></li>
       <% end %>
+    </ul>
+  </navbar>
+
+  <!-- MAIN NAVBAR DROPDOWN MENU  -->
+
+  <div class="topNav">
+    <div id ="topNavMenu">
+      <ul style="list-style-type:none">
+        <li id="logInInfo">
+          <% if current_user %>
+          <a href="#" onclick="currentUserProfileTemplate();hideTopNav();return false;" style="float:left">My Profile</a>
+          <a href="#" onclick="editProfileTemplate();hideTopNav();return false;" style="float:left">Edit Profile</a>
+          <%= link_to "Log Out", logout_path, { :method => "delete", :style=> 'float:right'  } %>
+          <% else %>
+          <a href="#" onclick="loginTemplate(); return false;" style="float:left">Log In</a>
+          <a href="#" onclick="signUpTemplate(); return false;" style="float:right">Sign Up</a>
+          <% end %>
+        </li>
+        <hr style="clear:both;">
+        <li><a href="#" onclick="indexTemplate();hideTopNav();return false">View Nominees</a></li>
+        <% if current_user %>
+        <% if current_user.proposal %>
+        <hr>
+        <li><a href="#" onclick="documentReadyCalls(<%= current_user.proposal.id %>);hideTopNav();return false;">View Proposal</a></li>
+        <hr>
+        <li><a href="#" onclick="editProposalTemplate();hideTopNav();return false;">Edit Proposal</a></li>
+        <% elsif !current_user.admin && !current_user.proposal %>
+        <hr>
+        <li><a id="submitProposalLink" href="#" onclick="newProposalTemplate();hideTopNav();return false;">Submit a Proposal</a></li>
+        <% end %>
+        <% end %>
+      </ul>
     </div>
+  </div>
+
+
+  <!-- POPOUT SIDENAV - DISPLAYS PROPOSAL INDEX, PROPOSAL EDIT, USER PROFILE, USER EDIT  -->
+
+  <div id="mySidenav" class="sidenav">
+    <h3 id="title">Nominees</h3>
+    <% if @proposals %>
+    <% @proposals.each do |proposal| %>
+    <h3><a class="proposalLink"><a href="#" onclick="documentReadyCalls(<%= proposal.id %>); return false"><%= proposal.name %></a></h3>
+    <hr>
+    <% end %>
+    <% end %>
+  </div>
+
+<!-- RANKING POPUPS FOR LOGGED IN USERS -->
 
 <% if current_user %>
 
-    <div id="rankingPopUp">
-      <%= form_for(:ranking, :url => rankings_path, :html => {id: "new_ranking"}) do |f| %>
-        <%= f.number_field :ranking %>
-        <%= f.hidden_field :proposal, :value => "" %>
-        <%= f.hidden_field :user, :value => current_user.id, id: "badIdea" %>
-        <%= f.submit "Rank This Proposal" %>
-      <% end %>
-    </div>
+  <div id="rankingPopUp">
+    <%= form_for(:ranking, :url => rankings_path, :html => {id: "new_ranking"}) do |f| %>
+      <%= f.number_field :ranking %>
+      <%= f.hidden_field :proposal, :value => "" %>
+      <%= f.hidden_field :user, :value => current_user.id, id: "badIdea" %>
+      <%= f.submit "Rank This Proposal" %>
+    <% end %>
+  </div>
 
-    <div id="commentPopUp">
-      <%= form_for(:comment, url: comments_path, :html => {id: "new_comment"}) do |f| %>
-        <%= f.text_field :content, :rows => 5 %>
-        <%= f.hidden_field :proposal, :value => "" %>
-        <%= f.submit "Submit" %>
-      <% end %>
-    </div>
+  <div id="commentPopUp">
+    <%= form_for(:comment, url: comments_path, :html => {id: "new_comment"}) do |f| %>
+      <%= f.text_field :content, :rows => 5 %>
+      <%= f.hidden_field :proposal, :value => "" %>
+      <%= f.submit "Submit" %>
+    <% end %>
+  </div>
 
 <% end %>
 
-    <div class="topNav">
-      <div id ="topNavMenu">
-        <ul style="list-style-type:none">
-          <li id="logInInfo">
-            <% if current_user %>
-              <a href="#" onclick="currentUserProfileTemplate();hideTopNav();return false;" style="float:left">My Profile</a>
-              <a href="#" onclick="editProfileTemplate();hideTopNav();return false;" style="float:left">Edit Profile</a>
-              <%= link_to "Log Out", logout_path, { :method => "delete", :style=> 'float:right'  } %>
-            <% else %>
-              <a href="#" onclick="loginTemplate(); return false;" style="float:left">Log In</a>
-              <a href="#" onclick="signUpTemplate(); return false;" style="float:right">Sign Up</a>
-            <% end %>
-          </li>
-          <hr style="clear:both;">
-          <li><a href="#" onclick="indexTemplate();hideTopNav();return false">View Nominees</a></li>
-          <% if current_user %>
-            <% if current_user.proposal %>
-              <hr>
-              <li><a href="#" onclick="documentReadyCalls(<%= current_user.proposal.id %>);hideTopNav();return false;">View Proposal</a></li>
-              <hr>
-              <li><a href="#" onclick="editProposalTemplate();hideTopNav();return false;">Edit Proposal</a></li>
-            <% elsif !current_user.admin && !current_user.proposal %>
-              <hr>
-              <li><a id="submitProposalLink" href="#" onclick="newProposalTemplate();hideTopNav();return false;">Submit a Proposal</a></li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-    </div>
+<!-- MAIN CONTENT -->
 
-    <navbar class="sticky">
-      <ul style="list-style-type:none;margin:0;padding:0;">
-        <li><a id="topNavBurger" href="#" onclick="showTopNav(); return false;" style="font-size:40px;color:rgb(175,200,229);">&#9776;</a></li>
-        <li><h1 style="display:inline"><a href="#" onclick="homeTemplate();hideTopNav();return false;">sheBuiltNYC</a></h3></li>
-        <% if current_user %>
-        <li><div id="loggedInIcon"><a href="#" onclick="currentUserProfileTemplate(); return false;"><img src="<%= current_user.image_url %>"></a></div></li>
-        <% end %>
-      </ul>
-    </navbar>
-
-    <!-- content -->
-    <div class="main">
-      <% if flash[:non_admin_warning] %>
-        <h1 style="color:red"><%= flash[:non_admin_warning] %></h1>
-      <% end %>
-      <%= yield %>
-    </div>
-
-
+  <div class="main">
+    <%= yield %>
+  </div>
 
   </body>
 </html>
