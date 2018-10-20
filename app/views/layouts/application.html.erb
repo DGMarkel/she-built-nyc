@@ -8,6 +8,22 @@
     <link href="https://fonts.googleapis.com/css?family=PT+Sans|Raleway:100" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:700" rel="stylesheet">
     <!-- <link href="https://fonts.googleapis.com/css?family=Arvo:700" rel="stylesheet"> -->
+
+<style>
+
+#formWrapper {
+  position: absolute;
+  top: -20px;
+  left: -100px;
+  width: 125%;
+  height: 1000px;
+  z-index: -1;
+  background-image: url(<%= Proposal.find(6).image_url %>);
+  background-size: cover;
+}
+
+</style>
+
 </head>
 <body>
 

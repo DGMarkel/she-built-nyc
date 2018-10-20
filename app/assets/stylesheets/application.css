@@ -15,7 +15,7 @@
  */
 
 
-body {
+/* body {
   margin: 0;
 }
 
@@ -103,12 +103,8 @@ a:hover {
 }
 
 .detailsButton {
-  /* margin: 0; */
   background-color: #01abaa;
-  /* padding: 8px 8px 6px 8px;
-  max-width:30%; */
   height: 20px;
-  /* display: inline-block; */
   font-family: 'Raleway', sans-serif;
   font-size: 14px;
   color: white;
@@ -319,17 +315,6 @@ div #proposalDetails {
    font-size: 60px;
    margin: 10px 0;
  }
-
-#formWrapper {
-  position: absolute;
-  top: -20px;
-  left: -100px;
-  width: 125%;
-  height: 1000px;
-  z-index: -1;
-  background-image: url(<%= Proposal.find(6).image_url %>);
-  background-size: cover;
-}
 
  /* user login form */
 
