@@ -541,13 +541,13 @@ function repliesTemplate(comment) {
 function postandInsertReply(comment) {
   $('#new_reply').on("submit", async function(e) {
     e.preventDefault();
-  var values = $(this).serialize();
-  let posting = await $.post('/replies', values);
-  let replies = await $.get(`/proposals/${navId}/comments/${comment}.json`)
-  let newReply = replies["replies"].pop();
-  $('#new_reply').remove();
-  updateReplyCount(comment);
-  newReplyTemplate(newReply, comment);
+    var values = $(this).serialize();
+    let posting = await $.post('/replies', values);
+    let replies = await $.get(`/proposals/${navId}/comments/${comment}.json`)
+    let newReply = replies["replies"].pop();
+    $('#new_reply').remove();
+    updateReplyCount(comment);
+    newReplyTemplate(newReply, comment);
   });
 }
 
