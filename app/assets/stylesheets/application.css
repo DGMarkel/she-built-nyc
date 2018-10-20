@@ -246,15 +246,7 @@ div #proposalDetails {
 
 /* forms to edit and create proposals*/
 
-.new_proposal {
-  display: inline-block;
-  background-color:rgba(255, 255, 255, 0.6);
-  padding: 20px;
-  height: auto;
-  margin: 20px 40%;
-}
-
-#editProposalDetails {
+#editProposalDetails, .new_proposal {
   position: fixed;
   top: 60px;
   right: -70%;
@@ -268,7 +260,7 @@ div #proposalDetails {
   transition: 0.5s;
 }
 
-#editProposalDetails input[type="text"] {
+#editProposalDetails input[type="text"], .new_proposal input[type="text"] {
   width: 75%;
   border-radius: 5px;
   font-family: 'Raleway', sans-serif;
@@ -276,7 +268,7 @@ div #proposalDetails {
   text-align: center;
 }
 
-#editProposalDetails textarea {
+#editProposalDetails textarea, .new_proposal textarea {
   width: 75%;
   border-radius: 5px;
   border-top: 3px solid gray;
@@ -379,7 +371,8 @@ div #proposalDetails {
   border-top: 1px solid black;
 }
 
-#editUserDetails input[type="submit"], #userForm input[type="submit"], #editProposalDetails input[type="submit"]{
+#editUserDetails input[type="submit"], #userForm input[type="submit"], #editProposalDetails input[type="submit"],
+.new_proposal input[type="submit"] {
   background: orange;
   padding: 10px 18px;
   margin-top: 20px;
