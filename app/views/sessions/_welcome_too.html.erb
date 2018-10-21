@@ -1,0 +1,63 @@
+<div class="background">
+  <img class="top" src="<%= Proposal.find(5).image_url %>" style="position:relative;object-fit:cover;width:100%;height:100%;opacity:0.9">
+
+  <div style="position:absolute;top:0;height:100%;width:100%;z-index:-1">
+    <div style="position:relative;top:300px;width:40%;margin:10% 85px;">
+      <h1 style="color:orange;">
+        this is an open call for nominations
+      </h1>
+      <h2 style="color:white;text-align:justify;">
+        We invite you to submit one nominee, and vote on all of our nominees,
+        from the vast array of inspiring women who have contributed to our city.
+      </h2>
+      <button href="#" onclick="signUpTemplate(); return false;" style="position:relative;background-color:orange;color:black;width:100%;height:50px;font-size:30px;border-radius:25px;border:0;">Join Now</a>
+      <button href="#" onclick="indexTemplate();hideTopNav();return false" style="position:relative;top: 20px;background-color:orange;color:black;width:100%;height:50px;font-size:30px;border-radius:25px;border:0;">Browse Nominees</a>
+   </div>
+
+   <div class="img_wrap" style="position:relative;top:250px;bottom:0;background-color:white;">
+
+     <div class="topThreeImages">
+           <% Proposal.top_three_proposals.each do |proposal| %>
+             <div id="image-<%proposal[0].id%>" style="display:inline-block;width:29%;margin:5px;height:250px;padding:15px">
+
+               <a href="#" onclick="documentReadyCalls(<%= proposal[0].id %>); return false"><img src="<%=proposal[0].image_url%>" style="object-fit:cover;width:100%;height:250px;"></a>
+             </div>
+         <% end %>
+     </div>
+
+     <div class="topThreeDescriptions">
+       <% Proposal.top_three_proposals.each do |proposal| %>
+         <div id="description-<%proposal[0].id%>" style="display:inline-block;width:29%;margin:5px;height:250px;padding:15px;">
+           <h1><%= proposal[0].name %></h1>
+           <p style="color:gray;"><%= proposal[0].description %></p>
+         </div>
+       <% end %>
+     </div>
+
+   </div>
+
+  </div>
+</div>
+
+<div id="welcome">
+
+  <div style="position:relative;left:55px;top:40px;height:90%;width:50%;">
+    <h1 style="color:white;">
+    sheBuiltNYC invites New Yorkers to join us in our effort to build new public monuments dedicated to women’s history
+    in NYC.
+    </h1>
+  </div>
+
+
+
+
+
+
+
+<script>
+
+
+$(window).scroll(function(){
+    $(".top").css("opacity", 1.5 - $(window).scrollTop() / 250);
+  });
+</script>

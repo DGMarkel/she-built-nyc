@@ -61,7 +61,7 @@ function profileOrHomeTemplate() {
   currentUser = `<%= current_user.id if current_user %>`
   if (currentUser === ``) {
     $(".main").empty();
-    $(".main").append(`<%= j render '/sessions/welcome' %>`);
+    $(".main").append(`<%= j render '/sessions/welcome_too' %>`);
     topThreeProposalDisplay();
   } else {
     currentUserProfileTemplate();
@@ -70,7 +70,7 @@ function profileOrHomeTemplate() {
 
 function homeTemplate() {
   $(".main").empty();
-  $(".main").append('<%= j render '/sessions/welcome' %>');
+  $(".main").append('<%= j render '/sessions/welcome_too' %>');
   hideSideNav();
   topThreeProposalDisplay();
 }
