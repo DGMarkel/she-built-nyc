@@ -241,6 +241,10 @@ div #proposalDetails {
   left:50px;
  }
 
+ [id*='replies_to_comment_'] hr, [id*='comment-'] hr {
+   border-top: 1px solid lightgray;
+ }
+
 
 /*===== FORM STYLING  ======*/
 
