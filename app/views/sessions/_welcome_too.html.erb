@@ -50,6 +50,8 @@
 
 <script>
 
+// need to rewrite this function to be local to welcome view
+
 $(window).scroll(function(){
   $(".top").css("opacity", 1.5 - $(window).scrollTop() / 250);
   if ($(".top")[0]["style"]["opacity"] < "0.022") {
