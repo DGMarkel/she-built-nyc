@@ -15,11 +15,11 @@
  */
 
 
-/* body {
+body {
   margin: 0;
 }
 
-/*
+
 .background {
   position:absolute;
   top:60px;left:0;
@@ -27,7 +27,7 @@
   height:700px;
   background-color: rgb(175,200,229);
 }
-*/
+
 
 .main {
   margin: 80px 40px;
