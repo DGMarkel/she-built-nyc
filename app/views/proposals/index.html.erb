@@ -490,6 +490,7 @@ function postandInsertComment() {
       $("input[type='submit']").removeAttr('disabled');
     } else {
       alert("Comments need content")
+      $("[type='submit']").removeAttr("data-disable-with");
     }
   });
 }
