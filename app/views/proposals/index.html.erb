@@ -12,7 +12,7 @@ $(function () {
 
 function loginTemplate() {
   hideSideNav();
-  $("#topNavMenu").replaceWith(`<%= j render 'login' %>`);
+  $("#topNavMenu").replaceWith(`<%= j render 'sessions/login' %>`);
   $("[type='submit']").removeAttr("data-disable-with");
 }
 

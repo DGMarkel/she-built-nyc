@@ -18,8 +18,6 @@ class SessionsController < ApplicationController
     if user.try(:authenticate, params[:user][:password])
       session[:user_id] = user.id
       redirect_to root_path
-    else
-      flash[:login_warning] = "Please make sure you've filled all fields correctly"
     end
   end
 
