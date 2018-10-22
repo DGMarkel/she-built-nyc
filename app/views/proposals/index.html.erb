@@ -107,6 +107,7 @@ function currentUserProfileTemplate() {
     } else {
       $(".main").empty();
       $(".main").append('<%= j render '/users/non_admin_show' %>');
+      $(window).scrollTop(0);
       enlargeLoggedInIcon();
       shrinkLoggedInIcon();
     }
