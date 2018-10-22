@@ -1,5 +1,7 @@
 <% if current_user && current_user.proposal %>
 <div id="editProposalDetails">
+  <h1 style="font-size:60;">Edit Proposal</h1>
+  <hr>
   <%= form_for(current_user.proposal) do |f| %>
   <h2>Name</h2>
   <%= f.text_field :name %></p>
