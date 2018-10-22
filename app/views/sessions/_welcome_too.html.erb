@@ -10,8 +10,8 @@
         We invite you to submit one nominee, and vote on all of our nominees,
         from the vast array of inspiring women who have contributed to our city.
       </h2>
-      <button href="#" onclick="signUpTemplate();" style="position:relative;background-color:orange;color:black;width:100%;height:50px;font-size:30px;border-radius:25px;border:0;">Join Now</a>
-      <button href="#" onclick="indexTemplate();hideTopNav();return false" style="position:relative;top: 20px;background-color:orange;color:black;width:100%;height:50px;font-size:30px;border-radius:25px;border:0;">Browse Nominees</a>
+      <button href="#" onclick="signUpTemplate();" style="position:relative;background-color:orange;color:black;width:100%;height:50px;font-size:30px;border-radius:25px;border:0;cursor:pointer;">Join Now</a>
+      <button href="#" onclick="showSideNav();hideTopNav();return false" style="position:relative;top: 20px;background-color:orange;color:black;width:100%;height:50px;font-size:30px;border-radius:25px;border:0;cursor:pointer">Browse Nominees</a>
    </div>
 
    <div class="img_wrap" style="position:relative;top:250px;bottom:0;background-color:white;">
@@ -49,6 +49,10 @@
   </div>
 
 <script>
+
+$( function () {
+  $("body").click(function(e) { if (!$(e.target).is("button")) { hideSideNav() } })
+});
 
 $(window).scroll(function(){
   $(".top").css("opacity", 1.5 - $(window).scrollTop() / 250);

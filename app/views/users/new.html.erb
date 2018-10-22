@@ -2,6 +2,7 @@
   body {
     background-image: url(<%= Proposal.find(rand(1..Proposal.count)).image_url %>);
     background-size: cover;
+    height: auto;
   }
 
   span {
