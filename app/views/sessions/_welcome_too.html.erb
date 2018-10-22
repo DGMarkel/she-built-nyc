@@ -9,22 +9,22 @@
 
   <div id="welcomeContent" style="position:absolute;top:0;width:100%;z-index:-1">
     <div style="position:relative;top:300px;width:40%;margin:10% 85px;">
-      <h1 style="color:orange;">
+      <h1 style="color:orange;position:sticky;">
         this is an open call for nominations
       </h1>
       <h2 style="color:white;text-align:justify;">
         We invite you to submit one nominee, and vote on all of our nominees,
         from the vast array of inspiring women who have contributed to our city.
       </h2>
-      <button href="#" onclick="signUpTemplate();$(window).scrollTop(0)" style="position:relative;background-color:orange;color:black;width:100%;height:50px;font-size:30px;border-radius:25px;border:0;cursor:pointer;">Join Now</a>
-      <button href="#" onclick="showSideNav();hideTopNav();return false" style="position:relative;top: 20px;background-color:orange;color:black;width:100%;height:50px;font-size:30px;border-radius:25px;border:0;cursor:pointer">Browse Nominees</a>
+      <button href="#" onclick="signUpTemplate();$(window).scrollTop(0)" style="position:relative;background-color:orange;color:black;width:100%;height:50px;font-size:25px;border-radius:5px;border:0;cursor:pointer;">Get Started</a>
+      <button href="#" onclick="showSideNav();hideTopNav();return false" style="position:relative;top: 20px;background-color:orange;color:black;width:100%;height:50px;font-size:25px;border-radius:5px;border:0;cursor:pointer">Browse Nominees</a>
    </div>
 
    <div class="img_wrap" style="position:relative;top:250px;bottom:0;background-color:white;">
 
      <div class="topThreeImages">
            <% Proposal.top_three_proposals.each do |proposal| %>
-             <div id="image-<%proposal[0].id%>" style="display:inline-block;width:29%;margin:5px;padding:15px">
+             <div id="image-<%proposal[0].id%>" style="display:inline-block;width:29%;margin:5px;padding:15px;">
 
                <a href="#" onclick="documentReadyCalls(<%= proposal[0].id %>); return false"><img src="<%=proposal[0].image_url%>" style="object-fit:cover;width:100%;height:250px;"></a>
              </div>
