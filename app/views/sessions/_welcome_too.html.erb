@@ -51,7 +51,11 @@
 <script>
 
 $( function () {
-  $("body").click(function(e) { if (!$(e.target).is("button") && $(e.target).parents().is(".background")) { hideSideNav() } })
+  $("body").click(function(e) {
+    if (!$(e.target).is("button") && !$(e.target).is(".topThreeImages img") && $(e.target).parents().is(".background")) {
+      hideSideNav()
+    }
+  })
 });
 
 $(window).scroll(function(){
