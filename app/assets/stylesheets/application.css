@@ -194,7 +194,11 @@ div #proposalDetails {
   transition: 1.5s;
 }
 
-.proposalImage img:hover {
+.proposalImage:hover {
+  cursor:zoom-in;
+}
+
+.proposalImage img:active {
   width: 70%;
   height: auto;
   margin-bottom: 10px;
