@@ -343,14 +343,14 @@ function proposalTemplate() {
 
   // BROKEN - NEED TO REWORK
 
-  // else {
+  else {
   // // div for comments
-  //   $(".main").append(`<hr>`)
-  //   $(".main").append(`<div id="proposalComments">`);
-  //   $("#proposalComments").append(`<h1><a href="#" onclick="getRecentComments(${navId}); return false">View Comments</a></h1>`);
-  //   $("#proposalComments").append(`<div id="comments"></div>`);
-  //   $(".main").append(`</div>`);
-  // }
+    $(".main").append(`<hr>`)
+    $(".main").append(`<div id="proposalComments">`);
+    $("#proposalComments").append(`<h1><a href="#" onclick="getRecentComments(${navId}); return false">View Comments</a></h1>`);
+    $("#proposalComments").append(`<div id="comments"></div>`);
+    $(".main").append(`</div>`);
+  }
 }
 
 function proposalNavigation(){
