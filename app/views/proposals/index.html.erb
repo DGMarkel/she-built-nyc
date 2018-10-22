@@ -498,7 +498,7 @@ function postandInsertComment() {
 function commentTemplate(comment) {
   let replyCount = comment["replies"].length
   $(".main").prepend(`<div id="comment-${comment["id"]}">`)
-  $(`#comment-${comment["id"]}`).append(`<h4><a href="/users/${comment['user']['id']}">${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`);
+  $(`#comment-${comment["id"]}`).append(`<h4><a href="#" onclick="getOtherUserProfile(${comment['user']['id']}); return false;">${comment["user"]["name"]}</a> - ${comment["created_at"]} </h4>`);
   $(`#comment-${comment["id"]}`).append(`<h4>${comment["content"]}</h4>`);
 
   // viewable to registered users only
