@@ -51,7 +51,7 @@
 <script>
 
 $( function () {
-  $("body").click(function(e) { if (!$(e.target).is("button")) { hideSideNav() } })
+  $("body").click(function(e) { if (!$(e.target).is("button") && $(e.target).parents().is(".background")) { hideSideNav() } })
 });
 
 $(window).scroll(function(){
