@@ -1,6 +1,7 @@
 multiple issues with comment replies:
   updated reply count disappears after opening/closing "view replies" link
   new replies are only appended to the DOM if replies are hidden
+  "back to proposal" link doesn't work if viewing all comments - only works if viewing recent comments 
 
 add next/previous arrows to other user profile cards
 
