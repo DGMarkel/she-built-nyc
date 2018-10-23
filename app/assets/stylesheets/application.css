@@ -89,6 +89,24 @@ a:hover {
   z-index:-1;
 }
 
+#welcomeContent {
+  position:absolute;
+  top:75px;
+  width:100%;
+}
+
+#welcomeContent div {
+  position:relative;
+  top:90px;width:
+  40%;
+  margin:10% 95px;
+}
+
+#welcomeContent h1 {
+  color:white;
+  width:150%
+}
+
 #welcomeContent button {
   position: relative;
   top: 20px;
