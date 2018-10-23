@@ -29,6 +29,13 @@ body {
   z-index: -1;
 }
 
+.top {
+  position:relative;
+  object-fit:cover;
+  width:100%;
+  height:750;
+  opacity:0.4
+}
 
 .main {
   margin: 80px 40px;
@@ -105,6 +112,14 @@ a:hover {
 #welcomeContent h1 {
   color:white;
   width:150%
+}
+
+#join {
+  color:white;
+  position:relative;
+  left:55px;
+  top:125px;
+  width:50%;  
 }
 
 #welcomeContent button {
