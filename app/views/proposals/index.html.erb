@@ -317,10 +317,11 @@ function indexProposalTemplate(proposal) {
 }
 
 function getProposal() {
-  $.get("/proposals/" + navId + ".json", function(data) {
+  $.get("/proposals/" + navId, function(data) {
     proposal = new Proposal();
     proposal.appendData(data);
-  });
+  }, "json");
+
 }
 
 function Proposal() {

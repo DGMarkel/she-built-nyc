@@ -1,7 +1,89 @@
+function getProposal() {
+  $.get("/proposals/" + navId, function(data) {
+    proposal = new Proposal(data);
+    proposal.appendDetails();
+  }, "json");
+
+}
+
+function Proposal(data) {
+  this.name = data["name"]
+  this.imageUrl = data.image_url
+  this.description = data.description
+  this.user = data.user.name
+  this.pitch = data.pitch
+  this.id = data.id
+}
+
+Proposal.prototype.appendDetails = function() {
+  $(".main").empty();
+  $(".main").append(this.proposalTemplate())
+  $("#proposalForms").append(this.proposalForms())
+}
+
+Proposal.prototype.proposalTemplate = function () {
+
+  return (
+    `<div id="proposalDetails">
+      <span class="proposalImage"><img src="${this.imageUrl}"></span>
+      <h1 class="proposalName">${this.name}</h1>
+      <span class="open" onclick="hideSideNav()">X</span>
+      <h3 class="proposalDescription">${this.description}</h3>
+      <hr>
+      <p>Submitted by: <span class="proposalUser">${this.user}</span></p>
+      <h1>Why This Proposal Should Be Accepted</h1>
+      <p class="proposalPitch">${this.pitch}</p>
+    </div>
+    <div id="proposalForms"></div>`
+  )
+}
+
+Proposal.prototype.proposalForms = function() {
+  // div contains site navigation buttons
+  // $(".main").append(`<div id="proposalNavigation">`)
+  // $("#proposalNavigation").append(`<button class="js-previous" data-id="${navId}">Previous Proposal</button>`);
+  //  $("#proposalNavigation").append(`<button class="js-next" data-id="${navId}">Next Proposal</button>`);
+  // $(".proposalNavigation").append(`</div>`);
+
+  // div adds ranking and comment forms
+  if (currentUser != "") {
+    return (
+        `<div id="rankingForm">
+          <a href="#" onclick="showOrHideRankingForm(); return false"><h1>Rank this proposal</h1></a>
+        </div>
+        <div id="loggedInProposalComments">
+          <h1><a href="#" onclick="getRecentComments(${navId}); return false">View Comments</a></h1></div>
+        </div>
+        <div id="commentForm">
+          <a href="#" onclick="showOrHideCommentForm(); return false"><h1>Submit a Comment</h1></a>
+        </div>`
+    );
+  }
+
+  else {
+    return (
+      `<div id="proposalComments">
+        <h1><a href="#" onclick="getRecentComments(${navId}); return false">View Comments</a></h1>
+      </div>`
+    );
+  };
+}
+
+// UNUSED contains site navigation buttons
+Proposal.prototype.navbuttons = function() {
+  return (
+    `<div id="proposalNavigation">
+      <button class="js-previous" data-id="${navId}">Previous Proposal</button>
+      <button class="js-next" data-id="${navId}">Next Proposal</button>
+    </div>`
+  );
+}
+
+
 multiple issues with comment replies:
   updated reply count disappears after opening/closing "view replies" link
   new replies are only appended to the DOM if replies are hidden
-  "back to proposal" link doesn't work if viewing all comments - only works if viewing recent comments 
+  "back to proposal" link doesn't work if viewing all comments - only works if viewing recent comments
 
 add next/previous arrows to other user profile cards
 
