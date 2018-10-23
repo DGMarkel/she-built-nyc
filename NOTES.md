@@ -7,7 +7,7 @@ function getProposal() {
 }
 
 function Proposal(data) {
-  this.name = data["name"]
+  this.name = data.name
   this.imageUrl = data.image_url
   this.description = data.description
   this.user = data.user.name
@@ -79,6 +79,7 @@ Proposal.prototype.navbuttons = function() {
   );
 }
 
+comment submit button submits 3 post requests for some reason
 
 multiple issues with comment replies:
   updated reply count disappears after opening/closing "view replies" link
