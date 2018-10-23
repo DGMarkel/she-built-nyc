@@ -96,6 +96,14 @@ a:hover {
   z-index:-1;
 }
 
+#join {
+  color:white;
+  position:relative;
+  left:55px;
+  top:50px;
+  width:50%;
+}
+
 #welcomeContent {
   position:absolute;
   top:75px;
@@ -114,18 +122,8 @@ a:hover {
   width:150%
 }
 
-#join {
-  color:white;
-  position:relative;
-  left:55px;
-  top:125px;
-  width:50%;  
-}
-
 #welcomeContent button {
   position: relative;
-  top: 20px;
-  left: -5px;
   width:60%;
   height:50px;
   border-radius:5px;
@@ -137,12 +135,18 @@ a:hover {
 }
 
 #welcomeContent button:first-of-type {
-  background-color:orange;
+  border: 1px solid orange;
+  background-color: rgba(255,255,255,0)
 }
 
 #welcomeContent button:last-of-type {
   margin-top: 20px;
-  background-color: #3bb9ff
+  border: 1px solid #3bb9ff;
+  background-color: rgba(255,255,255,0);
+}
+
+#welcomeContent button:hover {
+  background-color: rgba(255,255,255,0.3);
 }
 
 #welcomeContent button:focus {

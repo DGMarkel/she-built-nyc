@@ -10,8 +10,9 @@
       </h1>
       <button href="#" onclick="signUpTemplate();$(window).scrollTop(0)">get started</button><br>
       <!-- <button href="#" onclick="showSideNav();hideTopNav();return false">browse nominees</button> -->
-      <button href="#" onclick="showTopNav();loginTemplate();return false">log in</button>
+      <button href="#" onclick="loginDropDown();return false">log in</button>
    </div>
+   <div id="login" style="position:relative;top:0;left:-55px;width:30.5%;"></div>
   </div>
 </div>
 
@@ -24,6 +25,30 @@ $( function () {
     }
   })
 });
+
+function loginDropDown() {
+  $("#login").append('<%= j render "/sessions/login" %>');
+  $("#login").css({
+    "position":"relative",
+    "top":"-20px"
+  })
+  $("#loginForm input").css({
+    "height":"43px",
+    "background-color": "rgba(255,255,255,0)",
+    "border":"1px solid #3bb9ff",
+    "border-radius":"5px",
+    "font-size":"25px"
+  });
+  $("#loginForm input[type='submit']").css({
+    "height":"40px",
+    "background-color": "orange"
+  });
+  $("#loginForm a").css({
+    "position": "relative",
+    "left":"100px",
+    "color":"white"
+  })
+}
 
 // $(window).scroll(function(){
 //   $(".top").css("opacity", 1.6 - $(window).scrollTop() / 250);
