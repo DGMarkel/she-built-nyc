@@ -2,6 +2,7 @@
 
 navId = null
 currentUser = null
+counter = 0
 
 $(function () {
   profileOrHomeTemplate();
@@ -71,7 +72,6 @@ function profileOrHomeTemplate() {
 function homeTemplate() {
   $(".main").empty();
   $(".main").append('<%= j render '/sessions/welcome_too' %>');
-  hideSideNav();
   topThreeProposalDisplay();
 }
 

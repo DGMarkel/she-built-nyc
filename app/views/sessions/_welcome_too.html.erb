@@ -5,10 +5,10 @@
 </style>
 
 <div class="background">
-  <img class="top" src="<%= Proposal.find(5).image_url %>" style="position:relative;object-fit:cover;width:100%;height:803px;opacity:0.9">
+  <img class="top" src="<%= Proposal.find(5).image_url %>" style="position:relative;object-fit:cover;width:100%;height:803px;opacity:0.4">
 
-  <div id="welcomeContent" style="position:absolute;top:0;width:100%;z-index:-1">
-    <div id="welcomeText" style="position:relative;top:300px;width:40%;margin:10% 85px;">
+  <div id="welcomeContent" style="position:absolute;top:0;width:100%;">
+    <div style="position:relative;top:90px;width:40%;margin:10% 95px;">
       <h1 style="color:orange;position:sticky;">
         this is an open call for nominations
       </h1>
@@ -20,36 +20,36 @@
       <button href="#" onclick="showSideNav();hideTopNav();return false" style="color:black;width:100%;height:50px;font-size:25px;margin-top:20px;background-color:white;border-radius:5px;border:0;cursor:pointer;font-family:'Raleway',sans-serif">browse nominees</button>
    </div>
 
-   <div class="img_wrap" style="position:relative;top:242px;height:500px;bottom:0;background-color:white;">
+   <!-- <div class="img_wrap" style="position:relative;top:242px;height:500px;bottom:0;background-color:white;">
 
-    <h2 style="width:605px;position:absolute;right:30px;text-align:right;padding-left:0;border:1px solid orange;padding:5px;border-radius:5px;display:none;">Our advisory panel will announce the subject and site of the monument for the winning nominee in January 2019.</h2>
+    <h1 style="width:70%;padding-top:100px;;margin:0 auto;">Our advisory panel will announce the subject and site of the monument for the winning nominee in January 2019.</h1>
 
      <div class="topThreeImages">
            <% Proposal.top_three_proposals.each do |proposal| %>
-             <div id="image-<%proposal[0].id%>" style="display:inline-block;width:29%;margin:5px;padding:15px;opacity:0;">
+             <div id="image-<%proposal[0].id%>" style="display:inline-block;width:29%;margin:5px;padding:15px;">
 
                <a href="#" onclick="documentReadyCalls(<%= proposal[0].id %>); return false"><img src="<%=proposal[0].image_url%>" style="object-fit:cover;width:100%;height:250px;"></a>
              </div>
          <% end %>
      </div>
 
-     <!-- <div class="topThreeDescriptions">
+     <div class="topThreeDescriptions">
        <% Proposal.top_three_proposals.each do |proposal| %>
-         <div id="description-<%proposal[0].id%>" style="display:inline-block;width:29%;margin:5px;padding:15px;opacity:0;">
+         <div id="description-<%proposal[0].id%>" style="display:inline-block;width:29%;margin:5px;padding:15px;">
            <h1><%= proposal[0].name %></h1>
            <p style="color:gray;"><%= proposal[0].description %></p>
          </div>
        <% end %>
-     </div> -->
+     </div>
 
-   </div>
+   </div> -->
 
   </div>
 </div>
 
 <div id="welcome">
 
-  <div style="position:relative;left:55px;top:100px;width:50%;">
+  <div style="position:relative;left:55px;top:50px;width:50%;">
     <h1 style="color:white;">
     join our drive to build new public monuments dedicated to women’s history
     in NYC.
@@ -66,21 +66,13 @@ $( function () {
   })
 });
 
-$(window).scroll(function(){
-  $(".top").css("opacity", 1.6 - $(window).scrollTop() / 250);
-  if ($(".top")[0]["style"]["opacity"] < "0.5") {
-    $("#welcomeContent").css("z-index","1") }
-  else {
-    $("#welcomeContent").css("z-index","-1")
-  }
-});
-
-var distance = $('#welcomeContent h1').offset().top - 100;
-
-$(window).scroll(function() {
-    if ( $(this).scrollTop() >= distance ) {
-      $("[id*='image-']").css("opacity", 0 + $(window).scrollTop() / 500);
-    }
-});
+// $(window).scroll(function(){
+//   $(".top").css("opacity", 1.6 - $(window).scrollTop() / 250);
+//   if ($(".top")[0]["style"]["opacity"] < "0.5") {
+//     $("#welcomeContent").css("z-index","1") }
+//   else {
+//     $("#welcomeContent").css("z-index","-1")
+//   }
+// });
 
 </script>
