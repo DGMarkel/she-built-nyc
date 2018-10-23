@@ -26,30 +26,6 @@ $( function () {
   })
 });
 
-function loginDropDown() {
-  $("#login").append('<%= j render "/sessions/login" %>');
-  $("#login").css({
-    "position":"relative",
-    "top":"-20px"
-  })
-  $("#loginForm input").css({
-    "height":"43px",
-    "background-color": "rgba(255,255,255,0)",
-    "border":"1px solid #3bb9ff",
-    "border-radius":"5px",
-    "font-size":"25px"
-  });
-  $("#loginForm input[type='submit']").css({
-    "height":"40px",
-    "background-color": "orange"
-  });
-  $("#loginForm a").css({
-    "position": "relative",
-    "left":"100px",
-    "color":"white"
-  })
-}
-
 // $(window).scroll(function(){
 //   $(".top").css("opacity", 1.6 - $(window).scrollTop() / 250);
 //   if ($(".top")[0]["style"]["opacity"] < "0.5") {
