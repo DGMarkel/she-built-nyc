@@ -5,8 +5,10 @@ currentUser = null
 
 $(function () {
   profileOrHomeTemplate();
-  $(".main").on("click", function() {
-    hideTopNav();
+  $(".main").on("click", function(e) {
+      if (!$(e.target).is("button")) {
+      hideTopNav();
+    }
   });
 });
 
