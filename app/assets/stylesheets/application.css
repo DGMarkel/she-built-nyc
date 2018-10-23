@@ -60,7 +60,7 @@ a:hover {
   color: red;
 }
 
-/*===== STYLING FOR WELCOME PAGE "TOP NOMINATIONS" SECTION =====*/
+/*===== STYLING FOR WELCOME PAGE =====*/
 
 .img_wrap {
   position: relative;
@@ -87,6 +87,33 @@ a:hover {
   font-size: 20px;
   font-family: 'Raleway', sans-serif;
   z-index:-1;
+}
+
+#welcomeContent button {
+  position: relative;
+  top: 20px;
+  left: -5px;
+  width:60%;
+  height:50px;
+  border-radius:5px;
+  border:0;
+  font-family:'Raleway',sans-serif;
+  font-size:25px;
+  color:white;
+  cursor:pointer;
+}
+
+#welcomeContent button:first-of-type {
+  background-color:orange;
+}
+
+#welcomeContent button:last-of-type {
+  margin-top: 20px;
+  background-color: #3bb9ff
+}
+
+#welcomeContent button:focus {
+  outline:0;
 }
 
 /*===== STYLING FOR NON_ADMIN_SHOW =====*/
