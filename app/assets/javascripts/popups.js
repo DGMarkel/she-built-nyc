@@ -18,20 +18,6 @@ function hideSideNav() {
   })
 }
 
-// relic from a failed experiment, may come in handy later
-
-// function showProfileSideNav() {
-//   animateShrinkage();
-//   $("#mySidenav").css("width", "35%");
-//   $(".viewNomineesButton").replaceWith(`<a class="viewNomineesButton" onclick="hideProfileSideNav()">Return to Profile</a>`);
-// }
-//
-// function hideProfileSideNav() {
-//   enlargeLoggedInIcon();
-//   $("#mySidenav").css("width", "0");
-//   $(".viewNomineesButton").replaceWith(`<a class="viewNomineesButton" onclick="showProfileSideNav()">Browse Nominees</a>`);
-// }
-
 function showTopNav() {
   $(".topNav").css({
     "border-bottom": "3px solid lightgray",
@@ -50,8 +36,6 @@ function hideTopNav() {
   },250,function(){})
   $("#topNavBurger").replaceWith(`<a id="topNavBurger" href="#" onclick="showTopNav(); return false;">&#9776;</a></li>`);
 }
-
-// popup form functions //
 
 function showOrHideCommentForm() {
   $("body").on("click", function(e) {
@@ -88,3 +72,17 @@ function showOrHideRankingForm() {
     };
   });
 }
+
+// relic from a failed experiment, may come in handy later
+
+// function showProfileSideNav() {
+//   animateShrinkage();
+//   $("#mySidenav").css("width", "35%");
+//   $(".viewNomineesButton").replaceWith(`<a class="viewNomineesButton" onclick="hideProfileSideNav()">Return to Profile</a>`);
+// }
+//
+// function hideProfileSideNav() {
+//   enlargeLoggedInIcon();
+//   $("#mySidenav").css("width", "0");
+//   $(".viewNomineesButton").replaceWith(`<a class="viewNomineesButton" onclick="showProfileSideNav()">Browse Nominees</a>`);
+// }
