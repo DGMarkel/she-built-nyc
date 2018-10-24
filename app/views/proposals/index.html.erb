@@ -49,7 +49,6 @@ function postNewUser() {
     if (users.pop) {
       newUser = users.pop()
       currentUser = newUser.id
-      editProfileTemplate();
     } else {
       alert("Let's try that again.")
       $('[type="submit"]').removeAttr("disabled");
