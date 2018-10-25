@@ -9,6 +9,19 @@ function repliesTemplate(comment) {
   $('[id*="replies_to_comment"]').hide()
 }
 
+function replyForm(comment) {
+  $(`#reply_form_${comment}`).append(`
+    <form id="new_reply" action="/proposals/comment_id/comments/proposal_id/replies" accept-charset="UTF-8" method="post">
+      <input type="text" name="reply[content]" id="reply_content">
+      <input value="" type="hidden" name="reply[proposal]" id="reply_proposal">
+      <input value="" type="hidden" name="reply[comment]" id="reply_comment">
+      <input type="submit" name="commit" value="Save Reply" data-disable-with="Save Reply">
+    </form>
+    `);
+  setReplyFormIds(comment)
+  postandInsertReply(comment);
+}
+
 function postandInsertReply(comment) {
   $('#new_reply').on("submit", async function(e) {
     e.preventDefault();

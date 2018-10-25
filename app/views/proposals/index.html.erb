@@ -159,12 +159,4 @@ function editProposalTemplate() {
   $("#editProposalDetails").animate({"right": "-33%"}, 10, function() {});
 }
 
-//reply functions
-
-function replyForm(comment) {
-  $(`#reply_form_${comment}`).append(`<%= j render partial: "/replies/form" %>`);
-  setReplyFormIds(comment)
-  postandInsertReply(comment);
-}
-
 </script>
