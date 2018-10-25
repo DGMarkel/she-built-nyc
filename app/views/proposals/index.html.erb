@@ -1,18 +1,5 @@
 <script type="text/javascript" charset="utf-8">
 
-navId = null
-currentUser = null
-usersArray = []
-
-$(function () {
-  profileOrHomeTemplate();
-  $(".main").on("click", function(e) {
-      if (!$(e.target).is("button")) {
-      hideTopNav();
-    }
-  });
-});
-
 // welcome page functions
 
 function profileOrHomeTemplate() {

@@ -14,3 +14,17 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree
+
+
+navId = null
+currentUser = null
+usersArray = []
+
+$(function () {
+  profileOrHomeTemplate();
+  $(".main").on("click", function(e) {
+      if (!$(e.target).is("button")) {
+      hideTopNav();
+    }
+  });
+});
