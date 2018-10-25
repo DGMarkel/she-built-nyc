@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :site_security, only: [:index, :edit, :update, :destroy]
+  before_action :site_security, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
