@@ -18,9 +18,7 @@ $(function () {
 function profileOrHomeTemplate() {
   currentUser = `<%= current_user.id if current_user %>`
   if (currentUser === ``) {
-    $(".main").empty();
-    $(".main").append(`<%= j render '/sessions/welcome_too' %>`);
-    topThreeProposalDisplay();
+    homeTemplate();
   } else {
     currentUserProfileTemplate();
   }
@@ -28,9 +26,23 @@ function profileOrHomeTemplate() {
 
 function homeTemplate() {
   $(".main").empty();
-  $(".main").append('<%= j render '/sessions/welcome_too' %>');
+  $(".main").append(`
+    <h1 id="join">join our drive to build new public monuments dedicated to women’s history in NYC.</h1>
+    <div class="background">
+      <img class="top" src="https://www.lovehappensmag.com/blog/wp-content/uploads/2017/10/Gertrude-Vanderbilt-Whitney-at-Her-Greenwich-Village-Studio-768x501.jpg">
+      <div id="welcomeContent">
+        <div>
+          <h1>
+            this is an open call for proposal submissions
+          </h1>
+          <button href="#" onclick="signUpTemplate();$(window).scrollTop(0)">get started</button><br>
+          <button href="#" onclick="loginDropDown();return false">log in</button>
+       </div>
+       <div id="login" style="position:relative;top:0;left:-55px;width:30.5%;"></div>
+      </div>
+    </div>
+  `);
   hideSideNav();
-  topThreeProposalDisplay();
 }
 
 
@@ -100,40 +112,6 @@ function currentUserProfileTemplate() {
       hideTopNav();
     }
   });
-}
-
-function enlargeLoggedInIcon() {
-  $("#loggedInIcon").animate({
-    "width":"280px",
-    "height":"280px",
-    "border-bottom-right-radius":"25px",
-    "border-bottom-left-radius":"25px",
-    "border-top-right-radius":"0",
-    "border-top-left-radius":"0",
-    "top":"50px",
-    "right":"10.5%"},
-    1000)
-  $("#userDetails h1").animate({"margin-top":"290px"},1000,function(){})
-}
-
-function shrinkLoggedInIcon() {
-  $("a").on("click", function() {
-    animateShrinkage();
-  })
-}
-
-function animateShrinkage() {
-  $("#loggedInIcon").animate({
-    "top":"0",
-    "height":"40px",
-    "width":"40px",
-    "float":"right",
-    "margin-top":"10px",
-    "margin-right":"-40px",
-    "overflow": "hidden",
-    "border-radius":"50%"
-  },400,function(){});
-  $("#userDetails h1").animate({"margin-top":"0px"},1000,function(){})
 }
 
 // edit profile functions
