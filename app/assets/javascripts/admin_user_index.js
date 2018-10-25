@@ -1,4 +1,4 @@
-function userIndexTemplate() {
+function userIndex() {
   $(".main").empty();
   $.get(`/users.json`, function(data) {
     if (data[0].id === parseInt(currentUser)) {
@@ -9,7 +9,7 @@ function userIndexTemplate() {
           <ul>
       `);
       data.forEach(function(user) {
-        userDetailsForIndex(user)
+        userTemplateForIndex(user)
       });
       $(".main").append(`
       </ul>
@@ -19,7 +19,7 @@ function userIndexTemplate() {
   });
 }
 
-function userDetailsForIndex(user) {
+function userTemplateForIndex(user) {
   $(".main").append(`
     <div style="height:150px;margin-top:20px;margin-left:100px;">
       <img src="${user.image_url}" style="float:left;height:90%;margin-right:20px;">
