@@ -1,9 +1,0 @@
-<h3>Editing your comment on <%= link_to @comment.proposal.name, proposal_path(@comment.proposal) %> </h3>
-
-<%= form_for(@comment) do |f| %>
-    <%= f.text_area :content %><br>
-    <% if flash[:comment_warning] %>
-      <p style="color:red;"><%= flash[:comment_warning] %></p>
-    <% end %>
-    <%= f.submit "Submit" %>
-  <% end %>
