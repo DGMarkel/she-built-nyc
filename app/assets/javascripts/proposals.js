@@ -16,11 +16,11 @@ function documentReadyCalls(proposalId) {
 
 function editProposal() {
   $(".edit_proposal").on("submit", function(e) {
+    e.preventDefault();
     proposalId = this.id.match(/\d+/g)[0]
     var values = $(this).serialize();
     $.post(`/proposals/${proposalId}`, values);
     documentReadyCalls(parseInt(proposalId));
-    e.preventDefault();
   });
 }
 
