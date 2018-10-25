@@ -19,35 +19,6 @@ function homeTemplate() {
   hideSideNav();
 }
 
-
-function loginDropDown() {
-  $("#login").append('<%= j render "/sessions/login" %>');
-  $("#login").css({
-    "position":"relative",
-    "top":"-20px"
-  })
-  $("#loginForm input").css({
-    "height":"43px",
-    "background-color": "rgba(255,255,255,0)",
-    "border":"1px solid #3bb9ff",
-    "border-radius":"5px",
-    "font-size":"25px"
-  });
-  $("#loginForm input[type='submit']").css({
-    "height":"40px",
-    "border": "1px solid orange",
-    "color":"white",
-    "cursor":"pointer"
-  });
-  $("#loginForm a").css({
-    "position": "relative",
-    "left":"100px",
-    "color":"white",
-    "text-decoration":"none"
-  })
-  $("[type='submit']").removeAttr("data-disable-with");
-}
-
 // function topThreeProposalDisplay() {
 //   $(".topThreeImages div").hover(
 //     function() {
