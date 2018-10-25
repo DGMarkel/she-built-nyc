@@ -1,12 +1,3 @@
-function profileOrHomeTemplate() {
-  currentUser = `<%= current_user.id if current_user %>`
-  if (currentUser === ``) {
-    homeTemplate();
-  } else {
-    currentUserProfileTemplate();
-  }
-}
-
 function homeTemplate() {
   $(".main").empty();
   $(".main").append(`

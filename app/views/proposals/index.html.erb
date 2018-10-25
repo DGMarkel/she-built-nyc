@@ -13,6 +13,17 @@ $(function () {
   });
 });
 
+// welcome page functions
+
+function profileOrHomeTemplate() {
+  currentUser = `<%= current_user.id if current_user %>`
+  if (currentUser === ``) {
+    homeTemplate();
+  } else {
+    currentUserProfileTemplate();
+  }
+}
+
 // user profile functions
 
 function userIndexTemplate() {
