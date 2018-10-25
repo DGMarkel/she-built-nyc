@@ -19,6 +19,7 @@ function homeTemplate() {
   hideSideNav();
 }
 
+
 // function topThreeProposalDisplay() {
 //   $(".topThreeImages div").hover(
 //     function() {

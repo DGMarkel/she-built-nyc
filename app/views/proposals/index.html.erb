@@ -1,5 +1,18 @@
 <script type="text/javascript" charset="utf-8">
 
+navId = null
+currentUser = null
+usersArray = []
+
+$(function () {
+  profileOrHomeTemplate();
+  $(".main").on("click", function(e) {
+      if (!$(e.target).is("button")) {
+      hideTopNav();
+    }
+  });
+});
+
 // welcome page functions
 
 function profileOrHomeTemplate() {
@@ -11,43 +24,11 @@ function profileOrHomeTemplate() {
   }
 }
 
-function loginDropDown() {
-  $("#login").append('<%= j render "/sessions/login" %>');
-  $("#login").css({
-    "position":"relative",
-    "top":"-20px"
-  })
-  $("#loginForm input").css({
-    "height":"43px",
-    "background-color": "rgba(255,255,255,0)",
-    "border":"1px solid #3bb9ff",
-    "border-radius":"5px",
-    "font-size":"25px"
-  });
-  $("#loginForm input[type='submit']").css({
-    "height":"40px",
-    "border": "1px solid orange",
-    "color":"white",
-    "cursor":"pointer"
-  });
-  $("#loginForm a").css({
-    "position": "relative",
-    "left":"100px",
-    "color":"white",
-    "text-decoration":"none"
-  })
-  $("[type='submit']").removeAttr("data-disable-with");
-}
-
 // user profile functions
 
 function userIndexTemplate() {
   $(".main").empty();
-  $.get(`/users/${currentUser}.json`, function(data) {
-    if (data.admin) {
-      $(".main").append('<%= j render '/users/index' %>');
-    }
-  });
+  $(".main").append('<%= j render '/users/index' if current_user && current_user.admin %>');
 }
 
 function currentUserProfileTemplate() {
@@ -84,6 +65,34 @@ function editProposalTemplate() {
   editProposal()
   hideSideNav();
   $("#editProposalDetails").animate({"right": "-33%"}, 10, function() {});
+}
+
+function loginDropDown() {
+  $("#login").append('<%= j render "/sessions/login" %>');
+  $("#login").css({
+    "position":"relative",
+    "top":"-20px"
+  })
+  $("#loginForm input").css({
+    "height":"43px",
+    "background-color": "rgba(255,255,255,0)",
+    "border":"1px solid #3bb9ff",
+    "border-radius":"5px",
+    "font-size":"25px"
+  });
+  $("#loginForm input[type='submit']").css({
+    "height":"40px",
+    "border": "1px solid orange",
+    "color":"white",
+    "cursor":"pointer"
+  });
+  $("#loginForm a").css({
+    "position": "relative",
+    "left":"100px",
+    "color":"white",
+    "text-decoration":"none"
+  })
+  $("[type='submit']").removeAttr("data-disable-with");
 }
 
 </script>
