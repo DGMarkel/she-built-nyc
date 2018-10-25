@@ -14,13 +14,16 @@ function documentReadyCalls(proposalId) {
   showSideNav();
 }
 
-function editProposal() {
+function editProposal(proposalId) {
   $(".edit_proposal").on("submit", function(e) {
     e.preventDefault();
-    proposalId = this.id.match(/\d+/g)[0]
     var values = $(this).serialize();
-    $.post(`/proposals/${proposalId}`, values);
-    documentReadyCalls(parseInt(proposalId));
+    let posting = $.ajax({
+      type: "PUT",
+      url: `/proposals/${proposalId}`,
+      data: values
+    });
+    documentReadyCalls(proposalId)
   });
 }
 
