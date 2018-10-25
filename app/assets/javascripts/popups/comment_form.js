@@ -13,7 +13,3 @@ function showOrHideCommentForm() {
     };
   });
 }
-
-function hideCommentForm() {
-  $("#commentPopUp").css("height", "0");
-}
