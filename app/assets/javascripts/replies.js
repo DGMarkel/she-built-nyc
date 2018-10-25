@@ -1,7 +1,6 @@
 function repliesTemplate(comment) {
   comment.replies.forEach(function(reply) {
     $(`#replies_to_comment_${comment["id"]}`).append('<hr>')
-
     $(`#replies_to_comment_${comment["id"]}`).append(`<h4><a href="/users/${reply['user']['id']}">${reply["user"]["name"]}</a> - ${reply["created_at"]} </h4>`);
     $(`#replies_to_comment_${comment["id"]}`).append(`<h4>${reply["content"]}</h4>`);
   });

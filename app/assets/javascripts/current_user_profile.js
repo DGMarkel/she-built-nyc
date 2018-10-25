@@ -1,3 +1,7 @@
+function hideCurrentUserProfileTemplate() {
+  $("#userDetails").animate({"right": "-36%"}, 500, function() {})
+}
+
 function showFavoriteProposals() {
   hideRecentComments();
   hideRecentVotes();
