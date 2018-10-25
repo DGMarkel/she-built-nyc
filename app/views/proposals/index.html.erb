@@ -28,7 +28,12 @@ function profileOrHomeTemplate() {
 
 function userIndexTemplate() {
   $(".main").empty();
-  $(".main").append('<%= j render '/users/index' if current_user && current_user.admin %>');
+
+  $.get(`/users/${currentUser}.json`, function(data) {
+    if (data.admin) {
+      $(".main").append('<%= j render '/users/index' %>');
+    }
+  });
 }
 
 function currentUserProfileTemplate() {
