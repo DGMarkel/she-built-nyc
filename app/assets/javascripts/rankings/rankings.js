@@ -1,4 +1,3 @@
-
 async function checkForUserRanking() {
   let currentProposal = $("#ranking_proposal")[0]["value"]
   let res = await fetch('/rankings.json')
