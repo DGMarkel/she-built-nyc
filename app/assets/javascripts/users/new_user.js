@@ -11,7 +11,7 @@ function signUpTemplate() {
   $(".new_user").append(`<h2>Password</h2>`)
   $(".new_user").append(`<p><input type="password" name="user[password]" id="user_password"></p>`)
   $(".new_user").append(`<p><input type="submit" name="commit" value="Create User" data-disable-with="Create User"></p>`)
-  $(".new_user").append(`<h2><%= link_to "Sign up with Facebook", user_facebook_omniauth_authorize_path %></h2>`)
+  $(".new_user").append(`<h2><a href="/users/auth/facebook">Sign up with Facebook"</a></h2>`)
   postNewUser();
 }
 
